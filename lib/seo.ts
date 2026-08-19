@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import type { Locale } from '@/lib/i18n/config';
 import { locales, localeHrefLangs, withLocale } from '@/lib/i18n/config';
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolora.app';
-export const SITE_NAME = 'Toolora';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.toollora.online';
+export const SITE_NAME = 'Toollora';
 
 export const siteUrl = (path = ''): string => `${SITE_URL}${path}`;
 
