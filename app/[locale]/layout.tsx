@@ -30,14 +30,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(SITE_URL),
     applicationName: SITE_NAME,
+// Google verification metadata
+    verification: {
+      google: 'exAAHpiMsljDHyf5dcUDz6KESuX79fZMvd1HLDsb0p0',
+    },
     title: {
       default: dict.meta.defaultTitle,
-      template: '%s | Toolora',
+      template: '%s | Toollora',
     },
     description: dict.meta.defaultDescription,
     keywords: dict.meta.keywords,
-    authors: [{ name: 'Toolora' }],
-    creator: 'Toolora',
+    authors: [{ name: 'Toollora' }],
+    creator: 'Toollora',
     alternates: { canonical: `/${current}` },
     openGraph: {
       type: 'website',
