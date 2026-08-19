@@ -62,9 +62,9 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'sticky top-0 z-50 w-full transition-all duration-200 bg-background/80 backdrop-blur-md',
+          'sticky top-0 z-50 w-full transition-all duration-200 bg-background/90 backdrop-blur-xl',
           isScrolled
-            ? 'border-b border-border bg-background/90 shadow-sm'
+            ? 'border-b border-border bg-background/95 shadow-sm'
             : 'border-b border-transparent'
         )}
       >
@@ -155,7 +155,7 @@ export function Navbar() {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md animate-fade-in">
+          <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl animate-fade-in">
             <nav className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
               <div className="px-3 py-2">
                 <LanguageSwitcher />
