@@ -18,6 +18,12 @@ export const toolComponents: Record<string, React.ComponentType> = {
   'image-cropper': dynamic(() => import('@/components/tools/image/ImageCropper').then((m) => m.ImageCropper), {
     ssr: false,
   }),
+  'image-background-remover': dynamic(() => import('@/components/tools/image/ImageBackgroundRemover').then((m) => m.ImageBackgroundRemover), {
+    ssr: false,
+  }),
+  'image-to-text': dynamic(() => import('@/components/tools/image/ImageToText').then((m) => m.ImageToText), {
+    ssr: false,
+  }),
 
   // PDF
   'pdf-merger': dynamic(() => import('@/components/tools/pdf/PdfMerger').then((m) => m.PdfMerger), {
@@ -58,6 +64,12 @@ export const toolComponents: Record<string, React.ComponentType> = {
     ssr: false,
   }),
   'jwt-decoder': dynamic(() => import('@/components/tools/dev/JwtDecoder').then((m) => m.JwtDecoder), {
+    ssr: false,
+  }),
+  'sha-hash-generator': dynamic(() => import('@/components/tools/dev/ShaHashGenerator').then((m) => m.ShaHashGenerator), {
+    ssr: false,
+  }),
+  'color-converter': dynamic(() => import('@/components/tools/dev/ColorConverter').then((m) => m.ColorConverter), {
     ssr: false,
   }),
 

@@ -336,6 +336,32 @@ const dict: Dictionary = {
         uploadLabel: 'Suelta tu imagen aquí',
         uploadSublabel: 'Admite JPG, PNG y WebP · Máx. 50 MB',
       },
+      imageBackgroundRemover: {
+        uploadLabel: 'Suelta tu foto aquí',
+        uploadSublabel: 'JPG, PNG o WebP · ideal con personas',
+        removeBg: 'Quitar fondo',
+        removing: 'Quitando el fondo…',
+        loadingModel: 'Cargando el modelo de IA… el primer uso puede tardar unos segundos',
+        download: 'Descargar PNG',
+        changeImage: 'Cambiar imagen',
+        error: 'No se pudo procesar esta imagen. Prueba con una foto clara de una persona.',
+        original: 'Original',
+        result: 'Resultado',
+      },
+      imageToText: {
+        uploadLabel: 'Suelta tu imagen o escaneo aquí',
+        uploadSublabel: 'Admite JPG, PNG y WebP · Máx. 50 MB',
+        extract: 'Extraer texto',
+        extracting: 'Extrayendo texto…',
+        changeImage: 'Cambiar imagen',
+        copyText: 'Copiar texto',
+        downloadTxt: 'Descargar .txt',
+        copied: '¡Copiado!',
+        result: 'Texto reconocido',
+        source: 'Imagen de origen',
+        resultPlaceholder: 'El texto extraído aparecerá aquí…',
+        error: 'No se pudo leer el texto de esta imagen. Prueba con una imagen más clara y bien iluminada.',
+      },
       pdfMerger: {
         addMore: 'Añadir más PDF',
         merge: 'Fusionar PDF',
@@ -501,6 +527,25 @@ const dict: Dictionary = {
         invalidClaims: 'No se pudieron analizar los claims del token. Verifica que el token sea un Base64Url válido.',
         tokenPlaceholder: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
       },
+      shaHashGenerator: {
+        textTab: 'Texto',
+        placeholder: 'Escribe el texto para aplicar hash…',
+        hash: 'Hash',
+        copy: 'Copiar',
+        copied: '¡Copiado!',
+        chooseFile: 'Elegir un archivo para aplicar hash',
+        changeFile: 'Cambiar archivo',
+        fileHint: 'Los archivos se procesan localmente en tu navegador y nunca se suben.',
+        emptyHint: 'Escribe texto o elige un archivo para generar un hash.',
+      },
+      colorConverter: {
+        hex: 'HEX',
+        rgbLabel: 'RGB',
+        hslLabel: 'HSL',
+        preview: 'Vista previa',
+        pick: 'Elegir un color',
+        hint: 'Cambia cualquier campo: todos los formatos se actualizan al instante. Copia el código que necesites.',
+      },
       percentageCalculator: {
         of: 'X % de Y',
         is: 'X es qué % de Y',
@@ -562,6 +607,122 @@ const dict: Dictionary = {
     },
   },
   toolsContent: {
+    'image-background-remover': {
+      name: 'Eliminar fondo de imagen',
+      description: 'Elimina automáticamente el fondo de las fotos de personas.',
+      longDescription: 'Recorta el fondo de tus selfies y fotos de personas con una IA que funciona en tu navegador. La persona se conserva y se guarda como PNG transparente.',
+      keywords: ['eliminar fondo', 'quitar fondo imagen', 'fondo transparente', 'recorte de imagen', 'eliminar bg'],
+      seoTitle: 'Eliminar fondo de imagen — quita el fondo gratis',
+      seoDescription:
+        'Elimina el fondo de las fotos de personas gratis. Recorte inteligente en tu navegador: tus imágenes nunca se suben.',
+      content:
+        'Ya sea que necesites una foto de perfil limpia, una imagen de producto o un recorte transparente para tu diseño, esta herramienta elimina automáticamente el fondo de las fotos de personas. Un modelo de IA ejecutado en tu dispositivo detecta a la persona en la imagen y la separa del fondo, para que puedas descargar un PNG transparente listo para usar. Todo ocurre localmente en tu navegador: el primer uso descarga un pequeño modelo que luego queda en caché, y tus fotos nunca salen de tu dispositivo.',
+      howToSteps: [
+        'Sube una foto de una persona (JPG o PNG).',
+        'Haz clic en «Quitar fondo». El modelo se carga la primera vez.',
+        'Revisa el recorte transparente.',
+        'Descarga el PNG transparente.',
+      ],
+      faq: [
+        {
+          question: '¿Se suben mis imágenes a un servidor?',
+          answer: 'No. El modelo de segmentación funciona por completo en tu navegador con WebAssembly. Tu imagen nunca sale de tu dispositivo.',
+        },
+        {
+          question: '¿Funciona con objetos o solo con personas?',
+          answer: 'Esta herramienta usa un modelo de segmentación de selfies optimizado para personas. Los resultados pueden ser deficientes con fotos de animales u objetos.',
+        },
+        {
+          question: '¿Por qué hay que descargar un modelo?',
+          answer: 'El modelo de IA (unos 2 MB) se descarga una sola vez desde el CDN de Google en el primer uso y luego queda en caché en tu navegador para las siguientes visitas.',
+        },
+      ],
+    },
+    'image-to-text': {
+      name: 'Imagen a texto (OCR)',
+      description: 'Extrae el texto de imágenes y documentos escaneados.',
+      longDescription: 'Convierte imágenes, capturas de pantalla y páginas escaneadas en texto editable. El reconocimiento óptico se ejecuta en tu navegador.',
+      keywords: ['ocr', 'imagen a texto', 'extraer texto de imagen', 'reconocimiento de texto', 'texto desde imagen'],
+      seoTitle: 'Imagen a texto — extrae el texto de una imagen gratis',
+      seoDescription:
+        'Extrae gratis el texto de imágenes, capturas de pantalla y documentos escaneados con reconocimiento óptico en tu navegador. Sin subidas.',
+      content:
+        '¿Necesitas el texto de una captura de pantalla, de una foto de documento o de una página escaneada? Esta herramienta lee el texto directamente de la imagen mediante el reconocimiento óptico de caracteres (OCR) y te lo devuelve como texto copiable y editable. El motor de reconocimiento se ejecuta localmente en tu navegador, así que tu documento nunca se sube. Se admiten inglés, árabe, francés y español, y puedes copiar el resultado o descargarlo como archivo de texto.',
+      howToSteps: [
+        'Sube una imagen o un escaneo (JPG, PNG o WebP).',
+        'Elige el idioma de reconocimiento (se selecciona según el idioma de la interfaz).',
+        'Haz clic en «Extraer texto». El motor OCR se carga la primera vez.',
+        'Copia el resultado o descárgalo en .txt.',
+      ],
+      faq: [
+        {
+          question: '¿Se sube mi documento a algún lugar?',
+          answer: 'No. El motor OCR se ejecuta localmente en tu navegador; tus imágenes y documentos nunca salen de tu dispositivo.',
+        },
+        {
+          question: '¿Qué idiomas se admiten?',
+          answer: 'El reconocimiento admite inglés, árabe, francés y español, en coherencia con el idioma del sitio.',
+        },
+        {
+          question: '¿Qué precisión tiene el reconocimiento?',
+          answer: 'Depende de la calidad de la imagen. Las imágenes nítidas, bien iluminadas y rectas con texto legible dan los mejores resultados.',
+        },
+      ],
+    },
+    'sha-hash-generator': {
+      name: 'Generador de hash SHA-256',
+      description: 'Genera hashes SHA-256, SHA-384 y SHA-512 para texto y archivos.',
+      longDescription: 'Aplica hash a texto o archivos con la familia SHA-2 (SHA-256, SHA-384 y SHA-512) mediante el cifrado integrado de tu navegador. Sin conexión e instantáneo.',
+      keywords: ['sha256', 'sha-256', 'generador de hash', 'sha512', 'suma de verificación', 'hash de archivo'],
+      seoTitle: 'Generador SHA-256 — hashea texto y archivos gratis',
+      seoDescription:
+        'Genera gratis hashes SHA-256, SHA-384 y SHA-512 para texto o archivos. Funciona sin conexión en tu navegador con WebCrypto.',
+      content:
+        'Calcula una huella criptográfica para cualquier texto o archivo con las funciones hash de la familia SHA-2. Elige SHA-256, SHA-384 o SHA-512, escribe un texto o selecciona un archivo, y obtén el hash al instante. El hasheo se realiza por completo en tu dispositivo mediante la API WebCrypto integrada en el navegador, lo que resulta ideal para verificar la integridad de archivos o comparar sumas de verificación sin subir tus datos.',
+      howToSteps: [
+        'Elige un algoritmo (SHA-256, SHA-384 o SHA-512).',
+        'Escribe un texto o sube un archivo para aplicar hash.',
+        'El hash se actualiza al instante.',
+        'Copia el resultado al portapapeles.',
+      ],
+      faq: [
+        {
+          question: '¿El hash es un cifrado?',
+          answer: 'No. El hash es una función unidireccional: produce una huella de tamaño fijo de la entrada, pero no se puede recuperar la entrada a partir del hash.',
+        },
+        {
+          question: '¿Para qué sirve el hash?',
+          answer: 'Los hashes se usan normalmente para verificar la integridad de los archivos (sumas de verificación), almacenar contraseñas de forma segura y detectar datos duplicados.',
+        },
+      ],
+    },
+    'color-converter': {
+      name: 'Conversor de colores',
+      description: 'Convierte colores entre los formatos HEX, RGB y HSL.',
+      longDescription: 'Convierte cualquier color entre HEX, RGB y HSL, previsualízalo en vivo y copia el código en el formato que necesites.',
+      keywords: ['conversor de colores', 'hex a rgb', 'rgb a hex', 'hsl', 'selector de color', 'color css'],
+      seoTitle: 'Conversor de colores — conversión HEX, RGB y HSL gratis',
+      seoDescription:
+        'Convierte colores entre HEX, RGB y HSL gratis con vista previa instantánea y copia con un clic, todo en tu navegador.',
+      content:
+        'Trabajar con códigos de color en CSS, herramientas de diseño y programas de imagen suele requerir pasar de HEX a RGB o a HSL. Este conversor toma cualquier color que ingreses en cualquiera de los tres formatos y te muestra al instante los valores equivalentes en los demás, con una vista previa en vivo del color. Cambia cualquier valor y todos los campos se actualizan juntos, para que siempre copies el código exacto que necesita tu herramienta.',
+      howToSteps: [
+        'Elige un color con el selector o escribe un valor HEX, RGB o HSL.',
+        'Los demás formatos se actualizan al instante.',
+        'Usa la vista previa en vivo para verificar el color.',
+        'Copia el código en el formato que necesites.',
+      ],
+      faq: [
+        {
+          question: '¿Qué es el HSL?',
+          answer: 'HSL significa Hue (tono), Saturation (saturación) y Lightness (luminosidad). Un modelo de color que describe un color por su posición en la rueda cromática, su intensidad y su claridad.',
+        },
+        {
+          question: '¿Hay diferencia entre #FFF y #FFFFFF?',
+          answer: 'No: ambos representan el mismo blanco. Los códigos HEX cortos de 3 dígitos son una abreviatura de la forma completa de 6 dígitos.',
+        },
+      ],
+    },
     'image-compressor': {
       name: 'Compresor de imágenes',
       description: 'Reduce el tamaño de las imágenes manteniendo una calidad excelente.',

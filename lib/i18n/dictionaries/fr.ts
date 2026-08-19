@@ -336,6 +336,32 @@ const dict: Dictionary = {
         uploadLabel: 'Déposez votre image ici',
         uploadSublabel: 'Prend en charge JPG, PNG et WebP · Max 50 Mo',
       },
+      imageBackgroundRemover: {
+        uploadLabel: 'Déposez votre photo ici',
+        uploadSublabel: 'JPG, PNG ou WebP · idéal avec des personnes',
+        removeBg: 'Supprimer l’arrière-plan',
+        removing: 'Suppression de l’arrière-plan…',
+        loadingModel: 'Chargement du modèle IA… la première utilisation peut prendre quelques secondes',
+        download: 'Télécharger le PNG',
+        changeImage: 'Changer d’image',
+        error: 'Impossible de traiter cette image. Essayez une photo claire d’une personne.',
+        original: 'Originale',
+        result: 'Résultat',
+      },
+      imageToText: {
+        uploadLabel: 'Déposez votre image ou scan ici',
+        uploadSublabel: 'Prend en charge JPG, PNG et WebP · Max 50 Mo',
+        extract: 'Extraire le texte',
+        extracting: 'Extraction du texte…',
+        changeImage: 'Changer d’image',
+        copyText: 'Copier le texte',
+        downloadTxt: 'Télécharger .txt',
+        copied: 'Copié !',
+        result: 'Texte reconnu',
+        source: 'Image source',
+        resultPlaceholder: 'Le texte extrait apparaîtra ici…',
+        error: 'Impossible de lire le texte de cette image. Essayez une image plus claire et bien éclairée.',
+      },
       pdfMerger: {
         addMore: 'Ajouter d’autres PDF',
         merge: 'Fusionner les PDF',
@@ -501,6 +527,25 @@ const dict: Dictionary = {
         invalidClaims: 'Impossible d’analyser les claims du jeton. Vérifiez que le jeton est un Base64Url valide.',
         tokenPlaceholder: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
       },
+      shaHashGenerator: {
+        textTab: 'Texte',
+        placeholder: 'Saisissez le texte à hacher…',
+        hash: 'Empreinte',
+        copy: 'Copier',
+        copied: 'Copié !',
+        chooseFile: 'Choisir un fichier à hacher',
+        changeFile: 'Changer de fichier',
+        fileHint: 'Les fichiers sont hachés localement dans votre navigateur et ne sont jamais téléversés.',
+        emptyHint: 'Saisissez du texte ou choisissez un fichier pour générer une empreinte.',
+      },
+      colorConverter: {
+        hex: 'HEX',
+        rgbLabel: 'RVB',
+        hslLabel: 'HSL',
+        preview: 'Aperçu',
+        pick: 'Choisir une couleur',
+        hint: 'Modifiez n’importe quel champ — tous les formats se mettent à jour instantanément. Copiez le code dont vous avez besoin.',
+      },
       percentageCalculator: {
         of: 'X % de Y',
         is: 'X est quel % de Y',
@@ -562,6 +607,122 @@ const dict: Dictionary = {
     },
   },
   toolsContent: {
+    'image-background-remover': {
+      name: 'Suppression d’arrière-plan d’image',
+      description: 'Supprimez automatiquement l’arrière-plan des photos de personnes.',
+      longDescription: 'Découpez l’arrière-plan de vos selfies et photos de personnes grâce à une IA qui fonctionne dans votre navigateur. La personne est conservée et enregistrée en PNG transparent.',
+      keywords: ['supprimer arrière-plan', 'détourage image', 'fond transparent', 'suppression de fond', 'supprimer bg'],
+      seoTitle: 'Suppression d’arrière-plan — retirer le fond gratuitement',
+      seoDescription:
+        'Supprimez l’arrière-plan des photos de personnes gratuitement. Détourage intelligent dans votre navigateur — vos images ne sont jamais téléversées.',
+      content:
+        'Que vous ayez besoin d’une photo de profil nette, d’une image produit ou d’un détourage transparent pour votre design, cet outil retire automatiquement l’arrière-plan des photos de personnes. Un modèle d’IA exécuté sur votre appareil détecte la personne dans l’image et la sépare de l’arrière-plan, afin que vous puissiez télécharger un PNG transparent prêt à l’emploi. Tout se passe localement dans votre navigateur — la première utilisation télécharge un petit modèle ensuite mis en cache, et vos photos ne quittent jamais votre appareil.',
+      howToSteps: [
+        'Téléversez une photo de personne (JPG ou PNG).',
+        'Cliquez sur « Supprimer l’arrière-plan ». Le modèle se charge à la première utilisation.',
+        'Vérifiez le détourage transparent.',
+        'Téléchargez le PNG transparent.',
+      ],
+      faq: [
+        {
+          question: 'Mes images sont-elles téléversées sur un serveur ?',
+          answer: 'Non. Le modèle de segmentation fonctionne entièrement dans votre navigateur grâce à WebAssembly. Votre image ne quitte jamais votre appareil.',
+        },
+        {
+          question: 'Fonctionne-t-il avec des objets ou seulement des personnes ?',
+          answer: 'Cet outil utilise un modèle de segmentation de selfie optimisé pour les personnes. Les résultats peuvent être médiocres avec des photos d’animaux ou d’objets.',
+        },
+        {
+          question: 'Pourquoi faut-il télécharger un modèle ?',
+          answer: 'Le modèle d’IA (environ 2 Mo) est téléchargé une seule fois depuis le CDN de Google à la première utilisation, puis mis en cache dans votre navigateur pour les visites suivantes.',
+        },
+      ],
+    },
+    'image-to-text': {
+      name: 'Image en texte (OCR)',
+      description: 'Extrayez le texte des images et des documents numérisés.',
+      longDescription: 'Convertissez images, captures d’écran et pages numérisées en texte modifiable. La reconnaissance optique s’exécute dans votre navigateur.',
+      keywords: ['ocr', 'image en texte', 'extraire texte d’une image', 'reconnaissance de texte', 'texte depuis image'],
+      seoTitle: 'Image en texte — extraire le texte d’une image gratuitement',
+      seoDescription:
+        'Extrayez gratuitement le texte d’images, de captures d’écran et de documents numérisés avec la reconnaissance optique dans votre navigateur. Sans téléversement.',
+      content:
+        'Besoin du texte d’une capture d’écran, d’une photo de document ou d’une page numérisée ? Cet outil lit le texte directement dans l’image grâce à la reconnaissance optique de caractères (OCR) et vous le restitue sous forme de texte copiable et modifiable. Le moteur de reconnaissance s’exécute localement dans votre navigateur : votre document n’est donc jamais téléversé. L’anglais, l’arabe, le français et l’espagnol sont pris en charge, et vous pouvez copier le résultat ou le télécharger en fichier texte.',
+      howToSteps: [
+        'Téléversez une image ou un scan (JPG, PNG ou WebP).',
+        'Choisissez la langue de reconnaissance (sélectionnée selon la langue de l’interface).',
+        'Cliquez sur « Extraire le texte ». Le moteur OCR se charge à la première utilisation.',
+        'Copiez le résultat ou téléchargez-le en .txt.',
+      ],
+      faq: [
+        {
+          question: 'Mon document est-il téléversé quelque part ?',
+          answer: 'Non. Le moteur OCR s’exécute localement dans votre navigateur, vos images et documents ne quittent jamais votre appareil.',
+        },
+        {
+          question: 'Quelles langues sont prises en charge ?',
+          answer: 'La reconnaissance prend en charge l’anglais, l’arabe, le français et l’espagnol, en accord avec la langue du site.',
+        },
+        {
+          question: 'Quelle est la précision de la reconnaissance ?',
+          answer: 'Elle dépend de la qualité de l’image. Les images nettes, bien éclairées et droites contenant un texte lisible donnent les meilleurs résultats.',
+        },
+      ],
+    },
+    'sha-hash-generator': {
+      name: 'Générateur d’empreinte SHA-256',
+      description: 'Générez des empreintes SHA-256, SHA-384 et SHA-512 pour du texte et des fichiers.',
+      longDescription: 'Hachez du texte ou des fichiers avec la famille SHA-2 (SHA-256, SHA-384 et SHA-512) via le chiffrement intégré de votre navigateur. Hors ligne et instantané.',
+      keywords: ['sha256', 'sha-256', 'générateur d’empreinte', 'sha512', 'somme de contrôle', 'empreinte de fichier'],
+      seoTitle: 'Générateur SHA-256 — hacher texte et fichiers gratuitement',
+      seoDescription:
+        'Générez gratuitement des empreintes SHA-256, SHA-384 et SHA-512 pour du texte ou des fichiers. Fonctionne hors ligne dans votre navigateur grâce à WebCrypto.',
+      content:
+        'Calculez une empreinte cryptographique pour n’importe quel texte ou fichier avec les fonctions de hachage de la famille SHA-2. Choisissez SHA-256, SHA-384 ou SHA-512, saisissez un texte ou choisissez un fichier, et obtenez l’empreinte instantanément. Le hachage se fait entièrement sur votre appareil via l’API WebCrypto intégrée au navigateur, ce qui est idéal pour vérifier l’intégrité des fichiers ou comparer des sommes de contrôle sans téléverser vos données.',
+      howToSteps: [
+        'Choisissez un algorithme (SHA-256, SHA-384 ou SHA-512).',
+        'Saisissez un texte ou téléversez un fichier à hacher.',
+        'L’empreinte se met à jour instantanément.',
+        'Copiez le résultat dans le presse-papiers.',
+      ],
+      faq: [
+        {
+          question: 'Le hachage est-il un chiffrement ?',
+          answer: 'Non. Le hachage est une fonction à sens unique : il produit une empreinte de taille fixe de l’entrée, mais on ne peut pas retrouver l’entrée à partir de l’empreinte.',
+        },
+        {
+          question: 'À quoi sert le hachage ?',
+          answer: 'Les empreintes servent généralement à vérifier l’intégrité des fichiers (sommes de contrôle), à stocker les mots de passe de façon sûre et à détecter les données dupliquées.',
+        },
+      ],
+    },
+    'color-converter': {
+      name: 'Convertisseur de couleurs',
+      description: 'Convertissez les couleurs entre les formats HEX, RVB et TSL.',
+      longDescription: 'Convertissez n’importe quelle couleur entre HEX, RVB et TSL, prévisualisez-la en direct et copiez le code au format souhaité.',
+      keywords: ['convertisseur de couleurs', 'hex vers rvb', 'rvb vers hex', 'hsl', 'sélecteur de couleur', 'couleur css'],
+      seoTitle: 'Convertisseur de couleurs — conversion HEX, RVB et TSL gratuite',
+      seoDescription:
+        'Convertissez gratuitement les couleurs entre HEX, RVB et TSL avec aperçu instantané et copie en un clic, le tout dans votre navigateur.',
+      content:
+        'Travailler avec les codes couleur en CSS, dans les outils de design et les logiciels d’image implique souvent de passer de l’HEX au RVB ou au TSL. Ce convertisseur prend n’importe quelle couleur saisie dans l’un des trois formats et affiche instantanément les valeurs équivalentes dans les autres, avec un aperçu en direct de la couleur. Modifiez n’importe quelle valeur et tous les champs se mettent à jour ensemble, pour toujours copier le code exact dont votre outil a besoin.',
+      howToSteps: [
+        'Choisissez une couleur avec le sélecteur ou saisissez une valeur HEX, RVB ou TSL.',
+        'Les autres formats se mettent à jour instantanément.',
+        'Utilisez l’aperçu en direct pour vérifier la couleur.',
+        'Copiez le code au format souhaité.',
+      ],
+      faq: [
+        {
+          question: 'Qu’est-ce que le HSL ?',
+          answer: 'HSL signifie Hue (teinte), Saturation et Lightness (luminosité). Un modèle colorimétrique qui décrit une couleur par sa position sur la roue chromatique, son intensité et sa clarté.',
+        },
+        {
+          question: 'Y a-t-il une différence entre #FFF et #FFFFFF ?',
+          answer: 'Non — les deux représentent le même blanc. Les codes HEX courts à 3 chiffres sont une abréviation de la forme complète à 6 chiffres.',
+        },
+      ],
+    },
     'image-compressor': {
       name: 'Compresseur d’images',
       description: 'Réduisez la taille des images tout en conservant une excellente qualité.',

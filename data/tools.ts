@@ -19,6 +19,10 @@ import {
   CalendarDays,
   Tag,
   QrCode,
+  Wand2,
+  ScanText,
+  Fingerprint,
+  Palette,
 } from 'lucide-react';
 
 export interface ToolFAQ {
@@ -716,6 +720,165 @@ export const tools: Tool[] = [
       },
     ],
     isPopular: true,
+    isBrowserSide: true,
+  },
+
+  // ─── NEW TOOLS ─────────────────────────────────────────────────────────
+  {
+    id: 'image-background-remover',
+    name: 'Image Background Remover',
+    slug: 'image-background-remover',
+    description: 'Remove the background from photos of people automatically.',
+    longDescription:
+      'Cut out the background from selfies and portraits with AI running in your browser. The person is kept and saved as a transparent PNG.',
+    category: 'image',
+    icon: Wand2,
+    keywords: ['remove background', 'background remover', 'cut out image', 'transparent background', 'remove bg'],
+    relatedTools: ['image-cropper', 'image-compressor', 'image-converter', 'image-to-text'],
+    seoTitle: 'Image Background Remover — Remove Background Online Free',
+    seoDescription:
+      'Remove the background from photos of people for free. AI-powered cutout runs in your browser — your images are never uploaded.',
+    content:
+      'Whether you need a clean headshot for a profile, a product photo or a transparent cutout for a design, this tool removes the background from photos of people automatically. An on-device AI model detects the person in the image and separates them from the background, so you can download a transparent PNG ready to use anywhere. Everything runs locally in your browser — the first use downloads a small model, after which it is cached, and your photos never leave your device.',
+    howToSteps: [
+      'Upload a photo of a person (JPG or PNG).',
+      'Click "Remove Background". The model loads on first use.',
+      'Preview the transparent cutout.',
+      'Download the PNG with a transparent background.',
+    ],
+    faq: [
+      {
+        question: 'Is my photo uploaded to a server?',
+        answer:
+          'No. The segmentation model runs entirely in your browser using WebAssembly. Your image never leaves your device.',
+      },
+      {
+        question: 'Does it work on objects or just people?',
+        answer:
+          'This tool uses a selfie segmentation model optimised for people. For photos of animals or objects the results may be poor.',
+      },
+      {
+        question: 'Why does it need to download a model?',
+        answer:
+          'The AI model (~2 MB) is downloaded once from Google\'s CDN the first time you use the tool, then cached in your browser for future visits.',
+      },
+    ],
+    isPopular: true,
+    isBrowserSide: true,
+  },
+  {
+    id: 'image-to-text',
+    name: 'Image to Text (OCR)',
+    slug: 'image-to-text',
+    description: 'Extract text from images and scanned documents.',
+    longDescription:
+      'Turn pictures, screenshots and scanned pages into editable text. Optical Character Recognition runs locally in your browser.',
+    category: 'image',
+    icon: ScanText,
+    keywords: ['ocr', 'image to text', 'extract text from image', 'scan text', 'optical character recognition'],
+    relatedTools: ['image-background-remover', 'text-cleaner', 'word-counter', 'image-converter'],
+    seoTitle: 'Image to Text — Extract Text from Images Online Free',
+    seoDescription:
+      'Extract text from images, screenshots and scanned documents for free with OCR that runs in your browser. No upload required.',
+    content:
+      'Need the text from a screenshot, a photo of a document or a scanned page? This tool reads the text straight off the image using Optical Character Recognition (OCR) and gives it back to you as copyable, editable text. The recognition engine runs locally in your browser, so your document is never uploaded anywhere. English, Arabic, French and Spanish text is supported, and you can copy the result or download it as a text file.',
+    howToSteps: [
+      'Upload an image or scanned document (JPG, PNG or WebP).',
+      'Pick the recognition language (auto-selected for your UI language).',
+      'Click "Extract Text". The OCR engine loads on first use.',
+      'Copy the result or download it as a .txt file.',
+    ],
+    faq: [
+      {
+        question: 'Is my document uploaded anywhere?',
+        answer:
+          'No. The OCR engine runs locally in your browser, so your images and documents never leave your device.',
+      },
+      {
+        question: 'Which languages are supported?',
+        answer: 'English, Arabic, French and Spanish are supported and match the language of the site.',
+      },
+      {
+        question: 'How accurate is the recognition?',
+        answer:
+          'Accuracy depends on image quality. Clear, well-lit, straight images with readable text give the best results.',
+      },
+    ],
+    isPopular: false,
+    isBrowserSide: true,
+  },
+  {
+    id: 'sha-hash-generator',
+    name: 'SHA-256 Hash Generator',
+    slug: 'sha-hash-generator',
+    description: 'Generate SHA-256, SHA-384 and SHA-512 hashes for text and files.',
+    longDescription:
+      'Hash text or files with the SHA-2 family (SHA-256, SHA-384, SHA-512) using your browser\'s built-in cryptography. Offline and instant.',
+    category: 'developer',
+    icon: Fingerprint,
+    keywords: ['sha256', 'sha-256', 'hash generator', 'sha512', 'checksum', 'file hash'],
+    relatedTools: ['base64-tool', 'uuid-generator', 'json-formatter'],
+    seoTitle: 'SHA-256 Hash Generator — Hash Text & Files Online Free',
+    seoDescription:
+      'Generate SHA-256, SHA-384 and SHA-512 hashes for text or files for free. Runs entirely offline in your browser using WebCrypto.',
+    content:
+      'Compute a cryptographic fingerprint of any text or file with the SHA-2 family of hash functions. Choose between SHA-256, SHA-384 and SHA-512, type some text or pick a file, and get the hash instantly. Hashing runs entirely on your device using the browser\'s built-in WebCrypto API, which makes it useful for verifying file integrity or comparing checksums without ever uploading your data.',
+    howToSteps: [
+      'Choose an algorithm (SHA-256, SHA-384 or SHA-512).',
+      'Type text or upload a file to hash.',
+      'The hash updates instantly.',
+      'Copy the result to your clipboard.',
+    ],
+    faq: [
+      {
+        question: 'Is a hash encryption?',
+        answer:
+          'No. Hashing is a one-way function: it produces a fixed-size fingerprint of the input, but the input cannot be recovered from the hash.',
+      },
+      {
+        question: 'What is a hash used for?',
+        answer:
+          'Hashes are commonly used to verify file integrity (checksums), store passwords securely and detect duplicate data.',
+      },
+    ],
+    isPopular: false,
+    isBrowserSide: true,
+  },
+  {
+    id: 'color-converter',
+    name: 'Color Converter',
+    slug: 'color-converter',
+    description: 'Convert colors between HEX, RGB and HSL formats.',
+    longDescription:
+      'Convert any color between HEX, RGB and HSL, preview it live and copy the code in the format you need.',
+    category: 'developer',
+    icon: Palette,
+    keywords: ['color converter', 'hex to rgb', 'rgb to hex', 'hsl', 'color picker', 'css color'],
+    relatedTools: ['json-formatter', 'base64-tool', 'sha-hash-generator'],
+    seoTitle: 'Color Converter — HEX, RGB & HSL Converter Online Free',
+    seoDescription:
+      'Convert colors between HEX, RGB and HSL for free. Live preview and copy-to-clipboard, all in your browser.',
+    content:
+      'Working with color codes across CSS, design tools and image software often means switching between HEX, RGB and HSL. This converter takes any color you provide in any of the three formats and instantly shows you the equivalent values in the others, with a live preview of the color. Change any channel and every field updates together, so you can always copy the exact code your tool needs.',
+    howToSteps: [
+      'Pick a color with the color picker or type a HEX, RGB or HSL value.',
+      'The other formats update instantly.',
+      'Use the live preview to check the color.',
+      'Copy the code in the format you need.',
+    ],
+    faq: [
+      {
+        question: 'What is HSL?',
+        answer:
+          'HSL stands for Hue, Saturation and Lightness. It is a color model that describes a color by its position on a color wheel, its intensity and its brightness.',
+      },
+      {
+        question: 'Is there a difference between #FFF and #FFFFFF?',
+        answer:
+          'No — both represent the same white color. Short 3-digit HEX codes are shorthand for the full 6-digit form.',
+      },
+    ],
+    isPopular: false,
     isBrowserSide: true,
   },
 ];

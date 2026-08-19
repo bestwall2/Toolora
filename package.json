@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "^1.0.1",
     "browser-image-compression": "^2.0.2",
     "caniuse-lite": "^1.0.30001809",
     "clsx": "^2.1.1",
@@ -22,6 +23,7 @@
     "react-dropzone": "^20.1.0",
     "react-image-crop": "^11.1.2",
     "tailwind-merge": "^3.6.0",
+    "tesseract.js": "^7.0.0",
     "uuid": "^14.0.1"
   },
   "devDependencies": {
