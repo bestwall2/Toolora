@@ -15,9 +15,9 @@ export function FaqAccordion() {
         <div key={i} className="border border-border rounded-xl bg-card overflow-hidden">
           <button
             onClick={() => setFaqOpen(faqOpen === i ? null : i)}
-            className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-muted/40 transition-colors"
+            className="w-full flex items-center justify-between px-5 py-4 text-start hover:bg-muted/40 transition-colors"
           >
-            <span className="font-semibold text-sm text-foreground pr-4">{faq.question}</span>
+            <span className="font-semibold text-sm text-foreground pe-4">{faq.question}</span>
             <ChevronDown
               className={`w-4 h-4 text-muted-foreground transition-transform ${faqOpen === i ? 'rotate-180' : ''}`}
             />

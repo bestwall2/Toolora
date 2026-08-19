@@ -42,7 +42,7 @@ export function ToolLayout({
         </Link>
         {breadcrumbs.map((crumb, i) => (
           <span key={i} className="flex items-center gap-1">
-            <ChevronRight className="w-3 h-3" />
+            <ChevronRight className="w-3 h-3 rtl:rotate-180" />
             {crumb.href ? (
               <Link href={crumb.href} className="hover:text-foreground transition-colors capitalize">
                 {crumb.label}

@@ -109,7 +109,7 @@ export function Footer({ locale }: { locale: Locale }) {
             © {year} Toollora. {t.footer.rights} {t.footer.madeWith}
           </p>
           <div className="flex items-center gap-1">
-            <span className="text-xs text-muted-foreground mr-2">{t.footer.browserProcessed}</span>
+            <span className="text-xs text-muted-foreground me-2">{t.footer.browserProcessed}</span>
           </div>
         </div>
       </div>

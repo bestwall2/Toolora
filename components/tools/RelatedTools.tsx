@@ -29,7 +29,7 @@ export function RelatedTools({ tools, title = 'People also use', locale = 'en' }
                 <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{tool.name}</p>
                 <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{tool.description}</p>
               </div>
-              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" />
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all flex-shrink-0 mt-0.5 rtl:rotate-180" />
             </Link>
           );
         })}

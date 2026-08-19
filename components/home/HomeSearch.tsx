@@ -22,7 +22,7 @@ export function HomeSearch() {
       >
         <Search className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
         <span>{t.searchModal.placeholder}</span>
-        <kbd className="ml-auto inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs bg-muted border border-border font-mono">
+        <kbd className="ms-auto inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs bg-muted border border-border font-mono">
           ⌃K
         </kbd>
       </button>

@@ -218,7 +218,7 @@ export function QrCodeGenerator() {
           )}
 
           <div className="w-full space-y-3.5">
-            <div className="grid grid-cols-2 gap-2 text-left">
+            <div className="grid grid-cols-2 gap-2 text-start">
               <div className="space-y-1">
                 <label htmlFor="qr-size" className="text-[10px] uppercase font-semibold tracking-wider text-muted-foreground">{L.imageSize}</label>
                 <select

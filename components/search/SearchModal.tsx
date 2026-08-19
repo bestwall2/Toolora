@@ -122,7 +122,7 @@ export function SearchModal({ onClose }: SearchModalProps) {
               <li key={tool.id}>
                 <button
                   className={cn(
-                    'w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors',
+                    'w-full flex items-center gap-3 px-4 py-2.5 text-start transition-colors',
                     i === activeIndex ? 'bg-muted' : 'hover:bg-muted/60'
                   )}
                   onClick={() => goToTool(tool.category, tool.slug)}
@@ -140,7 +140,7 @@ export function SearchModal({ onClose }: SearchModalProps) {
                     <p className="text-sm font-medium text-foreground">{tool.name}</p>
                     <p className="text-xs text-muted-foreground truncate">{tool.description}</p>
                   </div>
-                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0 rtl:rotate-180" />
                 </button>
               </li>
             ))}

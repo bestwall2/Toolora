@@ -31,7 +31,7 @@ export function LanguageSwitcher() {
           id="language-switcher"
           value={locale}
           onChange={(e) => changeLanguage(e.target.value)}
-          className="bg-transparent text-sm font-medium text-foreground outline-none cursor-pointer appearance-none pr-2"
+          className="bg-transparent text-sm font-medium text-foreground outline-none cursor-pointer appearance-none pe-2"
         >
           {locales.map((l) => (
             <option key={l} value={l}>

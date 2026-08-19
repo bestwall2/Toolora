@@ -544,7 +544,7 @@ export const tools: Tool[] = [
     howToSteps: [
       'Select how many UUIDs you want to generate.',
       'Click "Generate".',
-      'Copy individual UUIDs or click "Copy All".',
+      'Copy individual UUIDs, or click "Copy" to copy them all at once.',
     ],
     faq: [
       {

@@ -59,7 +59,7 @@ export function ToolCard({
           {categoryName || tool.category}
         </span>
         <span className="flex items-center gap-1 text-xs text-muted-foreground group-hover:text-primary group-hover:gap-1.5 transition-all">
-          {useToolLabel} <ArrowRight className="w-3 h-3" />
+          {useToolLabel} <ArrowRight className="w-3 h-3 rtl:rotate-180" />
         </span>
       </div>
     </Link>

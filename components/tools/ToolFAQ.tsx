@@ -20,10 +20,10 @@ export function ToolFAQ({ faqs, title = 'Frequently Asked Questions' }: { faqs: 
           <div key={i} className="border border-border rounded-xl overflow-hidden">
             <button
               onClick={() => setOpen(open === i ? null : i)}
-              className="w-full flex items-center justify-between px-4 py-3.5 text-left bg-card hover:bg-muted/50 transition-colors"
+              className="w-full flex items-center justify-between px-4 py-3.5 text-start bg-card hover:bg-muted/50 transition-colors"
               aria-expanded={open === i}
             >
-              <span className="font-medium text-sm text-foreground pr-4">{faq.question}</span>
+              <span className="font-medium text-sm text-foreground pe-4">{faq.question}</span>
               <ChevronDown
                 className={cn('w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform', open === i && 'rotate-180')}
               />

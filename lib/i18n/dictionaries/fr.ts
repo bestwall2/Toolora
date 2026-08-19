@@ -1130,7 +1130,7 @@ const dict: Dictionary = {
       howToSteps: [
         'Choisissez le nombre d’UUID à générer.',
         'Cliquez sur « Générer ».',
-        'Copiez les identifiants individuellement ou cliquez sur « Tout copier ».',
+        'Copiez les identifiants individuellement, ou cliquez sur « Copier » pour tout copier d’un coup.',
       ],
       faq: [
         {
