@@ -40,6 +40,7 @@ export function Footer({ locale }: { locale: Locale }) {
     { href: withLocale(locale, '/about'), label: t.footer.about },
     { href: withLocale(locale, '/contact'), label: t.footer.contact },
     { href: withLocale(locale, '/privacy'), label: t.footer.privacy },
+    { href: withLocale(locale, '/privacy-proof'), label: t.footer.privacyProof },
     { href: withLocale(locale, '/terms'), label: t.footer.terms },
     { href: '/sitemap.xml', label: t.footer.sitemap },
   ];

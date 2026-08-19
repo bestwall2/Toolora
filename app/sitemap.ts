@@ -16,7 +16,7 @@ function languagesFor(path: string): Record<string, string> {
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  const staticPaths = ['/', '/tools', '/about', '/contact', '/privacy', '/terms'];
+  const staticPaths = ['/', '/tools', '/about', '/contact', '/privacy', '/privacy-proof', '/terms'];
   const categoryPaths = categories.map((cat) => `/tools/${cat.slug}`);
   const toolPaths = tools.map((tool) => `/tools/${tool.category}/${tool.slug}`);
 

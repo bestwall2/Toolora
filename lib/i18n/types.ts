@@ -63,6 +63,7 @@ export interface Dictionary {
     about: string;
     contact: string;
     privacy: string;
+    privacyProof: string;
     terms: string;
     sitemap: string;
     rights: string;
@@ -121,6 +122,8 @@ export interface Dictionary {
     peopleAlsoUse: string;
     home: string;
     allTools: string;
+    privacyBadge: string;
+    privacyProofLink: string;
     notFoundTitle: string;
     notFoundDesc: string;
   };
@@ -162,6 +165,21 @@ export interface Dictionary {
     title: string;
     updated: string;
     sections: { heading: string; body: string[] }[];
+  };
+  privacyProofPage: {
+    title: string;
+    subtitle: string;
+    metaDescription: string;
+    verifyTitle: string;
+    verifyIntro: string;
+    verifySteps: string[];
+    howTitle: string;
+    howBody: string[];
+    guaranteesTitle: string;
+    guarantees: { title: string; desc: string }[];
+    ctaTitle: string;
+    ctaBody: string;
+    ctaButton: string;
   };
   termsPage: {
     title: string;

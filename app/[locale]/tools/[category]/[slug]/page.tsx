@@ -9,6 +9,7 @@ import { ToolFAQ } from '@/components/tools/ToolFAQ';
 import { HowToUse } from '@/components/tools/HowToUse';
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { ToolComponent } from '@/components/tools/ToolComponent';
+import { PrivacyBadge } from '@/components/tools/PrivacyBadge';
 import { locale } from 'next/root-params';
 import { isLocale, defaultLocale, withLocale } from '@/lib/i18n/config';
 import { getDictionary, localizeCategory, localizeTool } from '@/lib/i18n';
@@ -133,6 +134,11 @@ export default async function ToolPage({ params }: PageProps) {
           {/* Tool Container */}
           <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
             <ToolComponent slug={tool.slug} />
+            <PrivacyBadge
+              text={dict.toolPage.privacyBadge}
+              proofLabel={dict.toolPage.privacyProofLink}
+              proofHref={withLocale(current, '/privacy-proof')}
+            />
           </div>
 
           {/* About this tool */}
