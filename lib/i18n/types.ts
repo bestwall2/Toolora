@@ -181,6 +181,15 @@ export interface Dictionary {
     ctaBody: string;
     ctaButton: string;
   };
+  pwa: {
+    installTitle: string;
+    installDesc: string;
+    installNow: string;
+    dismiss: string;
+    offlineTitle: string;
+    offlineDesc: string;
+    tryAgain: string;
+  };
   termsPage: {
     title: string;
     updated: string;

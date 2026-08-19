@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Cairo } from 'next/font/google';
 import { locale } from 'next/root-params';
 import '@/app/globals.css';
@@ -7,9 +7,14 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { LocaleProvider } from '@/components/i18n/LocaleProvider';
+import { PwaProvider } from '@/components/pwa/PwaProvider';
 import { locales, isRtlLocale, isLocale, defaultLocale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n';
 import { SITE_NAME, SITE_URL } from '@/lib/seo';
+
+export const viewport: Viewport = {
+  themeColor: '#2563eb',
+};
 
 const inter = Inter({
   subsets: ['latin'],
@@ -106,6 +111,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       >
         <ThemeProvider>
           <LocaleProvider locale={current} dict={dict}>
+            <PwaProvider strings={dict.pwa} />
             <JsonLd data={websiteSchema} />
             <Navbar />
             <main className="flex-1">{children}</main>

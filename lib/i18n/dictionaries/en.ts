@@ -278,6 +278,15 @@ const dict: Dictionary = {
     ctaBody: 'Open any tool, process a sensitive file, and watch the Network tab. You will see no outgoing file data.',
     ctaButton: 'Browse all tools',
   },
+  pwa: {
+    installTitle: 'Install Toollora',
+    installDesc: 'Add Toollora to your home screen for fast, private access — your installed tools also work offline.',
+    installNow: 'Install',
+    dismiss: 'Not now',
+    offlineTitle: 'You’re offline',
+    offlineDesc: 'Visited pages still work. Reconnect for new pages and updates.',
+    tryAgain: 'Try again',
+  },
   termsPage: {
     title: 'Terms of Service',
     updated: 'Last updated:',

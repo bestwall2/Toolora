@@ -42,6 +42,6 @@ export const config = {
      * - public files with an extension (images, fonts, etc.)
      * - sitemap.xml, robots.txt, manifest.webmanifest
      */
-    '/((?!_next|api|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|woff2?|css|js)$).*)',
+    '/((?!_next|api|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|woff2?|css|js|html|webmanifest|json|txt)$).*)',
   ],
 };

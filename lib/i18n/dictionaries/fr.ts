@@ -274,6 +274,15 @@ const dict: Dictionary = {
     ctaBody: 'Ouvrez n’importe quel outil, traitez un fichier sensible et regardez l’onglet Réseau. Vous ne verrez aucune donnée sortante.',
     ctaButton: 'Parcourir tous les outils',
   },
+  pwa: {
+    installTitle: 'Installer Toollora',
+    installDesc: 'Ajoutez Toollora à votre écran d’accueil pour un accès rapide et privé — vos outils installés fonctionnent aussi hors ligne.',
+    installNow: 'Installer',
+    dismiss: 'Pas maintenant',
+    offlineTitle: 'Vous êtes hors ligne',
+    offlineDesc: 'Les pages visitées fonctionnent toujours. Reconnectez-vous pour de nouvelles pages et des mises à jour.',
+    tryAgain: 'Réessayer',
+  },
   termsPage: {
     title: 'Conditions d’utilisation',
     updated: 'Dernière mise à jour :',

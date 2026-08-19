@@ -274,6 +274,15 @@ const dict: Dictionary = {
     ctaBody: 'Abre cualquier herramienta, procesa un archivo sensible y observa la pestaña Red. No verás ningún dato de salida.',
     ctaButton: 'Explorar todas las herramientas',
   },
+  pwa: {
+    installTitle: 'Instalar Toollora',
+    installDesc: 'Añade Toollora a tu pantalla de inicio para un acceso rápido y privado: tus herramientas instaladas también funcionan sin conexión.',
+    installNow: 'Instalar',
+    dismiss: 'Ahora no',
+    offlineTitle: 'Estás sin conexión',
+    offlineDesc: 'Las páginas visitadas siguen funcionando. Reconecta para obtener nuevas páginas y actualizaciones.',
+    tryAgain: 'Reintentar',
+  },
   termsPage: {
     title: 'Términos de servicio',
     updated: 'Última actualización:',
