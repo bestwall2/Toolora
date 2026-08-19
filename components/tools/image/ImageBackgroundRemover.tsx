@@ -13,7 +13,7 @@ const MODEL_PATH =
   'https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite';
 
 interface SegmenterHandle {
-  segment: (image: HTMLImageElement) => { categoryMask: { getAsUint8Array: () => Uint8Array } };
+  segment: (image: HTMLImageElement) => { confidenceMasks: { getAsUint8Array: () => Uint8Array }[] };
 }
 
 const loadImage = (src: string): Promise<HTMLImageElement> =>
@@ -50,7 +50,7 @@ export function ImageBackgroundRemover() {
     const segmenter = await ImageSegmenter.createFromOptions(fileset, {
       baseOptions: { modelAssetPath: MODEL_PATH },
       runningMode: 'IMAGE',
-      outputCategoryMask: true,
+      outputConfidenceMasks: true,
     });
     segmenterRef.current = segmenter as SegmenterHandle;
     return segmenterRef.current;
@@ -71,15 +71,15 @@ export function ImageBackgroundRemover() {
       ctx.drawImage(img, 0, 0);
 
       const seg = segmenter.segment(img);
-      const mask = new Uint8Array(seg.categoryMask.getAsUint8Array());
+      const mask = new Uint8Array(seg.confidenceMasks[0].getAsUint8Array());
       const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const d = imgData.data;
       const px = canvas.width * canvas.height;
       const stride = mask.length === px ? 1 : 4;
       const keepPerson = mode === 'person';
       for (let i = 0; i < px; i++) {
-        const category = mask[i * stride];
-        if ((keepPerson && category === 0) || (!keepPerson && category === 1)) d[i * 4 + 3] = 0;
+        const isPerson = mask[i * stride] > 128;
+        if ((keepPerson && !isPerson) || (!keepPerson && isPerson)) d[i * 4 + 3] = 0;
       }
       ctx.putImageData(imgData, 0, 0);
       setResult(canvas.toDataURL('image/png'));
