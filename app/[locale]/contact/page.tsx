@@ -13,9 +13,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
     title: `${dict.contactPage.title} — Feedback & Support`,
     description:
-      'Contact Toolora with feedback, bug reports or feature requests. We read every message and reply when needed.',
+      'Contact Toollora with feedback, bug reports or feature requests. We read every message and reply when needed.',
     path: '/contact',
-    keywords: ['contact toolora', 'toolora support', 'feature request', 'report a bug'],
+    keywords: ['contact toollora', 'toollora support', 'feature request', 'report a bug'],
     locale: current,
   });
 }

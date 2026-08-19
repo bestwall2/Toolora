@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
     title: dict.privacyPage.title,
     description:
-      'Understand how Toolora protects your privacy. We process files entirely client-side inside your browser and do not collect user file data.',
+      'Understand how Toollora protects your privacy. We process files entirely client-side inside your browser and do not collect user file data.',
     path: '/privacy',
     keywords: ['privacy policy', 'data privacy', 'client side processing'],
     locale: current,

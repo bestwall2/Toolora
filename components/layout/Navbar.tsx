@@ -75,7 +75,7 @@ export function Navbar() {
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-sm transition-transform group-hover:scale-105">
                 <Zap className="w-4 h-4 text-white fill-white" strokeWidth={0} />
               </div>
-              <span className="font-semibold text-lg tracking-tight text-foreground">Toolora</span>
+              <span className="font-semibold text-lg tracking-tight text-foreground">Toollora</span>
             </Link>
 
             {/* Desktop Nav */}

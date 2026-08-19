@@ -3,10 +3,10 @@ import { locales } from '../config';
 
 const dict: Dictionary = {
   meta: {
-    defaultTitle: 'Toolora — herramientas gratuitas en línea para el día a día',
+    defaultTitle: 'Toollora — herramientas gratuitas en línea para el día a día',
     defaultDescription:
       'Herramientas en línea gratuitas y potentes para PDF, imágenes, texto, desarrolladores y más. Rápidas, simples y gratis, sin registro.',
-    keywords: ['herramientas gratuitas', 'herramientas pdf', 'herramientas imágenes', 'herramientas texto', 'herramientas desarrolladores', 'toolora'],
+    keywords: ['herramientas gratuitas', 'herramientas pdf', 'herramientas imágenes', 'herramientas texto', 'herramientas desarrolladores', 'toollora'],
   },
   nav: {
     allTools: 'Todas las herramientas',
@@ -68,8 +68,8 @@ const dict: Dictionary = {
     browseByCategory: 'Explorar por categoría',
     browseByCategoryDesc: 'Explora nuestro directorio, organizado por categorías.',
     popularTools: 'Herramientas populares',
-    popularToolsDesc: 'Las herramientas más usadas en Toolora por desarrolladores, escritores y diseñadores.',
-    whyChoose: '¿Por qué elegir Toolora?',
+    popularToolsDesc: 'Las herramientas más usadas en Toollora por desarrolladores, escritores y diseñadores.',
+    whyChoose: '¿Por qué elegir Toollora?',
     whyChooseDesc: 'Diseñamos aplicaciones que respetan la privacidad del usuario y funcionan a máxima velocidad.',
     whyFeatures: [
       {
@@ -86,10 +86,10 @@ const dict: Dictionary = {
       },
     ],
     faqTitle: 'Preguntas frecuentes',
-    faqDesc: 'Consultas generales sobre las funciones y la arquitectura de Toolora.',
+    faqDesc: 'Consultas generales sobre las funciones y la arquitectura de Toollora.',
     faqs: [
       {
-        question: '¿Todas las herramientas de Toolora son gratuitas?',
+        question: '¿Todas las herramientas de Toollora son gratuitas?',
         answer:
           'Sí. Todas las herramientas son completamente gratuitas, sin cargos ocultos, sin registro y sin límites de uso para tareas estándar.',
       },
@@ -104,11 +104,11 @@ const dict: Dictionary = {
       },
       {
         question: '¿Qué formatos de imagen se admiten?',
-        answer: 'Toolora admite los formatos de imagen más comunes, incluidos JPG, PNG y WebP para las herramientas de imagen.',
+        answer: 'Toollora admite los formatos de imagen más comunes, incluidos JPG, PNG y WebP para las herramientas de imagen.',
       },
       {
-        question: '¿Puedo usar Toolora en mi teléfono?',
-        answer: 'Sí. Toolora es totalmente adaptable y funciona en todos los tamaños de pantalla, desde móviles pequeños hasta monitores grandes.',
+        question: '¿Puedo usar Toollora en mi teléfono?',
+        answer: 'Sí. Toollora es totalmente adaptable y funciona en todos los tamaños de pantalla, desde móviles pequeños hasta monitores grandes.',
       },
       {
         question: '¿Qué tan precisas son las calculadoras?',
@@ -117,7 +117,7 @@ const dict: Dictionary = {
       {
         question: '¿Qué navegadores se admiten?',
         answer:
-          'Toolora funciona en todos los navegadores modernos, incluidos Chrome, Firefox, Safari y Edge. Algunas funciones avanzadas como el procesamiento de PDF requieren un navegador reciente.',
+          'Toollora funciona en todos los navegadores modernos, incluidos Chrome, Firefox, Safari y Edge. Algunas funciones avanzadas como el procesamiento de PDF requieren un navegador reciente.',
       },
       {
         question: '¿Añadirán más herramientas?',
@@ -129,7 +129,7 @@ const dict: Dictionary = {
   toolsPage: {
     title: 'Todas las herramientas gratuitas en línea: el directorio completo',
     subtitle:
-      'Explora el directorio completo de herramientas gratuitas de Toolora. Comprime imágenes, fusiona PDF, formatea JSON, genera códigos QR y más.',
+      'Explora el directorio completo de herramientas gratuitas de Toollora. Comprime imágenes, fusiona PDF, formatea JSON, genera códigos QR y más.',
     searchResults: 'Resultados de búsqueda para',
     showingResults: 'Mostrando',
     noResults: 'Ninguna herramienta coincide con',
@@ -163,10 +163,10 @@ const dict: Dictionary = {
     esc: 'Esc',
   },
   aboutPage: {
-    title: 'Acerca de Toolora',
+    title: 'Acerca de Toollora',
     subtitle: 'Descubre por qué construimos herramientas web gratuitas en el navegador, para todos.',
-    p1: 'Toolora nació de una necesidad simple: una caja de herramientas esencial que hace tareas cotidianas (comprimir imágenes, dividir PDF, codificar base64, validar JSON) sin obligarte a enviar tus datos sensibles a servidores lejanos ni soportar anuncios invasivos.',
-    p2: 'La mayoría de los portales web envían tus archivos a servidores privados. En Toolora apostamos por el procesamiento en el navegador. Usamos interfaces WebAssembly modernas y el Canvas nativo para redimensionar, fusionar y limpiar tus archivos directamente en tu dispositivo.',
+    p1: 'Toollora nació de una necesidad simple: una caja de herramientas esencial que hace tareas cotidianas (comprimir imágenes, dividir PDF, codificar base64, validar JSON) sin obligarte a enviar tus datos sensibles a servidores lejanos ni soportar anuncios invasivos.',
+    p2: 'La mayoría de los portales web envían tus archivos a servidores privados. En Toollora apostamos por el procesamiento en el navegador. Usamos interfaces WebAssembly modernas y el Canvas nativo para redimensionar, fusionar y limpiar tus archivos directamente en tu dispositivo.',
     features: [
       {
         title: 'Privacidad integrada',
@@ -191,7 +191,7 @@ const dict: Dictionary = {
       message: 'Mensaje',
       send: 'Enviar mensaje',
       successTitle: '¡Mensaje enviado con éxito!',
-      successDesc: 'Gracias por contactar a Toolora. Valoramos tus comentarios y te responderemos si es necesario.',
+      successDesc: 'Gracias por contactar a Toollora. Valoramos tus comentarios y te responderemos si es necesario.',
       sendAnother: 'Enviar otro mensaje',
       namePlaceholder: 'María García',
       emailPlaceholder: 'nombre@ejemplo.com',
@@ -205,7 +205,7 @@ const dict: Dictionary = {
       {
         heading: 'Resumen',
         body: [
-          'Toolora se compromete a proteger tu privacidad. La mayoría de las herramientas procesan los archivos íntegramente en tu navegador, lo que significa que tus archivos nunca se envían a nuestros servidores, salvo que se indique expresamente.',
+          'Toollora se compromete a proteger tu privacidad. La mayoría de las herramientas procesan los archivos íntegramente en tu navegador, lo que significa que tus archivos nunca se envían a nuestros servidores, salvo que se indique expresamente.',
         ],
       },
       {
@@ -247,7 +247,7 @@ const dict: Dictionary = {
       {
         heading: 'Aceptación de los términos',
         body: [
-          'Al usar Toolora aceptas estos términos. Si no estás de acuerdo, no uses el sitio.',
+          'Al usar Toollora aceptas estos términos. Si no estás de acuerdo, no uses el sitio.',
         ],
       },
       {
@@ -265,7 +265,7 @@ const dict: Dictionary = {
       {
         heading: 'Responsabilidad',
         body: [
-          'Toolora no será responsable de daños indirectos, incidentales o consecuentes derivados del uso de las herramientas.',
+          'Toollora no será responsable de daños indirectos, incidentales o consecuentes derivados del uso de las herramientas.',
         ],
       },
       {
@@ -1125,9 +1125,9 @@ const dict: Dictionary = {
       description: 'Herramientas inteligentes impulsadas por IA: próximamente.',
       seoTitle: 'Herramientas de IA: herramientas inteligentes en el navegador (próximamente)',
       seoDescription:
-        'Próximamente: herramientas inteligentes impulsadas por IA en Toolora. Mantente atento mientras añadimos herramientas útiles y respetuosas con la privacidad.',
+        'Próximamente: herramientas inteligentes impulsadas por IA en Toollora. Mantente atento mientras añadimos herramientas útiles y respetuosas con la privacidad.',
       longDescription:
-        'Se están preparando herramientas impulsadas por IA. Construimos herramientas inteligentes que respetan el enfoque de «privacidad primero» de Toolora: útiles, rápidas y fáciles de usar. Esta categoría llegará pronto, vuelve para ver las novedades.',
+        'Se están preparando herramientas impulsadas por IA. Construimos herramientas inteligentes que respetan el enfoque de «privacidad primero» de Toollora: útiles, rápidas y fáciles de usar. Esta categoría llegará pronto, vuelve para ver las novedades.',
       keywords: ['herramientas ia', 'herramientas inteligencia artificial'],
     },
   },

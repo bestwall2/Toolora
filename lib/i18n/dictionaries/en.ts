@@ -3,10 +3,10 @@ import { locales } from '../config';
 
 const dict: Dictionary = {
   meta: {
-    defaultTitle: 'Toolora — Free Online Tools for Everyday Tasks',
+    defaultTitle: 'Toollora — Free Online Tools for Everyday Tasks',
     defaultDescription:
       'Powerful free online tools for PDF, images, text, files, developers and more. Fast, simple and free. No sign-up required.',
-    keywords: ['free online tools', 'pdf tools', 'image tools', 'text tools', 'developer tools', 'toolora'],
+    keywords: ['free online tools', 'pdf tools', 'image tools', 'text tools', 'developer tools', 'toollora'],
   },
   nav: {
     allTools: 'All Tools',
@@ -68,8 +68,8 @@ const dict: Dictionary = {
     browseByCategory: 'Browse by Category',
     browseByCategoryDesc: 'Explore our directory categorized by feature utilities.',
     popularTools: 'Popular Tools',
-    popularToolsDesc: 'Most-used tools on Toolora by developers, writers, and designers.',
-    whyChoose: 'Why Choose Toolora?',
+    popularToolsDesc: 'Most-used tools on Toollora by developers, writers, and designers.',
+    whyChoose: 'Why Choose Toollora?',
     whyChooseDesc: 'We design tool applications to respect user privacy and operate at maximum speed.',
     whyFeatures: [
       {
@@ -86,12 +86,12 @@ const dict: Dictionary = {
       },
     ],
     faqTitle: 'Frequently Asked Questions',
-    faqDesc: 'General inquiries about Toolora features and architecture.',
+    faqDesc: 'General inquiries about Toollora features and architecture.',
     faqs: [
       {
-        question: 'Are all tools on Toolora free?',
+        question: 'Are all tools on Toollora free?',
         answer:
-          'Yes. All tools on Toolora are completely free to use with no hidden fees, no sign-up required and no usage limits on standard tasks.',
+          'Yes. All tools on Toollora are completely free to use with no hidden fees, no sign-up required and no usage limits on standard tasks.',
       },
       {
         question: 'Do I need to create an account?',
@@ -105,12 +105,12 @@ const dict: Dictionary = {
       },
       {
         question: 'What image formats are supported?',
-        answer: 'Toolora supports the most popular image formats including JPG, PNG and WebP for image tools.',
+        answer: 'Toollora supports the most popular image formats including JPG, PNG and WebP for image tools.',
       },
       {
-        question: 'Can I use Toolora on my phone?',
+        question: 'Can I use Toollora on my phone?',
         answer:
-          'Yes. Toolora is fully responsive and works on all screen sizes — from small phones to large desktop monitors.',
+          'Yes. Toollora is fully responsive and works on all screen sizes — from small phones to large desktop monitors.',
       },
       {
         question: 'How accurate are the calculators?',
@@ -120,7 +120,7 @@ const dict: Dictionary = {
       {
         question: 'What browsers are supported?',
         answer:
-          'Toolora works on all modern browsers including Chrome, Firefox, Safari and Edge. Some advanced features like PDF processing require a reasonably up-to-date browser.',
+          'Toollora works on all modern browsers including Chrome, Firefox, Safari and Edge. Some advanced features like PDF processing require a reasonably up-to-date browser.',
       },
       {
         question: 'Will you add more tools?',
@@ -132,7 +132,7 @@ const dict: Dictionary = {
   toolsPage: {
     title: 'All Free Online Tools — Full Directory',
     subtitle:
-      'Browse the complete directory of free online tools on Toolora. Compress images, merge PDFs, format JSON, generate QR codes, and more.',
+      'Browse the complete directory of free online tools on Toollora. Compress images, merge PDFs, format JSON, generate QR codes, and more.',
     searchResults: 'Search results for',
     showingResults: 'Showing',
     noResults: 'No tools found for',
@@ -166,10 +166,10 @@ const dict: Dictionary = {
     esc: 'Esc',
   },
   aboutPage: {
-    title: 'About Toolora',
+    title: 'About Toollora',
     subtitle: 'Discover why we build free, client-side online web utilities for everyone.',
-    p1: 'Toolora was born out of a simple need: a set of basic tools that perform daily operations (image compression, PDF splitting, base64 encoding, JSON validation) without forcing you to upload your sensitive data to remote servers or watch bloated advertisements.',
-    p2: 'Most online portals upload your files to private backends. At Toolora, we prioritize browser-side processing. We utilize modern WebAssembly APIs and native Canvas controls to resize, merge, and clean files directly on your device.',
+    p1: 'Toollora was born out of a simple need: a set of basic tools that perform daily operations (image compression, PDF splitting, base64 encoding, JSON validation) without forcing you to upload your sensitive data to remote servers or watch bloated advertisements.',
+    p2: 'Most online portals upload your files to private backends. At Toollora, we prioritize browser-side processing. We utilize modern WebAssembly APIs and native Canvas controls to resize, merge, and clean files directly on your device.',
     features: [
       {
         title: 'Privacy Built-In',
@@ -195,7 +195,7 @@ const dict: Dictionary = {
       send: 'Send Message',
       successTitle: 'Message Sent Successfully!',
       successDesc:
-        'Thank you for reaching out to Toolora. We appreciate your suggestions and will get back to you if required.',
+        'Thank you for reaching out to Toollora. We appreciate your suggestions and will get back to you if required.',
       sendAnother: 'Send another message',
       namePlaceholder: 'John Doe',
       emailPlaceholder: 'john@example.com',
@@ -209,7 +209,7 @@ const dict: Dictionary = {
       {
         heading: 'Overview',
         body: [
-          'Toolora is committed to protecting your privacy. Most tools process files entirely in your browser, which means your files are never uploaded to our servers unless explicitly stated.',
+          'Toollora is committed to protecting your privacy. Most tools process files entirely in your browser, which means your files are never uploaded to our servers unless explicitly stated.',
         ],
       },
       {
@@ -251,7 +251,7 @@ const dict: Dictionary = {
       {
         heading: 'Acceptance of Terms',
         body: [
-          'By accessing Toolora, you agree to these terms. If you do not agree, please do not use the site.',
+          'By accessing Toollora, you agree to these terms. If you do not agree, please do not use the site.',
         ],
       },
       {
@@ -269,7 +269,7 @@ const dict: Dictionary = {
       {
         heading: 'Liability',
         body: [
-          'Toolora shall not be liable for any indirect, incidental, or consequential damages arising from the use of the tools.',
+          'Toollora shall not be liable for any indirect, incidental, or consequential damages arising from the use of the tools.',
         ],
       },
       {

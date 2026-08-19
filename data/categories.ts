@@ -137,9 +137,9 @@ export const categories: Category[] = [
     description: 'Smart tools powered by AI — coming soon.',
     seoTitle: 'AI Tools — Smart Browser-Based Utilities (Coming Soon)',
     seoDescription:
-      'Coming soon: smart AI-powered tools on Toolora. Follow along as we add useful, privacy-friendly utilities powered by AI.',
+      'Coming soon: smart AI-powered tools on Toollora. Follow along as we add useful, privacy-friendly utilities powered by AI.',
     longDescription:
-      'AI-assisted tools are in the works. We are building smart utilities that stay true to Toolora\u2019s privacy-first approach — helpful, fast and easy to use. This category is coming soon, so check back to see what\u2019s new.',
+      'AI-assisted tools are in the works. We are building smart utilities that stay true to Toollora\u2019s privacy-first approach — helpful, fast and easy to use. This category is coming soon, so check back to see what\u2019s new.',
     keywords: ['ai tools', 'ai utilities'],
     icon: Sparkles,
     color: 'text-pink-600 dark:text-pink-400',

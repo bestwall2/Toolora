@@ -12,9 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
     title: dict.termsPage.title,
     description:
-      'Review the terms of service for using Toolora. Free client-side tools provided with no liabilities.',
+      'Review the terms of service for using Toollora. Free client-side tools provided with no liabilities.',
     path: '/terms',
-    keywords: ['terms of service', 'terms of use', 'toolora terms'],
+    keywords: ['terms of service', 'terms of use', 'toollora terms'],
     locale: current,
   });
 }

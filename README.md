@@ -1,4 +1,4 @@
-# Toolora
+# Toollora
 
 Free online tools that run entirely in your browser. Compress images, merge and split PDFs, format JSON, generate QR codes and more — no uploads, no accounts, no ads.
 

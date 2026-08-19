@@ -4,7 +4,7 @@ import { locale } from 'next/root-params';
 import { isLocale, defaultLocale } from '@/lib/i18n/config';
 import { localizeTool } from '@/lib/i18n';
 
-export const alt = 'Toolora — free online tools';
+export const alt = 'Toollora — free online tools';
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 
@@ -17,6 +17,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   return createOgImage({
     title: localized?.name ?? 'Online Tools',
-    subtitle: localized?.seoDescription ?? 'Fast, private, browser-based tools on Toolora.',
+    subtitle: localized?.seoDescription ?? 'Fast, private, browser-based tools on Toollora.',
   });
 }

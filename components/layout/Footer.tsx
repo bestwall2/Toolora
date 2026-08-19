@@ -54,7 +54,7 @@ export function Footer({ locale }: { locale: Locale }) {
               <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
                 <Zap className="w-3.5 h-3.5 text-white fill-white" strokeWidth={0} />
               </div>
-              <span className="font-semibold text-base text-foreground">Toolora</span>
+              <span className="font-semibold text-base text-foreground">Toollora</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">{t.footer.tagline}</p>
           </div>
@@ -105,7 +105,7 @@ export function Footer({ locale }: { locale: Locale }) {
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            © {year} Toolora. {t.footer.rights} {t.footer.madeWith}
+            © {year} Toollora. {t.footer.rights} {t.footer.madeWith}
           </p>
           <div className="flex items-center gap-1">
             <span className="text-xs text-muted-foreground mr-2">{t.footer.browserProcessed}</span>

@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        toolora: {
+        toollora: {
           50: 'hsl(221, 100%, 97%)',
           100: 'hsl(221, 96%, 93%)',
           200: 'hsl(221, 94%, 85%)',

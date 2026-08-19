@@ -5,9 +5,9 @@ export interface FAQ {
 
 export const homeFAQs: FAQ[] = [
   {
-    question: 'Are all tools on Toolora free?',
+    question: 'Are all tools on Toollora free?',
     answer:
-      'Yes. All tools on Toolora are completely free to use with no hidden fees, no sign-up required and no usage limits on standard tasks.',
+      'Yes. All tools on Toollora are completely free to use with no hidden fees, no sign-up required and no usage limits on standard tasks.',
   },
   {
     question: 'Do I need to create an account?',
@@ -22,12 +22,12 @@ export const homeFAQs: FAQ[] = [
   {
     question: 'What image formats are supported?',
     answer:
-      'Toolora supports the most popular image formats including JPG, PNG and WebP for image tools.',
+      'Toollora supports the most popular image formats including JPG, PNG and WebP for image tools.',
   },
   {
-    question: 'Can I use Toolora on my phone?',
+    question: 'Can I use Toollora on my phone?',
     answer:
-      'Yes. Toolora is fully responsive and works on all screen sizes — from small phones to large desktop monitors.',
+      'Yes. Toollora is fully responsive and works on all screen sizes — from small phones to large desktop monitors.',
   },
   {
     question: 'How accurate are the calculators?',
@@ -37,7 +37,7 @@ export const homeFAQs: FAQ[] = [
   {
     question: 'What browsers are supported?',
     answer:
-      'Toolora works on all modern browsers including Chrome, Firefox, Safari and Edge. Some advanced features like PDF processing require a reasonably up-to-date browser.',
+      'Toollora works on all modern browsers including Chrome, Firefox, Safari and Edge. Some advanced features like PDF processing require a reasonably up-to-date browser.',
   },
   {
     question: 'Will you add more tools?',

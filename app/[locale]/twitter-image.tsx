@@ -3,7 +3,7 @@ import { locale } from 'next/root-params';
 import { isLocale, defaultLocale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n';
 
-export const alt = 'Toolora — Free online tools for everyday tasks';
+export const alt = 'Toollora — Free online tools for everyday tasks';
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 

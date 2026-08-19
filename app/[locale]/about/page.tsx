@@ -12,11 +12,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const dict = getDictionary(current);
 
   return generatePageMetadata({
-    title: `${dict.aboutPage.title} — Discover Toolora`,
+    title: `${dict.aboutPage.title} — Discover Toollora`,
     description:
-      'Learn about Toolora, a fast, privacy-focused online tools platform for processing files completely client-side in the browser.',
+      'Learn about Toollora, a fast, privacy-focused online tools platform for processing files completely client-side in the browser.',
     path: '/about',
-    keywords: ['about toolora', 'free online tools', 'privacy focused tools', 'browser based tools'],
+    keywords: ['about toollora', 'free online tools', 'privacy focused tools', 'browser based tools'],
     locale: current,
   });
 }
