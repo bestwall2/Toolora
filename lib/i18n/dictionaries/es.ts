@@ -402,6 +402,9 @@ const dict: Dictionary = {
         sharpness: 'Nitidez',
         auto: 'Mejorar automáticamente',
         reset: 'Restablecer',
+        upscale: 'Mejora IA ×2',
+        upscaling: 'Ampliando… la primera vez se carga el modelo de IA',
+        upscaleError: 'No se pudo ampliar la imagen. Inténtalo de nuevo.',
         changeImage: 'Cambiar imagen',
       },
       imageBackgroundRemover: {

@@ -9,7 +9,8 @@ type EventName =
   | 'search_used'
   | 'category_opened'
   | 'error_shown'
-  | 'chain_used';
+  | 'chain_used'
+  | 'upscale_used';
 
 type EventProperties = Record<string, string | number | boolean | undefined>;
 

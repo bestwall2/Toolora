@@ -402,6 +402,9 @@ const dict: Dictionary = {
         sharpness: 'Netteté',
         auto: 'Amélioration auto',
         reset: 'Réinitialiser',
+        upscale: 'Agrandissement IA ×2',
+        upscaling: 'Agrandissement… le premier essai charge le modèle IA',
+        upscaleError: 'Échec de l’agrandissement. Veuillez réessayer.',
         changeImage: 'Changer d’image',
       },
       imageBackgroundRemover: {

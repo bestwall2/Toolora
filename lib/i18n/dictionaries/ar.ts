@@ -402,6 +402,9 @@ imageCropper: {
         sharpness: 'الحدة',
         auto: 'تحسين تلقائي',
         reset: 'إعادة تعيين',
+        upscale: 'تكبير بالذكاء الاصطناعي ×2',
+        upscaling: 'جارٍ التكبير… أول استخدام يحمّل نموذج الذكاء الاصطناعي',
+        upscaleError: 'فشل التكبير. حاول مرة أخرى.',
         changeImage: 'تغيير الصورة',
       },
       imageBackgroundRemover: {

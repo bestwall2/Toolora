@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Download, Sparkles, RotateCcw } from 'lucide-react';
+import { Download, Sparkles, RotateCcw, Expand } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
 import { ChainHandoff } from '@/components/tools/ChainHandoff';
 import { useChainedInput } from '@/components/tools/useChainedInput';
@@ -21,6 +21,11 @@ interface Adjust {
 const DEFAULT_ADJUST: Adjust = { brightness: 0, contrast: 0, saturation: 0, sharpness: 0 };
 const AUTO_ADJUST: Adjust = { brightness: 8, contrast: 12, saturation: 12, sharpness: 1.2 };
 const MAX_DIM = 2560;
+const UPSCALE_SCALE = 2;
+
+interface UpscalerLike {
+  upscale: (src: string, opts?: { patchSize?: number }) => Promise<string>;
+}
 
 function enhanceImageData(data: ImageData, adjust: Adjust): ImageData {
   const { brightness, contrast, saturation, sharpness } = adjust;
@@ -129,7 +134,30 @@ export function ImageEnhancer() {
   const [result, setResult] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [upscaling, setUpscaling] = useState(false);
+  const [upscaleError, setUpscaleError] = useState<string | null>(null);
+  const [upscaled, setUpscaled] = useState(false);
   const cancelRef = useRef(false);
+  const upscalerRef = useRef<UpscalerLike | null>(null);
+
+  const getUpscaler = async (): Promise<UpscalerLike> => {
+    if (!upscalerRef.current) {
+      const mod = (await import('upscaler')) as unknown as {
+        default: new (opts?: { model?: Record<string, unknown> }) => UpscalerLike;
+      };
+      upscalerRef.current = new mod.default({
+        model: {
+          path: '/models/upscaler/model.json',
+          scale: UPSCALE_SCALE,
+          modelType: 'layers',
+          inputRange: [0, 255],
+          outputRange: [0, 255],
+          meta: { architecture: 'rdn' },
+        },
+      });
+    }
+    return upscalerRef.current;
+  };
 
   const handleFile = (files: File[]) => {
     const f = files[0];
@@ -154,6 +182,7 @@ export function ImageEnhancer() {
   useEffect(() => {
     if (!preview) return;
     cancelRef.current = false;
+    setUpscaled(false);
     setProcessing(true);
     const timer = setTimeout(async () => {
       try {
@@ -185,10 +214,29 @@ export function ImageEnhancer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preview, adjust]);
 
+  const upscale = async () => {
+    if (!result || upscaling) return;
+    setUpscaling(true);
+    setUpscaleError(null);
+    try {
+      const up = await getUpscaler();
+      const base64 = await up.upscale(result, { patchSize: 128 });
+      if (typeof base64 === 'string') {
+        setResult(base64);
+        setUpscaled(true);
+        trackEvent('upscale_used', { tool: 'image-enhancer' });
+      }
+    } catch {
+      setUpscaleError(L.upscaleError);
+    } finally {
+      setUpscaling(false);
+    }
+  };
+
   const download = () => {
     if (!result || !file) return;
     const base = file.name.replace(/\.[^.]+$/, '');
-    downloadDataUrl(result, `enhanced-${base}.png`);
+    downloadDataUrl(result, `${upscaled ? 'upscaled' : 'enhanced'}-${base}.png`);
     trackEvent('download_clicked', { tool: 'image-enhancer' });
   };
 
@@ -244,6 +292,11 @@ export function ImageEnhancer() {
                 {L.reset}
               </Button>
               {result && (
+                <Button variant="secondary" onClick={upscale} disabled={upscaling} icon={<Expand className="w-4 h-4" />}>
+                  {L.upscale}
+                </Button>
+              )}
+              {result && (
                 <Button variant="secondary" onClick={download} icon={<Download className="w-4 h-4" />}>
                   {t.toolUi.common.download}
                 </Button>
@@ -253,8 +306,11 @@ export function ImageEnhancer() {
               </Button>
             </div>
 
+            {upscaling && <p className="text-sm text-muted-foreground">{L.upscaling}</p>}
+            {upscaleError && <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-3 py-2 rounded-lg">{upscaleError}</p>}
+
             {resultBlob && (
-              <ChainHandoff sourceSlug="image-enhancer" blob={resultBlob} fileName={`enhanced-${(file.name || 'image').replace(/\.[^.]+$/, '')}.png`} />
+              <ChainHandoff sourceSlug="image-enhancer" blob={resultBlob} fileName={`${upscaled ? 'upscaled' : 'enhanced'}-${(file.name || 'image').replace(/\.[^.]+$/, '')}.png`} />
             )}
           </div>
         )}

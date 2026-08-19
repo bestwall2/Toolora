@@ -406,6 +406,9 @@ const dict: Dictionary = {
         sharpness: 'Sharpness',
         auto: 'Auto Enhance',
         reset: 'Reset',
+        upscale: 'AI Upscale ×2',
+        upscaling: 'Upscaling… the first run loads the AI model',
+        upscaleError: 'Upscaling failed. Please try again.',
         changeImage: 'Change image',
       },
       imageBackgroundRemover: {

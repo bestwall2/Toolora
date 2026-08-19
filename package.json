@@ -24,6 +24,7 @@
     "react-image-crop": "^11.1.2",
     "tailwind-merge": "^3.6.0",
     "tesseract.js": "^7.0.0",
+    "upscaler": "^1.0.0",
     "uuid": "^14.0.1"
   },
   "devDependencies": {
