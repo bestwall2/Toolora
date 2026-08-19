@@ -390,6 +390,20 @@ const dict: Dictionary = {
         uploadLabel: 'Suelta tu imagen aquí',
         uploadSublabel: 'Admite JPG, PNG y WebP · Máx. 50 MB',
       },
+      imageEnhancer: {
+        uploadLabel: 'Suelta tu imagen aquí',
+        uploadSublabel: 'Admite JPG, PNG y WebP · Máx. 50 MB',
+        original: 'Original',
+        enhanced: 'Mejorada',
+        processing: 'Mejorando…',
+        brightness: 'Brillo',
+        contrast: 'Contraste',
+        saturation: 'Saturación',
+        sharpness: 'Nitidez',
+        auto: 'Mejorar automáticamente',
+        reset: 'Restablecer',
+        changeImage: 'Cambiar imagen',
+      },
       imageBackgroundRemover: {
         uploadLabel: 'Suelta tu foto aquí',
         uploadSublabel: 'JPG, PNG o WebP · ideal con personas',
@@ -890,6 +904,35 @@ const dict: Dictionary = {
         {
           question: '¿Se modifica la imagen original?',
           answer: 'No. El archivo original nunca se modifica. Se descarga una nueva copia recortada.',
+        },
+      ],
+    },
+    'image-enhancer': {
+      name: 'Mejorador de imágenes',
+      description: 'Mejora la calidad de las fotos ajustando brillo, contraste, saturación y nitidez.',
+      longDescription: 'Devuelve la vida a tus fotos apagadas o borrosas. Ajusta brillo, contraste, saturación y nitidez con vista previa en vivo, o deja que «Mejorar automáticamente» elija los valores ideales con un clic. Todo se procesa en tu navegador: tus fotos nunca salen de tu dispositivo.',
+      keywords: ['mejorar imagen', 'mejorador de fotos', 'afinar imagen', 'mejorar calidad de foto', 'calidad de imagen'],
+      seoTitle: 'Mejorador de imágenes — Mejorar la calidad de las fotos gratis online',
+      seoDescription: 'Mejora la calidad de las imágenes online gratis. Ajusta brillo, contraste, saturación y nitidez o mejora fotos automáticamente con un clic. 100 % en el navegador, sin subir archivos.',
+      content: '¿Necesitas mejorar una foto antes de compartirla? Este mejorador ilumina fotos subexpuestas, recupera colores apagados y afina los bordes. Los controles deslizantes ofrecen control total con vista previa en vivo, mientras que «Mejorar automáticamente» aplica ajustes equilibrados con un clic. Como todo se procesa en tu dispositivo, ninguna imagen se sube a un servidor.',
+      howToSteps: [
+        'Sube tu imagen.',
+        'Haz clic en «Mejorar automáticamente» o ajusta los deslizadores.',
+        'Revisa el resultado.',
+        'Descarga la imagen o envíala a otra herramienta.',
+      ],
+      faq: [
+        {
+          question: '¿Mejorar reduce la calidad de la imagen?',
+          answer: 'No. La herramienta solo ajusta brillo, contraste, saturación y nitidez; nunca reduce la resolución original.',
+        },
+        {
+          question: '¿Se suben mis fotos a un servidor?',
+          answer: 'Nunca. Todo el procesamiento ocurre en tu navegador, por lo que tus imágenes permanecen en tu dispositivo.',
+        },
+        {
+          question: '¿Puedo enviar el resultado a otra herramienta?',
+          answer: 'Sí. Tras mejorar, usa el panel «Continuar con» para enviar el resultado al compresor, conversor, redimensionador, eliminador de fondo o OCR.',
         },
       ],
     },

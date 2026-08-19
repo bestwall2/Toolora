@@ -24,6 +24,9 @@ export const toolComponents: Record<string, React.ComponentType> = {
   'image-to-text': dynamic(() => import('@/components/tools/image/ImageToText').then((m) => m.ImageToText), {
     ssr: false,
   }),
+  'image-enhancer': dynamic(() => import('@/components/tools/image/ImageEnhancer').then((m) => m.ImageEnhancer), {
+    ssr: false,
+  }),
 
   // PDF
   'pdf-merger': dynamic(() => import('@/components/tools/pdf/PdfMerger').then((m) => m.PdfMerger), {

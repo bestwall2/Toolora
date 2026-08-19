@@ -390,6 +390,20 @@ const dict: Dictionary = {
         uploadLabel: 'Déposez votre image ici',
         uploadSublabel: 'Prend en charge JPG, PNG et WebP · Max 50 Mo',
       },
+      imageEnhancer: {
+        uploadLabel: 'Déposez votre image ici',
+        uploadSublabel: 'Prend en charge JPG, PNG et WebP · Max 50 Mo',
+        original: 'Originale',
+        enhanced: 'Améliorée',
+        processing: 'Amélioration…',
+        brightness: 'Luminosité',
+        contrast: 'Contraste',
+        saturation: 'Saturation',
+        sharpness: 'Netteté',
+        auto: 'Amélioration auto',
+        reset: 'Réinitialiser',
+        changeImage: 'Changer d’image',
+      },
       imageBackgroundRemover: {
         uploadLabel: 'Déposez votre photo ici',
         uploadSublabel: 'JPG, PNG ou WebP · idéal avec des personnes',
@@ -890,6 +904,35 @@ const dict: Dictionary = {
         {
           question: 'L’image originale est-elle modifiée ?',
           answer: 'Non. Le fichier original n’est jamais modifié. Une nouvelle copie recadrée est téléchargée.',
+        },
+      ],
+    },
+    'image-enhancer': {
+      name: 'Améliorateur d’images',
+      description: 'Améliorez la qualité des photos en réglant luminosité, contraste, saturation et netteté.',
+      longDescription: 'Redonnez vie à vos photos ternes ou floues. Réglez luminosité, contraste, saturation et netteté avec un aperçu en direct, ou laissez « Amélioration auto » choisir les bons réglages en un clic. Tout se passe dans votre navigateur — vos photos ne quittent jamais votre appareil.',
+      keywords: ['améliorer image', 'améliorateur photo', 'rendre photo nette', 'améliorer qualité photo', 'qualité image'],
+      seoTitle: 'Améliorateur d’images — Améliorer la qualité des photos en ligne gratuitement',
+      seoDescription: 'Améliorez la qualité des images en ligne gratuitement. Réglez luminosité, contraste, saturation et netteté ou améliorez automatiquement vos photos en un clic. 100 % dans le navigateur, sans envoi.',
+      content: 'Besoin d’un coup de pouce avant de partager une photo ? Cet outil éclaircit les clichés sous-exposés, restaure les couleurs et affine les contours. Les curseurs offrent un contrôle précis avec un aperçu avant/après en direct, tandis que « Amélioration auto » applique un réglage équilibré en un clic. Tout se passe sur votre appareil : aucune image n’est envoyée sur un serveur.',
+      howToSteps: [
+        'Importez votre image.',
+        'Cliquez sur « Amélioration auto » ou ajustez les curseurs.',
+        'Apercevez le résultat.',
+        'Téléchargez l’image ou envoyez-la vers un autre outil.',
+      ],
+      faq: [
+        {
+          question: 'L’amélioration réduit-elle la qualité de l’image ?',
+          answer: 'Non. L’outil ajuste uniquement la luminosité, le contraste, la saturation et la netteté — il ne réduit jamais la résolution d’origine.',
+        },
+        {
+          question: 'Mes photos sont-elles envoyées sur un serveur ?',
+          answer: 'Jamais. Tout le traitement se fait dans votre navigateur, vos images restent donc sur votre appareil.',
+        },
+        {
+          question: 'Puis-je envoyer le résultat vers un autre outil ?',
+          answer: 'Oui. Après l’amélioration, utilisez le panneau « Continuer avec » pour envoyer le résultat au compresseur, au convertisseur, au redimensionneur, au suppresseur d’arrière-plan ou à l’OCR.',
         },
       ],
     },

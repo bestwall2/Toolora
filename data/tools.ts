@@ -23,6 +23,7 @@ import {
   ScanText,
   Fingerprint,
   Palette,
+  Sparkles,
 } from 'lucide-react';
 
 export interface ToolFAQ {
@@ -829,6 +830,50 @@ export const tools: Tool[] = [
     isPopular: false,
     isBrowserSide: true,
     inputType: 'image',
+  },
+  {
+    id: 'image-enhancer',
+    name: 'Image Enhancer',
+    slug: 'image-enhancer',
+    description: 'Boost photo quality with brightness, contrast, saturation and sharpening.',
+    longDescription:
+      'Bring dull or blurry photos back to life. Adjust brightness, contrast, saturation and sharpness with live preview, or let one-click Auto Enhance pick smart settings for you. Everything runs in your browser — your photos never leave your device.',
+    category: 'image',
+    icon: Sparkles,
+    keywords: ['enhance image', 'photo enhancer', 'sharpen image', 'improve photo quality', 'image quality'],
+    relatedTools: ['image-compressor', 'image-converter', 'image-resizer', 'image-background-remover'],
+    seoTitle: 'Image Enhancer — Enhance Photo Quality Online Free',
+    seoDescription:
+      'Enhance image quality online for free. Adjust brightness, contrast, saturation and sharpness, or auto-enhance photos in one click. 100% in-browser, no upload.',
+    content:
+      'Need a quick quality boost before sharing a photo or posting it online? Use this enhancer to brighten underexposed shots, restore washed-out colors and sharpen soft edges. The sliders give you full control with a live before/after preview, while Auto Enhance applies a balanced preset in one click. Because the processing happens entirely on your device, no image is ever uploaded to a server.',
+    howToSteps: [
+      'Upload your image.',
+      'Click "Auto Enhance" or fine-tune the sliders.',
+      'Preview the enhanced result.',
+      'Download the image or send it to another tool.',
+    ],
+    faq: [
+      {
+        question: 'Does enhancing reduce the image quality?',
+        answer:
+          'No. The tool only adjusts brightness, contrast, saturation and sharpness — it never resamples below your original resolution (large images are processed at up to 2560px for speed).',
+      },
+      {
+        question: 'Are my photos uploaded to a server?',
+        answer:
+          'Never. All processing happens in your browser, so your images stay on your device. That is the core privacy promise of Toollora.',
+      },
+      {
+        question: 'Can I chain the result into another tool?',
+        answer:
+          'Yes. After enhancing, use the "Continue with" panel to send the result straight to the compressor, converter, resizer, background remover or OCR.',
+      },
+    ],
+    isBrowserSide: true,
+    inputType: 'image',
+    outputType: 'image',
+    isPopular: true,
   },
   {
     id: 'sha-hash-generator',
