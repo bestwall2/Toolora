@@ -1,12 +1,14 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import ReactCrop, { Crop, PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { Download } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
-import { downloadDataUrl } from '@/lib/utils';
+import { downloadDataUrl, dataUrlToBlob } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
 import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvider';
 
@@ -31,16 +33,24 @@ export function ImageCropper() {
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
   const [aspect, setAspect] = useState<number | undefined>(undefined);
   const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<string | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
 
   const handleFile = (files: File[]) => {
     const f = files[0];
     setFile(f);
+    setResult(null);
     const reader = new FileReader();
     reader.onload = () => setImgSrc(reader.result as string);
     reader.readAsDataURL(f);
     trackEvent('tool_opened', { tool: 'image-cropper' });
   };
+
+  useChainedInput('image-cropper', 'image', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: blob.type || 'image/png' })]);
+  });
+
+  const resultBlob = useMemo(() => (result ? dataUrlToBlob(result) : null), [result]);
 
   const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     imgRef.current = e.currentTarget;
@@ -86,6 +96,7 @@ export function ImageCropper() {
     );
     const dataUrl = canvas.toDataURL('image/png');
     const base = (file?.name || 'image').replace(/\.[^.]+$/, '');
+    setResult(dataUrl);
     downloadDataUrl(dataUrl, `cropped-${base}.png`);
     setLoading(false);
     trackEvent('download_clicked', { tool: 'image-cropper' });
@@ -142,8 +153,12 @@ export function ImageCropper() {
               <Button onClick={cropImage} loading={loading} icon={<Download className="w-4 h-4" />}>
                 {loading ? t.toolUi.common.processing : L.download}
               </Button>
-              <Button variant="ghost" onClick={() => { setImgSrc(null); setFile(null); }}>{L.changeImage}</Button>
+              <Button variant="ghost" onClick={() => { setImgSrc(null); setFile(null); setResult(null); }}>{L.changeImage}</Button>
             </div>
+
+            {resultBlob && (
+              <ChainHandoff sourceSlug="image-cropper" blob={resultBlob} fileName={`cropped-${(file?.name || 'image').replace(/\.[^.]+$/, '')}.png`} />
+            )}
           </div>
         )}
       </div>

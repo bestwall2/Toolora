@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Download } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
 import { formatBytes, downloadBlob, bytesToBlob } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
@@ -21,12 +23,14 @@ export function PdfSplitter() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [resultBlob, setResultBlob] = useState<Blob | null>(null);
 
   const handleFile = async (files: File[]) => {
     const f = files[0];
     setFile(f);
     setError(null);
     setSuccess(false);
+    setResultBlob(null);
     try {
       const { PDFDocument } = await import('pdf-lib');
       const bytes = await f.arrayBuffer();
@@ -37,6 +41,10 @@ export function PdfSplitter() {
     }
     trackEvent('tool_opened', { tool: 'pdf-splitter' });
   };
+
+  useChainedInput('pdf-splitter', 'pdf', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: 'application/pdf' })]);
+  });
 
   const parseRange = (input: string, max: number): number[] => {
     const pages: Set<number> = new Set();
@@ -78,7 +86,9 @@ export function PdfSplitter() {
         const newDoc = await PDFDocument.create();
         const copied = await newDoc.copyPages(srcDoc, pages.map((p) => p - 1));
         copied.forEach((p) => newDoc.addPage(p));
-        downloadBlob(bytesToBlob(await newDoc.save(), 'application/pdf'), `pages-${range}.pdf`);
+        const blob = bytesToBlob(await newDoc.save(), 'application/pdf');
+        setResultBlob(blob);
+        downloadBlob(blob, `pages-${range}.pdf`);
       } else if (mode === 'every') {
         let chunk = 0;
         for (let i = 0; i < pageCount; i += every) {
@@ -117,7 +127,7 @@ export function PdfSplitter() {
                 <p className="text-sm font-medium text-foreground truncate">{file.name}</p>
                 <p className="text-xs text-muted-foreground">{formatBytes(file.size)} · {pageCount} {pageCount !== 1 ? L.pages : L.page}</p>
               </div>
-              <Button variant="ghost" size="sm" onClick={() => { setFile(null); setPageCount(0); setSuccess(false); }}>{t.toolUi.common.change}</Button>
+              <Button variant="ghost" size="sm" onClick={() => { setFile(null); setPageCount(0); setSuccess(false); setResultBlob(null); }}>{t.toolUi.common.change}</Button>
             </div>
 
             {/* Mode */}
@@ -159,6 +169,10 @@ export function PdfSplitter() {
 
             {error && <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-3 py-2 rounded-lg">{error}</p>}
             {success && <p className="text-sm text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-950/20 px-3 py-2 rounded-lg">✓ {L.success}</p>}
+
+            {resultBlob && (
+              <ChainHandoff sourceSlug="pdf-splitter" blob={resultBlob} fileName={`pages-${range}.pdf`} />
+            )}
 
             <Button onClick={split} loading={loading} icon={<Download className="w-4 h-4" />}>
               {loading ? L.splitting : L.split}

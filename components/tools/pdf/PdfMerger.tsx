@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Download, GripVertical, X, ArrowUp, ArrowDown } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
 import { formatBytes, downloadBlob, bytesToBlob } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
@@ -20,13 +22,19 @@ export function PdfMerger() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [resultBlob, setResultBlob] = useState<Blob | null>(null);
 
   const handleFiles = (incoming: File[]) => {
     const newFiles = incoming.map((f) => ({ id: crypto.randomUUID(), file: f }));
     setFiles((prev) => [...prev, ...newFiles]);
     setSuccess(false);
+    setResultBlob(null);
     trackEvent('tool_opened', { tool: 'pdf-merger' });
   };
+
+  useChainedInput('pdf-merger', 'pdf', ({ blob, fileName }) => {
+    handleFiles([new File([blob], fileName, { type: 'application/pdf' })]);
+  });
 
   const remove = (id: string) => setFiles((prev) => prev.filter((f) => f.id !== id));
 
@@ -66,6 +74,7 @@ export function PdfMerger() {
       }
       const mergedBytes = await merged.save();
       downloadBlob(bytesToBlob(mergedBytes, 'application/pdf'), 'merged.pdf');
+      setResultBlob(bytesToBlob(mergedBytes, 'application/pdf'));
       setSuccess(true);
       trackEvent('file_processed', { tool: 'pdf-merger', fileCount: files.length });
       trackEvent('download_clicked', { tool: 'pdf-merger' });
@@ -121,12 +130,16 @@ export function PdfMerger() {
           </p>
         )}
 
+        {resultBlob && (
+          <ChainHandoff sourceSlug="pdf-merger" blob={resultBlob} fileName="merged.pdf" />
+        )}
+
         <div className="flex flex-wrap gap-3">
           <Button onClick={merge} loading={loading} disabled={files.length < 2} icon={<Download className="w-4 h-4" />}>
             {loading ? L.merging : L.merge}
           </Button>
           {files.length > 0 && (
-            <Button variant="ghost" onClick={() => { setFiles([]); setSuccess(false); }}>{t.toolUi.common.clear}</Button>
+            <Button variant="ghost" onClick={() => { setFiles([]); setSuccess(false); setResultBlob(null); }}>{t.toolUi.common.clear}</Button>
           )}
         </div>
       </div>

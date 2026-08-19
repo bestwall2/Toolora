@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Download, RefreshCcw } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
-import { downloadDataUrl } from '@/lib/utils';
+import { downloadDataUrl, dataUrlToBlob } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
 import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvider';
 
@@ -37,6 +39,12 @@ export function ImageConverter() {
     else setTargetFormat('image/jpeg');
     trackEvent('tool_opened', { tool: 'image-converter' });
   };
+
+  useChainedInput('image-converter', 'image', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: blob.type || 'image/png' })]);
+  });
+
+  const resultBlob = useMemo(() => (result ? dataUrlToBlob(result) : null), [result]);
 
   const convert = () => {
     if (!file || !preview) return;
@@ -133,6 +141,14 @@ export function ImageConverter() {
                   ✓ {L.converted} {FORMAT_LABELS[targetFormat]} {L.successfully}
                 </p>
               </div>
+            )}
+
+            {resultBlob && (
+              <ChainHandoff
+                sourceSlug="image-converter"
+                blob={resultBlob}
+                fileName={`${file.name.replace(/\.[^.]+$/, '')}.${targetFormat === 'image/jpeg' ? 'jpg' : targetFormat === 'image/png' ? 'png' : 'webp'}`}
+              />
             )}
 
             <div className="flex flex-wrap gap-3">

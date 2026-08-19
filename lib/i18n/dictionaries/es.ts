@@ -290,6 +290,10 @@ const dict: Dictionary = {
     offline: 'Funciona sin conexión',
     adFree: 'Sin anuncios',
   },
+  chain: {
+    title: 'Continuar con',
+    sendTo: 'Enviar a',
+  },
   termsPage: {
     title: 'Términos de servicio',
     updated: 'Última actualización:',

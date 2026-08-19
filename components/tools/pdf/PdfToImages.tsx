@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { Download, Loader2 } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
-import { formatBytes, downloadBlob } from '@/lib/utils';
+import { formatBytes, downloadBlob, dataUrlToBlob } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
 import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvider';
 
@@ -50,6 +52,10 @@ export function PdfToImages() {
     setError(null);
     trackEvent('tool_opened', { tool: 'pdf-to-images' });
   };
+
+  useChainedInput('pdf-to-images', 'pdf', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: 'application/pdf' })]);
+  });
 
   const convertToImages = async () => {
     if (!file) return;
@@ -169,18 +175,26 @@ export function PdfToImages() {
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {images.map((img, idx) => (
-                    <div key={idx} className="relative group border border-border rounded-xl overflow-hidden bg-muted/20">
+                    <div key={idx} className="relative group border border-border rounded-xl bg-muted/20">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={img} alt={`${L.page} ${idx + 1}`} className="w-full h-auto object-contain" />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                      <img src={img} alt={`${L.page} ${idx + 1}`} className="w-full h-auto object-contain rounded-xl" />
+                      <div className="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity">
                         <button
                           onClick={() => {
                             fetch(img).then(r => r.blob()).then(b => downloadBlob(b, `page-${idx + 1}.png`));
                           }}
                           className="p-2 rounded-lg bg-card text-foreground hover:bg-muted shadow-lg transition-transform scale-90 group-hover:scale-100"
+                          aria-label={t.toolUi.common.download}
+                          title={t.toolUi.common.download}
                         >
                           <Download className="w-4 h-4" />
                         </button>
+                        <ChainHandoff
+                          variant="menu"
+                          sourceSlug="pdf-to-images"
+                          blob={dataUrlToBlob(img)}
+                          fileName={`page-${idx + 1}.png`}
+                        />
                       </div>
                       <span className="absolute bottom-2 left-2 text-[10px] px-1.5 py-0.5 rounded bg-black/60 text-white font-medium">
                         {L.page} {idx + 1}

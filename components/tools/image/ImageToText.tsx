@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Download, Copy, Check, ScanText } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
 import { downloadBlob, copyToClipboard } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
@@ -39,6 +40,10 @@ export function ImageToText() {
     setPreview(URL.createObjectURL(f));
     trackEvent('tool_opened', { tool: 'image-to-text' });
   };
+
+  useChainedInput('image-to-text', 'image', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: blob.type || 'image/png' })]);
+  });
 
   const extract = async () => {
     if (!file) return;

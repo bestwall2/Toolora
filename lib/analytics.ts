@@ -8,7 +8,8 @@ type EventName =
   | 'download_clicked'
   | 'search_used'
   | 'category_opened'
-  | 'error_shown';
+  | 'error_shown'
+  | 'chain_used';
 
 type EventProperties = Record<string, string | number | boolean | undefined>;
 

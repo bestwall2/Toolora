@@ -1,10 +1,12 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { Download, Eraser } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
-import { downloadDataUrl } from '@/lib/utils';
+import { downloadDataUrl, dataUrlToBlob } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
 import { useToolLabels } from '@/components/i18n/LocaleProvider';
 
@@ -42,6 +44,12 @@ export function ImageBackgroundRemover() {
     setPreview(URL.createObjectURL(f));
     trackEvent('tool_opened', { tool: 'image-background-remover' });
   };
+
+  useChainedInput('image-background-remover', 'image', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: blob.type || 'image/png' })]);
+  });
+
+  const resultBlob = useMemo(() => (result ? dataUrlToBlob(result) : null), [result]);
 
   const getSegmenter = async (): Promise<SegmenterHandle> => {
     if (segmenterRef.current) return segmenterRef.current;
@@ -146,6 +154,10 @@ export function ImageBackgroundRemover() {
             </div>
 
             {error && <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-3 py-2 rounded-lg">{error}</p>}
+
+            {resultBlob && (
+              <ChainHandoff sourceSlug="image-background-remover" blob={resultBlob} fileName={`${(file?.name || 'image').replace(/\.[^.]+$/, '')}-no-bg.png`} />
+            )}
 
             <div className="flex flex-wrap gap-3">
               <Button onClick={removeBackground} loading={loading} icon={<Eraser className="w-4 h-4" />}>

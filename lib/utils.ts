@@ -38,6 +38,15 @@ export function downloadDataUrl(dataUrl: string, filename: string) {
   document.body.removeChild(a);
 }
 
+export function dataUrlToBlob(dataUrl: string): Blob {
+  const [meta, b64] = dataUrl.split(',');
+  const mime = meta.match(/data:([^;]+)/)?.[1] || 'application/octet-stream';
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+  return new Blob([arr], { type: mime });
+}
+
 export function getCompressionPercentage(original: number, compressed: number): number {
   if (original === 0) return 0;
   return Math.round(((original - compressed) / original) * 100);

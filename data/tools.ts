@@ -30,6 +30,8 @@ export interface ToolFAQ {
   answer: string;
 }
 
+export type ChainType = 'image' | 'pdf';
+
 export interface Tool {
   id: string;
   name: string;
@@ -48,6 +50,8 @@ export interface Tool {
   isPopular?: boolean;
   isBrowserSide: boolean;
   badge?: string;
+  inputType?: ChainType;
+  outputType?: ChainType;
 }
 
 export const tools: Tool[] = [
@@ -92,6 +96,8 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     isBrowserSide: true,
+    inputType: 'image',
+    outputType: 'image',
   },
   {
     id: 'image-resizer',
@@ -127,6 +133,8 @@ export const tools: Tool[] = [
     ],
     isPopular: false,
     isBrowserSide: true,
+    inputType: 'image',
+    outputType: 'image',
   },
   {
     id: 'image-converter',
@@ -164,6 +172,8 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     isBrowserSide: true,
+    inputType: 'image',
+    outputType: 'image',
   },
   {
     id: 'image-cropper',
@@ -199,6 +209,8 @@ export const tools: Tool[] = [
     ],
     isPopular: false,
     isBrowserSide: true,
+    inputType: 'image',
+    outputType: 'image',
   },
 
   // ─── PDF ─────────────────────────────────────────────────────────────────
@@ -237,6 +249,8 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     isBrowserSide: true,
+    inputType: 'pdf',
+    outputType: 'pdf',
   },
   {
     id: 'pdf-splitter',
@@ -268,6 +282,8 @@ export const tools: Tool[] = [
     ],
     isPopular: false,
     isBrowserSide: true,
+    inputType: 'pdf',
+    outputType: 'pdf',
   },
   {
     id: 'pdf-compressor',
@@ -300,6 +316,8 @@ export const tools: Tool[] = [
     ],
     isPopular: false,
     isBrowserSide: true,
+    inputType: 'pdf',
+    outputType: 'pdf',
     badge: 'Basic',
   },
   {
@@ -332,6 +350,8 @@ export const tools: Tool[] = [
     ],
     isPopular: false,
     isBrowserSide: true,
+    inputType: 'pdf',
+    outputType: 'image',
   },
 
   // ─── TEXT ─────────────────────────────────────────────────────────────────
@@ -765,6 +785,8 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     isBrowserSide: true,
+    inputType: 'image',
+    outputType: 'image',
   },
   {
     id: 'image-to-text',
@@ -806,6 +828,7 @@ export const tools: Tool[] = [
     ],
     isPopular: false,
     isBrowserSide: true,
+    inputType: 'image',
   },
   {
     id: 'sha-hash-generator',

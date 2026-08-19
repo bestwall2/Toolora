@@ -197,6 +197,10 @@ export interface Dictionary {
     offline: string;
     adFree: string;
   };
+  chain: {
+    title: string;
+    sendTo: string;
+  };
   termsPage: {
     title: string;
     updated: string;

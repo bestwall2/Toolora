@@ -4,6 +4,8 @@ import { useState } from 'react';
 import imageCompression from 'browser-image-compression';
 import { Download, ImageIcon } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
 import { Slider } from '@/components/ui/Slider';
 import { formatBytes, downloadBlob, getCompressionPercentage } from '@/lib/utils';
@@ -17,6 +19,7 @@ export function ImageCompressor() {
   const [preview, setPreview] = useState<string | null>(null);
   const [compressedUrl, setCompressedUrl] = useState<string | null>(null);
   const [compressedSize, setCompressedSize] = useState<number>(0);
+  const [outputBlob, setOutputBlob] = useState<Blob | null>(null);
   const [quality, setQuality] = useState(80);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,11 +28,16 @@ export function ImageCompressor() {
     const f = files[0];
     setFile(f);
     setCompressedUrl(null);
+    setOutputBlob(null);
     setError(null);
     const url = URL.createObjectURL(f);
     setPreview(url);
     trackEvent('tool_opened', { tool: 'image-compressor' });
   };
+
+  useChainedInput('image-compressor', 'image', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: blob.type || 'image/png' })]);
+  });
 
   const compress = async () => {
     if (!file) return;
@@ -46,6 +54,7 @@ export function ImageCompressor() {
       const url = URL.createObjectURL(compressed);
       setCompressedUrl(url);
       setCompressedSize(compressed.size);
+      setOutputBlob(compressed);
       trackEvent('file_processed', { tool: 'image-compressor', originalSize: file.size, compressedSize: compressed.size });
     } catch {
       setError(t.toolUi.common.invalidFile);
@@ -118,6 +127,10 @@ export function ImageCompressor() {
               onChange={(e) => { setQuality(Number(e.target.value)); setCompressedUrl(null); }}
             />
 
+            {outputBlob && (
+              <ChainHandoff sourceSlug="image-compressor" blob={outputBlob} fileName={`compressed-${file.name}`} />
+            )}
+
             {/* Error */}
             {error && (
               <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-3 py-2 rounded-lg">{error}</p>
@@ -133,7 +146,7 @@ export function ImageCompressor() {
                   {t.toolUi.common.download}
                 </Button>
               )}
-              <Button variant="ghost" onClick={() => { setFile(null); setPreview(null); setCompressedUrl(null); }}>
+              <Button variant="ghost" onClick={() => { setFile(null); setPreview(null); setCompressedUrl(null); setOutputBlob(null); }}>
                 {L.changeImage}
               </Button>
             </div>

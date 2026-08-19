@@ -294,6 +294,10 @@ const dict: Dictionary = {
     offline: 'Works offline',
     adFree: 'Ad-free',
   },
+  chain: {
+    title: 'Continue with',
+    sendTo: 'Send to',
+  },
   termsPage: {
     title: 'Terms of Service',
     updated: 'Last updated:',

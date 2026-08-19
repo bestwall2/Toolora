@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Download, Lock, Unlock } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
 import { Slider } from '@/components/ui/Slider';
-import { downloadDataUrl } from '@/lib/utils';
+import { downloadDataUrl, dataUrlToBlob } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
 import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvider';
 
@@ -51,6 +53,12 @@ export function ImageResizer() {
     img.src = url;
     trackEvent('tool_opened', { tool: 'image-resizer' });
   };
+
+  useChainedInput('image-resizer', 'image', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: blob.type || 'image/png' })]);
+  });
+
+  const resultBlob = useMemo(() => (result ? dataUrlToBlob(result) : null), [result]);
 
   const onWidthChange = (v: number) => {
     setWidth(v);
@@ -196,6 +204,10 @@ export function ImageResizer() {
                 <img src={result} alt="Resized" className="w-full rounded-lg max-h-40 object-contain" />
                 <p className="text-xs text-muted-foreground mt-2">{L.output}: {width} × {height} px</p>
               </div>
+            )}
+
+            {resultBlob && (
+              <ChainHandoff sourceSlug="image-resizer" blob={resultBlob} fileName={`resized-${width}x${height}.${format === 'image/jpeg' ? 'jpg' : format === 'image/png' ? 'png' : 'webp'}`} />
             )}
 
             <div className="flex flex-wrap gap-3">

@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Download } from 'lucide-react';
 import { ToolDropzone } from '@/components/tools/ToolDropzone';
+import { ChainHandoff } from '@/components/tools/ChainHandoff';
+import { useChainedInput } from '@/components/tools/useChainedInput';
 import { Button } from '@/components/ui/Button';
 import { formatBytes, downloadBlob, bytesToBlob, getCompressionPercentage } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
@@ -17,15 +19,21 @@ export function PdfCompressor() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [resultBlob, setResultBlob] = useState<Blob | null>(null);
 
   const handleFile = (files: File[]) => {
     const f = files[0];
     setFile(f);
     setOriginalSize(f.size);
     setSuccess(false);
+    setResultBlob(null);
     setError(null);
     trackEvent('tool_opened', { tool: 'pdf-compressor' });
   };
+
+  useChainedInput('pdf-compressor', 'pdf', ({ blob, fileName }) => {
+    handleFile([new File([blob], fileName, { type: 'application/pdf' })]);
+  });
 
   const compress = async () => {
     if (!file) return;
@@ -45,6 +53,7 @@ export function PdfCompressor() {
       const blob = bytesToBlob(compressedBytes, 'application/pdf');
 
       setCompressedSize(blob.size);
+      setResultBlob(blob);
       downloadBlob(blob, `compressed-${file.name}`);
       setSuccess(true);
       trackEvent('file_processed', { tool: 'pdf-compressor', originalSize, compressedSize: blob.size });
@@ -75,7 +84,7 @@ export function PdfCompressor() {
                 <p className="text-sm font-medium text-foreground truncate">{file.name}</p>
                 <p className="text-xs text-muted-foreground">{formatBytes(originalSize)}</p>
               </div>
-              <Button variant="ghost" size="sm" onClick={() => { setFile(null); setSuccess(false); }}>{t.toolUi.common.change}</Button>
+              <Button variant="ghost" size="sm" onClick={() => { setFile(null); setSuccess(false); setResultBlob(null); }}>{t.toolUi.common.change}</Button>
             </div>
 
             <div className="space-y-3">
@@ -92,6 +101,10 @@ export function PdfCompressor() {
                   Original: {formatBytes(originalSize)} · {L.compressed}: {formatBytes(compressedSize)} · Saved: <span className="text-green-600 font-semibold">{saved}%</span>
                 </p>
               </div>
+            )}
+
+            {resultBlob && (
+              <ChainHandoff sourceSlug="pdf-compressor" blob={resultBlob} fileName={`compressed-${file.name}`} />
             )}
 
             <Button onClick={compress} loading={loading} icon={<Download className="w-4 h-4" />}>
