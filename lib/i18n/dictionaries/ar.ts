@@ -339,7 +339,10 @@ const dict: Dictionary = {
       imageBackgroundRemover: {
         uploadLabel: 'أسقط صورتك هنا',
         uploadSublabel: 'JPG أو PNG أو WebP · أفضل النتائج مع الأشخاص',
+        keepPerson: 'إبقاء الشخص',
+        keepBackground: 'إبقاء الخلفية',
         removeBg: 'إزالة الخلفية',
+        removePerson: 'إزالة الشخص',
         removing: 'جارٍ إزالة الخلفية…',
         loadingModel: 'جارٍ تحميل نموذج الذكاء الاصطناعي… قد يستغرق أول استخدام بضع ثوانٍ',
         download: 'تحميل PNG',
@@ -351,6 +354,8 @@ const dict: Dictionary = {
       imageToText: {
         uploadLabel: 'أسقط صورتك أو مستندك هنا',
         uploadSublabel: 'يدعم JPG وPNG وWebP · الحد الأقصى 50 م.ب',
+        langLabel: 'اللغة',
+        langHint: 'الخيار التلقائي يستخدم لغة الموقع.',
         extract: 'استخراج النص',
         extracting: 'جارٍ استخراج النص…',
         changeImage: 'تغيير الصورة',

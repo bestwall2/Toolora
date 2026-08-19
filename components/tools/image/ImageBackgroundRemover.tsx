@@ -31,6 +31,7 @@ export function ImageBackgroundRemover() {
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [mode, setMode] = useState<'person' | 'background'>('person');
   const segmenterRef = useRef<SegmenterHandle | null>(null);
 
   const handleFile = (files: File[]) => {
@@ -75,8 +76,10 @@ export function ImageBackgroundRemover() {
       const d = imgData.data;
       const px = canvas.width * canvas.height;
       const stride = mask.length === px ? 1 : 4;
+      const keepPerson = mode === 'person';
       for (let i = 0; i < px; i++) {
-        if (mask[i * stride] === 0) d[i * 4 + 3] = 0;
+        const category = mask[i * stride];
+        if ((keepPerson && category === 0) || (!keepPerson && category === 1)) d[i * 4 + 3] = 0;
       }
       ctx.putImageData(imgData, 0, 0);
       setResult(canvas.toDataURL('image/png'));
@@ -107,6 +110,22 @@ export function ImageBackgroundRemover() {
           />
         ) : (
           <div className="space-y-5">
+            <div className="flex flex-wrap gap-2">
+              {(['person', 'background'] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => {
+                    setMode(m);
+                    setResult(null);
+                  }}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                    mode === m ? 'border-primary bg-primary/8 text-primary' : 'border-border hover:border-primary/40 text-muted-foreground'
+                  }`}
+                >
+                  {m === 'person' ? L.keepPerson : L.keepBackground}
+                </button>
+              ))}
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <p className="text-xs font-medium text-muted-foreground mb-2">{L.original}</p>
@@ -130,7 +149,7 @@ export function ImageBackgroundRemover() {
 
             <div className="flex flex-wrap gap-3">
               <Button onClick={removeBackground} loading={loading} icon={<Eraser className="w-4 h-4" />}>
-                {loading ? L.removing : L.removeBg}
+                {loading ? L.removing : mode === 'person' ? L.removeBg : L.removePerson}
               </Button>
               {result && (
                 <Button variant="secondary" onClick={download} icon={<Download className="w-4 h-4" />}>{L.download}</Button>

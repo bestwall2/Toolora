@@ -339,7 +339,10 @@ const dict: Dictionary = {
       imageBackgroundRemover: {
         uploadLabel: 'Suelta tu foto aquí',
         uploadSublabel: 'JPG, PNG o WebP · ideal con personas',
+        keepPerson: 'Conservar persona',
+        keepBackground: 'Conservar fondo',
         removeBg: 'Quitar fondo',
+        removePerson: 'Quitar persona',
         removing: 'Quitando el fondo…',
         loadingModel: 'Cargando el modelo de IA… el primer uso puede tardar unos segundos',
         download: 'Descargar PNG',
@@ -351,6 +354,8 @@ const dict: Dictionary = {
       imageToText: {
         uploadLabel: 'Suelta tu imagen o escaneo aquí',
         uploadSublabel: 'Admite JPG, PNG y WebP · Máx. 50 MB',
+        langLabel: 'Idioma',
+        langHint: 'Automático usa el idioma del sitio.',
         extract: 'Extraer texto',
         extracting: 'Extrayendo texto…',
         changeImage: 'Cambiar imagen',

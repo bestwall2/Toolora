@@ -10,6 +10,16 @@ import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvide
 
 const LANG_MAP: Record<string, string> = { en: 'eng', ar: 'ara', fr: 'fra', es: 'spa' };
 
+type LangChoice = 'auto' | 'eng' | 'ara' | 'fra' | 'spa';
+
+const LANG_OPTIONS: { value: LangChoice; label: string }[] = [
+  { value: 'auto', label: 'Auto' },
+  { value: 'eng', label: 'English' },
+  { value: 'ara', label: 'العربية' },
+  { value: 'fra', label: 'Français' },
+  { value: 'spa', label: 'Español' },
+];
+
 export function ImageToText() {
   const L = useToolLabels('image-to-text');
   const { locale } = useLocaleContext();
@@ -19,6 +29,7 @@ export function ImageToText() {
   const [error, setError] = useState<string | null>(null);
   const [text, setText] = useState('');
   const [copied, setCopied] = useState(false);
+  const [langChoice, setLangChoice] = useState<LangChoice>('auto');
 
   const handleFile = (files: File[]) => {
     const f = files[0];
@@ -33,7 +44,7 @@ export function ImageToText() {
     if (!file) return;
     setLoading(true);
     setError(null);
-    const lang = LANG_MAP[locale] || 'eng';
+    const lang = langChoice === 'auto' ? LANG_MAP[locale] || 'eng' : langChoice;
     try {
       const { createWorker } = await import('tesseract.js');
       const worker = await createWorker(lang);
@@ -66,6 +77,20 @@ export function ImageToText() {
   return (
     <div className="space-y-6">
       <div className="p-6 rounded-2xl border border-border bg-card shadow-card">
+        <div className="flex items-center gap-3 flex-wrap mb-4">
+          <label htmlFor="ocr-lang" className="text-xs font-medium text-muted-foreground">{L.langLabel}</label>
+          <select
+            id="ocr-lang"
+            value={langChoice}
+            onChange={(e) => setLangChoice(e.target.value as LangChoice)}
+            className="px-3 py-1.5 rounded-lg border border-border bg-muted/40 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground"
+          >
+            {LANG_OPTIONS.map((o) => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+          <p className="text-xs text-muted-foreground">{L.langHint}</p>
+        </div>
         {!file ? (
           <ToolDropzone
             onFiles={handleFile}
