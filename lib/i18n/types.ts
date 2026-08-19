@@ -85,6 +85,7 @@ export interface Dictionary {
     useTool: string;
     browse: string;
     backToTools: string;
+    free: string;
   };
   home: {
     heroTitle: string;
@@ -189,6 +190,12 @@ export interface Dictionary {
     offlineTitle: string;
     offlineDesc: string;
     tryAgain: string;
+  };
+  trustSignals: {
+    free: string;
+    noSignup: string;
+    offline: string;
+    adFree: string;
   };
   termsPage: {
     title: string;

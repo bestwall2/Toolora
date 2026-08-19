@@ -91,6 +91,21 @@ export default async function HomePage() {
         </div>
       </div>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-12">
+        <Link
+          href={withLocale(current, '/privacy-proof')}
+          className="group flex flex-wrap items-center gap-3 rounded-2xl border border-green-200 dark:border-green-900/60 bg-green-50 dark:bg-green-950/30 px-5 py-4 transition-colors hover:border-green-300 dark:hover:border-green-700/60"
+        >
+          <span className="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/40 flex items-center justify-center text-green-700 dark:text-green-400 flex-shrink-0">
+            <Shield className="w-5 h-5" />
+          </span>
+          <span className="text-sm font-medium text-foreground flex-1 min-w-0">{dict.toolPage.privacyBadge}</span>
+          <span className="inline-flex items-center gap-1 text-xs font-semibold text-green-700 dark:text-green-400 group-hover:underline">
+            {dict.toolPage.privacyProofLink}
+          </span>
+        </Link>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         <section className="space-y-6">
           <div className="text-center md:text-left">
@@ -139,6 +154,7 @@ export default async function HomePage() {
                   categoryBg={cat?.bgColor}
                   popularLabel={dict.common.popular}
                   useToolLabel={dict.common.useTool}
+                  freeLabel={dict.common.free}
                 />
               );
             })}

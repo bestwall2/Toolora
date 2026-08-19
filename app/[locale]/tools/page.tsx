@@ -117,6 +117,7 @@ export default async function AllToolsPage({ searchParams }: PageProps) {
                 categoryBg={cat?.bgColor}
                 popularLabel={dict.common.popular}
                 useToolLabel={dict.common.useTool}
+                freeLabel={dict.common.free}
               />
             );
           })}

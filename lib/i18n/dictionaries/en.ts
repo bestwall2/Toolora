@@ -60,6 +60,7 @@ const dict: Dictionary = {
     useTool: 'Use Tool',
     browse: 'Browse',
     backToTools: 'Back to all tools',
+    free: 'Free',
   },
   home: {
     heroTitle: 'Free Online Tools for Everyday Tasks',
@@ -286,6 +287,12 @@ const dict: Dictionary = {
     offlineTitle: 'You’re offline',
     offlineDesc: 'Visited pages still work. Reconnect for new pages and updates.',
     tryAgain: 'Try again',
+  },
+  trustSignals: {
+    free: 'Free forever',
+    noSignup: 'No signup',
+    offline: 'Works offline',
+    adFree: 'Ad-free',
   },
   termsPage: {
     title: 'Terms of Service',

@@ -10,6 +10,7 @@ import { HowToUse } from '@/components/tools/HowToUse';
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { ToolComponent } from '@/components/tools/ToolComponent';
 import { PrivacyBadge } from '@/components/tools/PrivacyBadge';
+import { TrustSignals } from '@/components/tools/TrustSignals';
 import { locale } from 'next/root-params';
 import { isLocale, defaultLocale, withLocale } from '@/lib/i18n/config';
 import { getDictionary, localizeCategory, localizeTool } from '@/lib/i18n';
@@ -109,6 +110,11 @@ export default async function ToolPage({ params }: PageProps) {
     },
     keywords: localized.keywords.join(', '),
     inLanguage: current,
+    featureList: localized.howToSteps,
+    potentialAction: {
+      '@type': 'UseAction',
+      target: toolUrl,
+    },
   };
 
   return (
@@ -139,6 +145,7 @@ export default async function ToolPage({ params }: PageProps) {
               proofLabel={dict.toolPage.privacyProofLink}
               proofHref={withLocale(current, '/privacy-proof')}
             />
+            <TrustSignals labels={dict.trustSignals} />
           </div>
 
           {/* About this tool */}

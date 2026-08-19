@@ -20,6 +20,7 @@ interface ToolCardProps {
   categoryBg?: string;
   popularLabel?: string;
   useToolLabel?: string;
+  freeLabel?: string;
 }
 
 export function ToolCard({
@@ -30,6 +31,7 @@ export function ToolCard({
   categoryBg,
   popularLabel = 'Popular',
   useToolLabel = 'Use Tool',
+  freeLabel,
 }: ToolCardProps) {
   const Icon = tool.icon;
 
@@ -48,6 +50,11 @@ export function ToolCard({
             {tool.isPopular && (
               <span className="text-xs px-1.5 py-0.5 rounded-full bg-orange-100 text-orange-600 dark:bg-orange-950/50 dark:text-orange-400 font-medium">
                 {popularLabel}
+              </span>
+            )}
+            {freeLabel && (
+              <span className="text-xs px-1.5 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-950/50 dark:text-green-400 font-medium">
+                {freeLabel}
               </span>
             )}
           </div>

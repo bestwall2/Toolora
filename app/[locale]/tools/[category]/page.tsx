@@ -127,6 +127,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 categoryBg={localizedCat.bgColor}
                 popularLabel={dict.common.popular}
                 useToolLabel={dict.common.useTool}
+                freeLabel={dict.common.free}
               />
             ))}
           </div>

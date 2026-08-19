@@ -60,6 +60,7 @@ const dict: Dictionary = {
     useTool: 'Utiliser l’outil',
     browse: 'Parcourir',
     backToTools: 'Retour à tous les outils',
+    free: 'Gratuit',
   },
   home: {
     heroTitle: 'Des outils gratuits en ligne pour le quotidien',
@@ -282,6 +283,12 @@ const dict: Dictionary = {
     offlineTitle: 'Vous êtes hors ligne',
     offlineDesc: 'Les pages visitées fonctionnent toujours. Reconnectez-vous pour de nouvelles pages et des mises à jour.',
     tryAgain: 'Réessayer',
+  },
+  trustSignals: {
+    free: 'Gratuit pour toujours',
+    noSignup: 'Sans inscription',
+    offline: 'Fonctionne hors ligne',
+    adFree: 'Sans publicité',
   },
   termsPage: {
     title: 'Conditions d’utilisation',
