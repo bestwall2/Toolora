@@ -62,8 +62,10 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'sticky top-0 z-50 w-full transition-all duration-200 bg-neutral-950/70 backdrop-blur-md border-b border-white/10',
-          isScrolled && 'bg-neutral-950/90 shadow-lg shadow-black/10'
+          'sticky top-0 z-50 w-full transition-all duration-200 bg-background/80 backdrop-blur-md',
+          isScrolled
+            ? 'border-b border-border bg-background/90 shadow-sm'
+            : 'border-b border-transparent'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,7 +75,7 @@ export function Navbar() {
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-sm transition-transform group-hover:scale-105">
                 <Zap className="w-4 h-4 text-white fill-white" strokeWidth={0} />
               </div>
-              <span className="font-semibold text-lg tracking-tight text-white">Toollora</span>
+              <span className="font-semibold text-lg tracking-tight text-foreground">Toollora</span>
             </Link>
 
             {/* Desktop Nav */}
@@ -85,8 +87,8 @@ export function Navbar() {
                   className={cn(
                     'px-3 py-1.5 rounded-md text-sm font-medium transition-colors',
                     pathname === link.href || pathname?.startsWith(link.href + '/')
-                      ? 'text-white bg-white/15'
-                      : 'text-white/70 hover:text-white hover:bg-white/10'
+                      ? 'text-primary bg-primary/10'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   )}
                 >
                   {link.label}
@@ -99,12 +101,12 @@ export function Navbar() {
               {/* Search trigger */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-white/80 border border-white/15 hover:border-white/30 hover:text-white transition-all bg-white/5 hover:bg-white/10"
+                className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-muted-foreground border border-border hover:border-primary/40 hover:text-foreground transition-all bg-muted/50 hover:bg-muted"
                 aria-label={t.nav.searchTools}
               >
                 <Search className="w-3.5 h-3.5" />
                 <span className="hidden lg:inline">{t.nav.searchPlaceholder}</span>
-                <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs bg-white/10 border border-white/15 font-mono text-white/70">
+                <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs bg-background border border-border font-mono">
                   ⌃K
                 </kbd>
               </button>
@@ -112,7 +114,7 @@ export function Navbar() {
               {/* Mobile search */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="sm:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                className="sm:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 aria-label={t.nav.search}
               >
                 <Search className="w-4.5 h-4.5" />
@@ -120,14 +122,14 @@ export function Navbar() {
 
               {/* Language switcher */}
               <div className="hidden sm:block">
-                <LanguageSwitcher variant="dark" />
+                <LanguageSwitcher />
               </div>
 
               {/* Theme toggle */}
               {mounted && (
                 <button
                   onClick={cycleTheme}
-                  className="p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                   aria-label={t.nav.toggleTheme}
                 >
                   {resolvedTheme === 'dark' ? (
@@ -141,7 +143,7 @@ export function Navbar() {
               {/* Mobile menu */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 aria-label={isMenuOpen ? t.nav.closeMenu : t.nav.toggleMenu}
                 aria-expanded={isMenuOpen}
               >
@@ -153,10 +155,10 @@ export function Navbar() {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-white/10 bg-neutral-950/95 backdrop-blur-md animate-fade-in">
+          <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md animate-fade-in">
             <nav className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
               <div className="px-3 py-2">
-                <LanguageSwitcher variant="dark" />
+                <LanguageSwitcher />
               </div>
               {navLinks.map((link) => (
                 <Link
@@ -166,8 +168,8 @@ export function Navbar() {
                   className={cn(
                     'px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                     pathname === link.href
-                      ? 'text-white bg-white/15'
-                      : 'text-white/80 hover:text-white hover:bg-white/10'
+                      ? 'text-primary bg-primary/10'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   )}
                 >
                   {link.label}
