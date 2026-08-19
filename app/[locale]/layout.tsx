@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Cairo } from 'next/font/google';
 import { locale } from 'next/root-params';
 import '@/app/globals.css';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
@@ -15,6 +15,12 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+});
+
+const cairo = Cairo({
+  subsets: ['arabic'],
+  display: 'swap',
+  variable: '--font-cairo',
 });
 
 export function generateStaticParams() {
@@ -96,7 +102,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={current} dir={dir} suppressHydrationWarning>
       <head />
       <body
-        className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
+        className={`${inter.variable} ${cairo.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
         <ThemeProvider>
           <LocaleProvider locale={current} dict={dict}>
