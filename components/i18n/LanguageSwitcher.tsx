@@ -7,7 +7,7 @@ import { useLocaleContext } from '@/components/i18n/LocaleProvider';
 
 const LOCALE_COOKIE = 'locale';
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ variant = 'light' }: { variant?: 'light' | 'dark' }) {
   const { locale } = useLocaleContext();
   const pathname = usePathname();
   const router = useRouter();
@@ -20,18 +20,28 @@ export function LanguageSwitcher() {
     router.refresh();
   };
 
+  const dark = variant === 'dark';
+
   return (
     <div className="relative">
       <label htmlFor="language-switcher" className="sr-only">
         Language
       </label>
-      <div className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-border bg-muted/50 text-muted-foreground">
+      <div
+        className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg border ${
+          dark
+            ? 'border-white/15 bg-white/5 text-white/80'
+            : 'border-border bg-muted/50 text-muted-foreground'
+        }`}
+      >
         <Globe className="w-4 h-4 shrink-0" aria-hidden />
         <select
           id="language-switcher"
           value={locale}
           onChange={(e) => changeLanguage(e.target.value)}
-          className="bg-transparent text-sm font-medium text-foreground outline-none cursor-pointer appearance-none pe-2"
+          className={`bg-transparent text-sm font-medium outline-none cursor-pointer appearance-none pe-2 ${
+            dark ? 'text-white' : 'text-foreground'
+          }`}
         >
           {locales.map((l) => (
             <option key={l} value={l}>
