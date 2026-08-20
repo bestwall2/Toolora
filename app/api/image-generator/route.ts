@@ -12,19 +12,6 @@ export async function POST(request: NextRequest) {
   }
 
   const payload: Record<string, string> = { prompt: body.prompt.trim() };
-  if (typeof body.negative_prompt === 'string' && body.negative_prompt.trim()) {
-    payload.negative_prompt = body.negative_prompt.trim();
-  }
-  if (typeof body.resolution === 'string' && body.resolution.trim()) {
-    payload.resolution = body.resolution.trim();
-  }
-  if (
-    typeof body.seed === 'string' &&
-    body.seed.trim() &&
-    body.seed.trim() !== '-1'
-  ) {
-    payload.seed = body.seed.trim();
-  }
 
   try {
     const upstream = await fetch(API_URL, {

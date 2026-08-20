@@ -963,16 +963,15 @@ const dict: Dictionary = {
     'image-generator': {
       name: 'Générateur d’images IA',
       description: 'Créez de superbes images à partir d’une description texte avec l’IA, sans connexion.',
-      longDescription: 'Décrivez ce que vous voulez voir et notre IA transforme vos mots en image. Affinez le résultat avec une description négative, une graine et une résolution pour contrôler la composition et le style. Propulsé par un moteur texte-vers-image gratuit, sans compte ni inscription.',
+      longDescription: 'Décrivez ce que vous voulez voir et notre IA transforme vos mots en image. Propulsé par un moteur texte-vers-image gratuit, sans compte ni inscription.',
       keywords: ['générateur d’images ia', 'texte vers image', 'générateur d’art ia', 'générer une image depuis un texte', 'générateur d’images'],
       seoTitle: 'Générateur d’images IA — créer des images à partir de texte en ligne gratuitement',
-      seoDescription: 'Générez des images IA à partir d’une description texte gratuitement. Contrôlez la graine et la résolution, ajoutez une description négative et téléchargez en un clic. Sans connexion.',
-      content: 'Rédigez une description de la scène, du sujet, du style ou de l’ambiance souhaités, puis cliquez sur Générer. Notre IA produit une image unique en quelques secondes. Pour un contrôle plus fin, ajoutez une description négative pour indiquer ce qu’il faut éviter, définissez une graine fixe pour reproduire un résultat et choisissez une résolution. Le résultat s’affiche dans le générateur intégré et se télécharge directement.',
+      seoDescription: 'Générez des images IA à partir d’une description texte gratuitement et téléchargez-les en un clic. Sans connexion.',
+      content: 'Rédigez une description de la scène, du sujet, du style ou de l’ambiance souhaités, puis cliquez sur Générer. Notre IA produit une image unique en quelques secondes. Le résultat s’affiche dans la page et se télécharge directement.',
       howToSteps: [
         'Saisissez une description détaillée de l’image souhaitée.',
-        'Optionnel : définissez une description négative, une graine et une résolution.',
         'Cliquez sur « Générer ».',
-        'Prévisualisez et téléchargez le résultat dans le générateur intégré.',
+        'Prévisualisez et téléchargez le résultat.',
       ],
       faq: [
         {
@@ -981,7 +980,7 @@ const dict: Dictionary = {
         },
         {
           question: 'Puis-je contrôler ce que crée l’IA ?',
-          answer: 'Oui. Utilisez une description détaillée, ajoutez une description négative pour éviter les éléments indésirables, définissez une graine pour reproduire des résultats et choisissez une résolution.',
+          answer: 'Oui. Rédigez une description détaillée et précise — plus elle est spécifique, plus le résultat correspond à ce que vous imaginez.',
         },
         {
           question: 'Les images générées sont-elles sûres à utiliser ?',

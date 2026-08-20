@@ -881,21 +881,20 @@ export const tools: Tool[] = [
     slug: 'image-generator',
     description: 'Create stunning images from a text prompt with AI, no login required.',
     longDescription:
-      'Describe what you want to see and our AI turns your words into an image. Tune the result with a negative prompt, seed and resolution to control composition and style. Powered by a free text-to-image engine, no account or sign-up needed.',
+      'Describe what you want to see and our AI turns your words into an image. Powered by a free text-to-image engine, no account or sign-up needed.',
     category: 'image',
     icon: Wand2,
     keywords: ['ai image generator', 'text to image', 'ai art generator', 'generate image from text', 'image generator'],
     relatedTools: ['image-enhancer', 'image-resizer', 'image-converter', 'image-compressor'],
     seoTitle: 'AI Image Generator - Create Images from Text Online Free',
     seoDescription:
-      'Generate AI images from a text prompt for free. Control seed and resolution, add a negative prompt, and download in one click. No login required.',
+      'Generate AI images from a text prompt for free and download in one click. No login required.',
     content:
-      'Write a prompt describing the scene, subject, style or mood you want, then hit Generate. Our AI produces a unique image in seconds. For finer control, add a negative prompt to tell the AI what to avoid, set a fixed seed to reproduce a result and choose a resolution. The generator runs right on this page — preview the result and download it in one click.',
+      'Write a prompt describing the scene, subject, style or mood you want, then hit Generate. Our AI produces a unique image in seconds. The generator runs right on this page — preview the result and download it in one click.',
     howToSteps: [
       'Type a detailed description of the image you want.',
-      'Optionally set a negative prompt, seed and resolution.',
       'Click "Generate".',
-      'Preview the result in the embedded generator and download it.',
+      'Preview the result and download it.',
     ],
     faq: [
       {
@@ -906,7 +905,7 @@ export const tools: Tool[] = [
       {
         question: 'Can I control what the AI creates?',
         answer:
-          'Yes. Use a descriptive prompt, add a negative prompt to avoid unwanted elements, set a seed to reproduce results, and choose a resolution.',
+          'Yes. Write a detailed, descriptive prompt — the more specific you are, the closer the result will be to what you imagined.',
       },
       {
         question: 'Are generated images safe to use?',
