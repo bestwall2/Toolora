@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/Button';
 import { useToolLabels } from '@/components/i18n/LocaleProvider';
 import { trackEvent } from '@/lib/analytics';
 
+const RESOLUTIONS = ['512x512', '512x768', '768x512', '768x768', '768x1024', '1024x1024'];
+
 function extensionFromType(type: string): string {
   if (type.includes('png')) return '.png';
   if (type.includes('webp')) return '.webp';
@@ -15,6 +17,9 @@ function extensionFromType(type: string): string {
 export function ImageGenerator() {
   const L = useToolLabels('image-generator');
   const [prompt, setPrompt] = useState('');
+  const [negativePrompt, setNegativePrompt] = useState('');
+  const [seed, setSeed] = useState('');
+  const [resolution, setResolution] = useState('512x512');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -26,11 +31,19 @@ export function ImageGenerator() {
     setError(null);
     setImageUrl(null);
 
+    const [width, height] = resolution.split('x').map(Number);
+
     try {
       const res = await fetch('/api/image-generator', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: prompt.trim() }),
+        body: JSON.stringify({
+          prompt: prompt.trim(),
+          negative_prompt: negativePrompt.trim() || undefined,
+          width,
+          height,
+          seed: seed.trim() ? Number(seed) : undefined,
+        }),
       });
 
       if (!res.ok) {
@@ -48,7 +61,7 @@ export function ImageGenerator() {
       const url = URL.createObjectURL(blob);
       setImageUrl(url);
       setExtension(extensionFromType(blob.type));
-      trackEvent('tool_used', { tool: 'image-generator' });
+      trackEvent('tool_used', { tool: 'image-generator', resolution });
     } catch (e) {
       setError(e instanceof Error ? e.message : L.error);
     } finally {
@@ -70,6 +83,44 @@ export function ImageGenerator() {
               maxLength={4000}
               className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-y"
             />
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-foreground">{L.negativePrompt}</label>
+            <input
+              type="text"
+              value={negativePrompt}
+              onChange={(e) => setNegativePrompt(e.target.value)}
+              placeholder={L.negativePlaceholder}
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="block text-sm text-muted-foreground">{L.seed}</label>
+              <input
+                type="number"
+                value={seed}
+                onChange={(e) => setSeed(e.target.value)}
+                placeholder={L.random}
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label className="block text-sm text-muted-foreground">{L.resolution}</label>
+              <select
+                value={resolution}
+                onChange={(e) => setResolution(e.target.value)}
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {RESOLUTIONS.map((r) => (
+                  <option key={r} value={r}>
+                    {r}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-3">
