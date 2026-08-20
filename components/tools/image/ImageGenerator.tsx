@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Sparkles, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvider';
@@ -26,23 +26,9 @@ export function ImageGenerator() {
   const [negativePrompt, setNegativePrompt] = useState('');
   const [seed, setSeed] = useState('');
   const [resolution, setResolution] = useState('512x512');
-  const [iframeUrl, setIframeUrl] = useState<string | null>(null);
+  const [openUrl, setOpenUrl] = useState<string | null>(null);
 
-  // Official Perchance embed: the generator posts its height so the
-  // iframe auto-resizes to fit the content.
-  useEffect(() => {
-    const onMessage = (e: MessageEvent) => {
-      const d = e.data;
-      if (!d || d.type !== 'aiImgEmbed' || !Number.isFinite(d.height)) return;
-      const f = document.getElementById(`aiImg-${d.id}`);
-      if (f) f.style.height = `${d.height}px`;
-    };
-    window.addEventListener('message', onMessage);
-    return () => window.removeEventListener('message', onMessage);
-  }, []);
-
-  const generate = () => {
-    if (!prompt.trim()) return;
+  const buildUrl = () => {
     const url = new URL(GENERATOR_URL);
     url.searchParams.set('embed', '1');
     url.searchParams.set('embid', EMBED_ID);
@@ -55,7 +41,14 @@ export function ImageGenerator() {
     url.searchParams.set('lang', PERCHANCE_LANGS[locale] ?? 'en');
     url.searchParams.set('theme', resolvedTheme === 'dark' ? 'dark' : 'light');
     url.searchParams.set('bg', 'transparent');
-    setIframeUrl(url.toString());
+    return url.toString();
+  };
+
+  const generate = () => {
+    if (!prompt.trim()) return;
+    const url = buildUrl();
+    setOpenUrl(url);
+    window.open(url, '_blank', 'noopener');
     trackEvent('tool_used', { tool: 'image-generator', resolution });
   };
 
@@ -123,12 +116,12 @@ export function ImageGenerator() {
         </div>
       </div>
 
-      {iframeUrl && (
+      {openUrl && (
         <div className="p-6 rounded-2xl border border-border bg-card shadow-card space-y-3">
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{L.result}</p>
             <a
-              href={iframeUrl}
+              href={openUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
@@ -137,16 +130,9 @@ export function ImageGenerator() {
               {L.openInNewTab}
             </a>
           </div>
-          <div className="mx-auto w-full max-w-[640px]">
-            <iframe
-              id={`aiImg-${EMBED_ID}`}
-              src={iframeUrl}
-              title={L.result}
-              loading="lazy"
-              className="w-full border-0 rounded-xl overflow-hidden"
-              style={{ minHeight: 900 }}
-              allow="clipboard-write"
-            />
+          <div className="rounded-xl border border-dashed border-border bg-background p-4 text-sm text-foreground">
+            <p>{L.openedInNewTab}</p>
+            <p className="mt-2 text-muted-foreground">{L.blockedHint}</p>
           </div>
         </div>
       )}

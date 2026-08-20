@@ -423,6 +423,9 @@ const dict: Dictionary = {
         openInNewTab: 'Ouvrir dans un nouvel onglet',
         error: 'Échec de la génération. Veuillez réessayer.',
         waitNote: 'La génération peut prendre 30 à 90 secondes. Gardez cet onglet ouvert.',
+        openedInNewTab: 'Le générateur s\'est ouvert dans un nouvel onglet avec votre invitation déjà remplie.',
+        blockedHint:
+          'S\'il reste bloqué, votre navigateur ou un bloqueur de publicités bloque peut-être le service IA : le nouvel onglet fonctionne toujours.',
         serverSideOnly: 'Cet outil génère de nouvelles images et ne peut pas consommer un fichier importé. Utilisez le champ de description à la place.',
       },
       imageBackgroundRemover: {

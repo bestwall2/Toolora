@@ -423,6 +423,9 @@ const dict: Dictionary = {
         openInNewTab: 'Abrir en una pestaña nueva',
         error: 'No se pudo generar la imagen. Inténtalo de nuevo.',
         waitNote: 'Generar una imagen puede tardar entre 30 y 90 segundos. Mantén esta pestaña abierta.',
+        openedInNewTab: 'El generador se abrió en una pestaña nueva con tu prompt ya rellenado.',
+        blockedHint:
+          'Si se queda atascado, tu navegador o un bloqueador de anuncios puede estar bloqueando el servicio de IA: la pestaña nueva siempre funciona.',
         serverSideOnly: 'Esta herramienta genera imágenes nuevas y no puede consumir un archivo subido. Usa el campo de descripción en su lugar.',
       },
       imageBackgroundRemover: {

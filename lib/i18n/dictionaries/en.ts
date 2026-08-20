@@ -427,6 +427,9 @@ const dict: Dictionary = {
         openInNewTab: 'Open in new tab',
         error: 'Generation failed. Please try again.',
         waitNote: 'Generating an image can take 30-90 seconds. Please keep this tab open.',
+        openedInNewTab: 'The generator opened in a new tab with your prompt already filled in.',
+        blockedHint:
+          "If it ever gets stuck, your browser or an ad-blocker may be blocking the AI service — the new tab still works.",
         serverSideOnly: 'This tool generates new images and cannot consume an uploaded file. Use the prompt box instead.',
       },
       imageBackgroundRemover: {
