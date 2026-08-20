@@ -7,7 +7,8 @@ import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvide
 import { useTheme } from 'next-themes';
 import { trackEvent } from '@/lib/analytics';
 
-const GENERATOR_URL = 'https://perchance.org/3y4owlpd4l';
+const GENERATOR_URL = 'https://8a3a4dfaf29b4be8eead43dd8c912667.perchance.org/3y4owlpd4l';
+const EMBED_ID = 'toolora';
 const RESOLUTIONS = ['512x512', '512x768', '768x512', '768x768'];
 
 const PERCHANCE_LANGS: Record<string, string> = {
@@ -32,7 +33,7 @@ export function ImageGenerator() {
     const onMessage = (e: MessageEvent) => {
       const d = e.data;
       if (!d || d.type !== 'aiImgEmbed' || !Number.isFinite(d.height)) return;
-      const f = document.getElementById(`aiImg-toolora`);
+      const f = document.getElementById(`aiImg-${EMBED_ID}`);
       if (f) f.style.height = `${d.height}px`;
     };
     window.addEventListener('message', onMessage);
@@ -41,6 +42,8 @@ export function ImageGenerator() {
 
   const buildUrl = () => {
     const url = new URL(GENERATOR_URL);
+    url.searchParams.set('embed', '1');
+    url.searchParams.set('embid', EMBED_ID);
     url.searchParams.set('prompt', prompt.trim());
     url.searchParams.set('resolution', resolution);
     url.searchParams.set('seed', seed.trim() ? seed.trim() : '-1');
@@ -49,6 +52,7 @@ export function ImageGenerator() {
     }
     url.searchParams.set('lang', PERCHANCE_LANGS[locale] ?? 'en');
     url.searchParams.set('theme', resolvedTheme === 'dark' ? 'dark' : 'light');
+    url.searchParams.set('bg', 'transparent');
     return url.toString();
   };
 
@@ -139,7 +143,7 @@ export function ImageGenerator() {
           </div>
           <div className="mx-auto w-full max-w-[640px]">
             <iframe
-              id="aiImg-toolora"
+              id={`aiImg-${EMBED_ID}`}
               src={iframeUrl}
               title={L.result}
               className="w-full border-0 rounded-xl overflow-hidden"
