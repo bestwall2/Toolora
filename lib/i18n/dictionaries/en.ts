@@ -424,6 +424,7 @@ const dict: Dictionary = {
         generating: 'Generating…',
         download: 'Download',
         result: 'Generated image',
+        openInNewTab: 'Open in new tab',
         error: 'Generation failed. Please try again.',
         waitNote: 'Generating an image can take 30-90 seconds. Please keep this tab open.',
         serverSideOnly: 'This tool generates new images and cannot consume an uploaded file. Use the prompt box instead.',

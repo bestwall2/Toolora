@@ -420,6 +420,7 @@ const dict: Dictionary = {
         generating: 'Generando…',
         download: 'Descargar',
         result: 'Imagen generada',
+        openInNewTab: 'Abrir en una pestaña nueva',
         error: 'No se pudo generar la imagen. Inténtalo de nuevo.',
         waitNote: 'Generar una imagen puede tardar entre 30 y 90 segundos. Mantén esta pestaña abierta.',
         serverSideOnly: 'Esta herramienta genera imágenes nuevas y no puede consumir un archivo subido. Usa el campo de descripción en su lugar.',
@@ -959,16 +960,16 @@ const dict: Dictionary = {
     'image-generator': {
       name: 'Generador de imágenes IA',
       description: 'Crea imágenes asombrosas a partir de una descripción de texto con IA, sin iniciar sesión.',
-      longDescription: 'Describe lo que quieres ver y nuestra IA convierte tus palabras en una imagen. Ajusta el resultado con una descripción negativa, una semilla, una resolución y una escala de guía para controlar la composición y el estilo. Con tecnología de un motor de texto a imagen gratuito, sin cuenta ni registro.',
+      longDescription: 'Describe lo que quieres ver y nuestra IA convierte tus palabras en una imagen. Ajusta el resultado con una descripción negativa, una semilla y una resolución para controlar la composición y el estilo. Con tecnología de un motor de texto a imagen gratuito, sin cuenta ni registro.',
       keywords: ['generador de imágenes ia', 'texto a imagen', 'generador de arte ia', 'generar imagen desde texto', 'generador de imágenes'],
       seoTitle: 'Generador de imágenes IA: crea imágenes a partir de texto gratis online',
-      seoDescription: 'Genera imágenes con IA a partir de una descripción de texto gratis. Controla semilla, resolución y escala de guía, añade una descripción negativa y descarga con un clic. Sin inicio de sesión.',
-      content: 'Escribe una descripción de la escena, el sujeto, el estilo o el ambiente que quieras y pulsa Generar. Nuestra IA produce una imagen única en segundos. Para más control, añade una descripción negativa que indique a la IA qué evitar, fija una semilla para reproducir un resultado, elige una resolución y ajusta la escala de guía para que el modelo siga tu descripción con mayor o menor rigurosidad. El resultado se descarga directamente o se envía a otra herramienta.',
+      seoDescription: 'Genera imágenes con IA a partir de una descripción de texto gratis. Controla semilla y resolución, añade una descripción negativa y descarga con un clic. Sin inicio de sesión.',
+      content: 'Escribe una descripción de la escena, el sujeto, el estilo o el ambiente que quieras y pulsa Generar. Nuestra IA produce una imagen única en segundos. Para más control, añade una descripción negativa que indique a la IA qué evitar, fija una semilla para reproducir un resultado y elige una resolución. El resultado aparece en el generador integrado y se descarga directamente.',
       howToSteps: [
         'Escribe una descripción detallada de la imagen que quieres.',
-        'Opcional: define una descripción negativa, una semilla, una resolución y una escala de guía.',
+        'Opcional: define una descripción negativa, una semilla y una resolución.',
         'Haz clic en «Generar».',
-        'Previsualiza, descarga o continúa hacia otra herramienta.',
+        'Previsualiza y descarga el resultado en el generador integrado.',
       ],
       faq: [
         {
@@ -977,7 +978,7 @@ const dict: Dictionary = {
         },
         {
           question: '¿Puedo controlar lo que crea la IA?',
-          answer: 'Sí. Usa una descripción detallada, añade una descripción negativa para evitar elementos no deseados, fija una semilla para reproducir resultados y ajusta la resolución y la escala de guía.',
+          answer: 'Sí. Usa una descripción detallada, añade una descripción negativa para evitar elementos no deseados, fija una semilla para reproducir resultados y elige una resolución.',
         },
         {
           question: '¿Las imágenes generadas son seguras de usar?',

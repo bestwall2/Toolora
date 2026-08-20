@@ -890,12 +890,12 @@ export const tools: Tool[] = [
     seoDescription:
       'Generate AI images from a text prompt for free. Control seed and resolution, add a negative prompt, and download in one click. No login required.',
     content:
-      'Write a prompt describing the scene, subject, style or mood you want, then hit Generate. Our AI produces a unique image in seconds. For finer control, add a negative prompt to tell the AI what to avoid, set a fixed seed to reproduce a result and choose a resolution. The result can be downloaded directly or sent on to another tool.',
+      'Write a prompt describing the scene, subject, style or mood you want, then hit Generate. Our AI produces a unique image in seconds. For finer control, add a negative prompt to tell the AI what to avoid, set a fixed seed to reproduce a result and choose a resolution. The generator runs right on this page — preview the result and download it in one click.',
     howToSteps: [
       'Type a detailed description of the image you want.',
       'Optionally set a negative prompt, seed and resolution.',
       'Click "Generate".',
-      'Preview, download, or continue to another tool.',
+      'Preview the result in the embedded generator and download it.',
     ],
     faq: [
       {

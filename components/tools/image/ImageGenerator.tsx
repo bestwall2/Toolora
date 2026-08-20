@@ -1,74 +1,43 @@
 'use client';
 
 import { useState } from 'react';
-import { Sparkles, Download, Loader2 } from 'lucide-react';
-import { useChainedInput } from '@/components/tools/useChainedInput';
+import { Sparkles, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { downloadDataUrl, dataUrlToBlob } from '@/lib/utils';
+import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvider';
 import { trackEvent } from '@/lib/analytics';
-import { useToolLabels } from '@/components/i18n/LocaleProvider';
-import { ChainHandoff } from '@/components/tools/ChainHandoff';
 
+const GENERATOR_URL = 'https://8a3a4dfaf29b4be8eead43dd8c912667.perchance.org/3y4owlpd4l';
 const RESOLUTIONS = ['512x512', '512x768', '768x512', '768x768'];
 
-interface GenerateResponse {
-  dataUrl?: string;
-  mimeType?: string;
-  error?: string;
-}
+const PERCHANCE_LANGS: Record<string, string> = {
+  en: 'en',
+  fr: 'fr',
+  es: 'es',
+  ar: 'ar',
+};
 
 export function ImageGenerator() {
   const L = useToolLabels('image-generator');
+  const { locale } = useLocaleContext();
   const [prompt, setPrompt] = useState('');
   const [negativePrompt, setNegativePrompt] = useState('');
   const [seed, setSeed] = useState('');
   const [resolution, setResolution] = useState('512x512');
-  const [generating, setGenerating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [result, setResult] = useState<string | null>(null);
-  const [resultName, setResultName] = useState('generated-image.png');
+  const [iframeUrl, setIframeUrl] = useState<string | null>(null);
 
-  useChainedInput('image-generator', 'image', ({ blob, fileName }) => {
-    setError(L.serverSideOnly);
-  });
-
-  const generate = async () => {
-    if (!prompt.trim() || generating) return;
-    setGenerating(true);
-    setError(null);
-    try {
-      const res = await fetch('/api/image-generator', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          prompt: prompt.trim(),
-          negativePrompt: negativePrompt.trim() || undefined,
-          seed: seed.trim() ? Number(seed.trim()) : undefined,
-          resolution,
-        }),
-      });
-      const data: GenerateResponse = await res.json();
-      if (!res.ok || !data.dataUrl) {
-        throw new Error(data.error || 'Generation failed');
-      }
-      setResult(data.dataUrl);
-      setResultName(`ai-image-${Date.now()}.${data.mimeType?.includes('png') ? 'png' : 'jpg'}`);
-      trackEvent('tool_used', { tool: 'image-generator', resolution });
-    } catch (e) {
-      setError(e instanceof Error ? e.message : L.error);
-      trackEvent('error_shown', { tool: 'image-generator' });
-    } finally {
-      setGenerating(false);
+  const generate = () => {
+    if (!prompt.trim()) return;
+    const url = new URL(GENERATOR_URL);
+    url.searchParams.set('prompt', prompt.trim());
+    url.searchParams.set('resolution', resolution);
+    url.searchParams.set('seed', seed.trim() ? seed.trim() : '-1');
+    if (negativePrompt.trim()) {
+      url.searchParams.set('negative', negativePrompt.trim());
     }
+    url.searchParams.set('lang', PERCHANCE_LANGS[locale] ?? 'en');
+    setIframeUrl(url.toString());
+    trackEvent('tool_used', { tool: 'image-generator', resolution });
   };
-
-  const download = () => {
-    if (!result) return;
-    downloadDataUrl(result, resultName);
-    trackEvent('download_clicked', { tool: 'image-generator' });
-  };
-
-  const resultBlob = result ? dataUrlToBlob(result) : null;
 
   return (
     <div className="space-y-6">
@@ -124,34 +93,39 @@ export function ImageGenerator() {
             </div>
           </div>
 
-          {error && <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-3 py-2 rounded-lg">{error}</p>}
-
           <div className="flex flex-wrap gap-3">
-            <Button onClick={generate} disabled={generating || !prompt.trim()} icon={generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}>
-              {generating ? L.generating : L.generate}
+            <Button onClick={generate} disabled={!prompt.trim()} icon={<Sparkles className="w-4 h-4" />}>
+              {L.generate}
             </Button>
-            {result && (
-              <Button variant="secondary" onClick={download} icon={<Download className="w-4 h-4" />}>
-                {L.download}
-              </Button>
-            )}
           </div>
 
-          {generating && <p className="text-sm text-muted-foreground">{L.waitNote}</p>}
-
-          {result && (
-            <div className="space-y-2">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{L.result}</p>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={result} alt={L.result} className="w-full rounded-xl object-contain max-h-96 bg-muted/30" />
-            </div>
-          )}
-
-          {resultBlob && (
-            <ChainHandoff sourceSlug="image-generator" blob={resultBlob} fileName={resultName} />
-          )}
+          <p className="text-sm text-muted-foreground">{L.waitNote}</p>
         </div>
       </div>
+
+      {iframeUrl && (
+        <div className="p-6 rounded-2xl border border-border bg-card shadow-card space-y-3">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{L.result}</p>
+            <a
+              href={iframeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              {L.openInNewTab}
+            </a>
+          </div>
+          <iframe
+            src={iframeUrl}
+            title={L.result}
+            className="w-full rounded-xl border border-border bg-background"
+            style={{ height: 640 }}
+            allow="clipboard-write"
+          />
+        </div>
+      )}
     </div>
   );
 }
