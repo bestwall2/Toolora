@@ -1,66 +1,69 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Sparkles, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { Sparkles, Download } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvider';
-import { useTheme } from 'next-themes';
+import { useToolLabels } from '@/components/i18n/LocaleProvider';
 import { trackEvent } from '@/lib/analytics';
 
-const GENERATOR_URL = 'https://8a3a4dfaf29b4be8eead43dd8c912667.perchance.org/3y4owlpd4l';
-const EMBED_ID = 'toolora';
 const RESOLUTIONS = ['512x512', '512x768', '768x512', '768x768'];
 
-const PERCHANCE_LANGS: Record<string, string> = {
-  en: 'en',
-  fr: 'fr',
-  es: 'es',
-  ar: 'ar',
-};
+function extensionFromType(type: string): string {
+  if (type.includes('png')) return '.png';
+  if (type.includes('webp')) return '.webp';
+  return '.jpg';
+}
 
 export function ImageGenerator() {
   const L = useToolLabels('image-generator');
-  const { locale } = useLocaleContext();
-  const { resolvedTheme } = useTheme();
   const [prompt, setPrompt] = useState('');
   const [negativePrompt, setNegativePrompt] = useState('');
   const [seed, setSeed] = useState('');
   const [resolution, setResolution] = useState('512x512');
-  const [iframeUrl, setIframeUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [extension, setExtension] = useState('.jpg');
 
-  // If the generator posts its content height, resize the iframe to fit.
-  useEffect(() => {
-    const onMessage = (e: MessageEvent) => {
-      const d = e.data;
-      if (!d || d.type !== 'aiImgEmbed' || !Number.isFinite(d.height)) return;
-      const f = document.getElementById(`aiImg-${EMBED_ID}`);
-      if (f) f.style.height = `${d.height}px`;
-    };
-    window.addEventListener('message', onMessage);
-    return () => window.removeEventListener('message', onMessage);
-  }, []);
+  const generate = async () => {
+    if (!prompt.trim() || loading) return;
+    setLoading(true);
+    setError(null);
+    setImageUrl(null);
 
-  const buildUrl = () => {
-    const url = new URL(GENERATOR_URL);
-    url.searchParams.set('embed', '1');
-    url.searchParams.set('embid', EMBED_ID);
-    url.searchParams.set('prompt', prompt.trim());
-    url.searchParams.set('resolution', resolution);
-    url.searchParams.set('seed', seed.trim() ? seed.trim() : '-1');
-    if (negativePrompt.trim()) {
-      url.searchParams.set('negative', negativePrompt.trim());
+    try {
+      const res = await fetch('/api/image-generator', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: prompt.trim(),
+          negative_prompt: negativePrompt.trim() || undefined,
+          resolution,
+          seed: seed.trim() ? seed.trim() : undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        let message = L.error;
+        try {
+          const data = await res.json();
+          if (data?.error) message = data.error;
+        } catch {
+          /* keep default */
+        }
+        throw new Error(message);
+      }
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      setImageUrl(url);
+      setExtension(extensionFromType(blob.type));
+      trackEvent('tool_used', { tool: 'image-generator', resolution });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : L.error);
+    } finally {
+      setLoading(false);
     }
-    url.searchParams.set('lang', PERCHANCE_LANGS[locale] ?? 'en');
-    url.searchParams.set('theme', resolvedTheme === 'dark' ? 'dark' : 'light');
-    url.searchParams.set('bg', 'transparent');
-    return url.toString();
-  };
-
-  const generate = () => {
-    if (!prompt.trim()) return;
-    const url = buildUrl();
-    setIframeUrl(url);
-    trackEvent('tool_used', { tool: 'image-generator', resolution });
   };
 
   return (
@@ -118,8 +121,8 @@ export function ImageGenerator() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button onClick={generate} disabled={!prompt.trim()} icon={<Sparkles className="w-4 h-4" />}>
-              {L.generate}
+            <Button onClick={generate} disabled={!prompt.trim()} loading={loading} icon={<Sparkles className="w-4 h-4" />}>
+              {loading ? L.generating : L.generate}
             </Button>
           </div>
 
@@ -127,30 +130,28 @@ export function ImageGenerator() {
         </div>
       </div>
 
-      {iframeUrl && (
+      {error && (
+        <div className="p-4 rounded-2xl border border-destructive/40 bg-destructive/10 text-sm text-destructive">
+          {error}
+        </div>
+      )}
+
+      {imageUrl && (
         <div className="p-6 rounded-2xl border border-border bg-card shadow-card space-y-3">
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{L.result}</p>
             <a
-              href={iframeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+              href={imageUrl}
+              download={`generated-image${extension}`}
+              className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-xl border border-border bg-secondary text-foreground hover:bg-muted"
             >
-              <ExternalLink className="w-3.5 h-3.5" />
-              {L.openInNewTab}
+              <Download className="w-3.5 h-3.5" />
+              {L.download}
             </a>
           </div>
-          <div className="mx-auto w-full max-w-[640px]">
-            <iframe
-              id={`aiImg-${EMBED_ID}`}
-              src={iframeUrl}
-              title={L.result}
-              className="w-full border-0 rounded-xl overflow-hidden"
-              style={{ minHeight: 900 }}
-            />
+          <div className="rounded-xl overflow-hidden bg-background">
+            <img src={imageUrl} alt={prompt} className="w-full h-auto max-w-[640px] mx-auto" />
           </div>
-          <p className="text-xs text-muted-foreground">{L.blockedHint}</p>
         </div>
       )}
     </div>
