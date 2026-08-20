@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sparkles, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useToolLabels, useLocaleContext } from '@/components/i18n/LocaleProvider';
+import { useTheme } from 'next-themes';
 import { trackEvent } from '@/lib/analytics';
 
 const GENERATOR_URL = 'https://8a3a4dfaf29b4be8eead43dd8c912667.perchance.org/3y4owlpd4l';
+const EMBED_ID = 'toolora';
 const RESOLUTIONS = ['512x512', '512x768', '768x512', '768x768'];
 
 const PERCHANCE_LANGS: Record<string, string> = {
@@ -19,15 +21,31 @@ const PERCHANCE_LANGS: Record<string, string> = {
 export function ImageGenerator() {
   const L = useToolLabels('image-generator');
   const { locale } = useLocaleContext();
+  const { resolvedTheme } = useTheme();
   const [prompt, setPrompt] = useState('');
   const [negativePrompt, setNegativePrompt] = useState('');
   const [seed, setSeed] = useState('');
   const [resolution, setResolution] = useState('512x512');
   const [iframeUrl, setIframeUrl] = useState<string | null>(null);
 
+  // Official Perchance embed: the generator posts its height so the
+  // iframe auto-resizes to fit the content.
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      const d = e.data;
+      if (!d || d.type !== 'aiImgEmbed' || !Number.isFinite(d.height)) return;
+      const f = document.getElementById(`aiImg-${d.id}`);
+      if (f) f.style.height = `${d.height}px`;
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+
   const generate = () => {
     if (!prompt.trim()) return;
     const url = new URL(GENERATOR_URL);
+    url.searchParams.set('embed', '1');
+    url.searchParams.set('embid', EMBED_ID);
     url.searchParams.set('prompt', prompt.trim());
     url.searchParams.set('resolution', resolution);
     url.searchParams.set('seed', seed.trim() ? seed.trim() : '-1');
@@ -35,6 +53,8 @@ export function ImageGenerator() {
       url.searchParams.set('negative', negativePrompt.trim());
     }
     url.searchParams.set('lang', PERCHANCE_LANGS[locale] ?? 'en');
+    url.searchParams.set('theme', resolvedTheme === 'dark' ? 'dark' : 'light');
+    url.searchParams.set('bg', 'transparent');
     setIframeUrl(url.toString());
     trackEvent('tool_used', { tool: 'image-generator', resolution });
   };
@@ -117,13 +137,17 @@ export function ImageGenerator() {
               {L.openInNewTab}
             </a>
           </div>
-          <iframe
-            src={iframeUrl}
-            title={L.result}
-            className="w-full rounded-xl border border-border bg-background"
-            style={{ height: 640 }}
-            allow="clipboard-write"
-          />
+          <div className="mx-auto w-full max-w-[640px]">
+            <iframe
+              id={`aiImg-${EMBED_ID}`}
+              src={iframeUrl}
+              title={L.result}
+              loading="lazy"
+              className="w-full border-0 rounded-xl overflow-hidden"
+              style={{ minHeight: 900 }}
+              allow="clipboard-write"
+            />
+          </div>
         </div>
       )}
     </div>
