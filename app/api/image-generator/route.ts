@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_URL = 'https://imgaigenerator.sujjdkjsnjqnjzz.workers.dev/';
+const API_URL = 'https://imgaigenerator.sujjdkjsnjqnzjj.workers.dev/';
 const TOKEN = process.env.IMAGE_GEN_TOKEN ?? 'XP';
 
 export const maxDuration = 60;
