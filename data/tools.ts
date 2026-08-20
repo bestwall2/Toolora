@@ -876,6 +876,49 @@ export const tools: Tool[] = [
     isPopular: true,
   },
   {
+    id: 'image-generator',
+    name: 'AI Image Generator',
+    slug: 'image-generator',
+    description: 'Create stunning images from a text prompt with AI, no login required.',
+    longDescription:
+      'Describe what you want to see and our AI turns your words into an image. Tune the result with a negative prompt, seed and resolution to control composition and style. Powered by a free text-to-image engine, no account or sign-up needed.',
+    category: 'image',
+    icon: Wand2,
+    keywords: ['ai image generator', 'text to image', 'ai art generator', 'generate image from text', 'image generator'],
+    relatedTools: ['image-enhancer', 'image-resizer', 'image-converter', 'image-compressor'],
+    seoTitle: 'AI Image Generator - Create Images from Text Online Free',
+    seoDescription:
+      'Generate AI images from a text prompt for free. Control seed and resolution, add a negative prompt, and download in one click. No login required.',
+    content:
+      'Write a prompt describing the scene, subject, style or mood you want, then hit Generate. Our AI produces a unique image in seconds. For finer control, add a negative prompt to tell the AI what to avoid, set a fixed seed to reproduce a result and choose a resolution. The result can be downloaded directly or sent on to another tool.',
+    howToSteps: [
+      'Type a detailed description of the image you want.',
+      'Optionally set a negative prompt, seed and resolution.',
+      'Click "Generate".',
+      'Preview, download, or continue to another tool.',
+    ],
+    faq: [
+      {
+        question: 'Is the image generator really free?',
+        answer:
+          'Yes. Each generation is free and requires no account, login or credit card.',
+      },
+      {
+        question: 'Can I control what the AI creates?',
+        answer:
+          'Yes. Use a descriptive prompt, add a negative prompt to avoid unwanted elements, set a seed to reproduce results, and choose a resolution.',
+      },
+      {
+        question: 'Are generated images safe to use?',
+        answer:
+          'Generated images are original outputs of the AI model. Review the result before using it for commercial purposes, as AI generation policies vary by platform.',
+      },
+    ],
+    isBrowserSide: false,
+    outputType: 'image',
+    isPopular: true,
+  },
+  {
     id: 'sha-hash-generator',
     name: 'SHA-256 Hash Generator',
     slug: 'sha-hash-generator',
