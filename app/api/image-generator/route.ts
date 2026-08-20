@@ -23,6 +23,21 @@ export async function POST(request: NextRequest) {
   if (body.seed !== undefined && body.seed !== '' && body.seed !== '-1' && Number.isFinite(seed)) {
     payload.seed = seed;
   }
+  const numSteps = Number(body.num_steps);
+  if (body.num_steps !== undefined && body.num_steps !== '' && Number.isFinite(numSteps)) {
+    payload.num_steps = numSteps;
+  }
+  const strength = Number(body.strength);
+  if (body.strength !== undefined && body.strength !== '' && Number.isFinite(strength)) {
+    payload.strength = strength;
+  }
+  const guidance = Number(body.guidance);
+  if (body.guidance !== undefined && body.guidance !== '' && Number.isFinite(guidance)) {
+    payload.guidance = guidance;
+  }
+  if (typeof body.model === 'string' && body.model.trim()) {
+    payload.model = body.model.trim();
+  }
 
   try {
     const upstream = await fetch(API_URL, {

@@ -416,6 +416,8 @@ imageCropper: {
         random: 'عشوائي',
         resolution: 'الدقة',
         guidance: 'درجة التوجيه',
+        steps: 'الخطوات',
+        model: 'النموذج',
         generate: 'توليد',
         generating: 'جارٍ التوليد…',
         download: 'تحميل',

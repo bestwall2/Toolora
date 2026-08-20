@@ -416,6 +416,8 @@ const dict: Dictionary = {
         random: 'Aléatoire',
         resolution: 'Résolution',
         guidance: 'Échelle de guidage',
+        steps: 'Pas',
+        model: 'Modèle',
         generate: 'Générer',
         generating: 'Génération…',
         download: 'Télécharger',

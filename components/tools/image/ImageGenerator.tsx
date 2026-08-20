@@ -8,6 +8,13 @@ import { trackEvent } from '@/lib/analytics';
 
 const RESOLUTIONS = ['512x512', '512x768', '768x512', '768x768', '768x1024', '1024x1024'];
 
+const MODELS = [
+  { id: '@cf/stabilityai/stable-diffusion-xl-base-1.0', label: 'Stable Diffusion XL Base 1.0' },
+  { id: '@cf/blackforestlabs/ux-1-schnell', label: 'Flux 1 Schnell' },
+  { id: '@cf/bytedance/stable-diffusion-xl-lightning', label: 'SDXL Lightning' },
+  { id: '@cf/lykon/dreamshaper-8-lcm', label: 'Dreamshaper 8 LCM' },
+];
+
 function extensionFromType(type: string): string {
   if (type.includes('png')) return '.png';
   if (type.includes('webp')) return '.webp';
@@ -20,6 +27,9 @@ export function ImageGenerator() {
   const [negativePrompt, setNegativePrompt] = useState('');
   const [seed, setSeed] = useState('');
   const [resolution, setResolution] = useState('512x512');
+  const [steps, setSteps] = useState('');
+  const [guidance, setGuidance] = useState('');
+  const [model, setModel] = useState(MODELS[0].id);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -43,6 +53,9 @@ export function ImageGenerator() {
           width,
           height,
           seed: seed.trim() ? Number(seed) : undefined,
+          num_steps: steps.trim() ? Number(steps) : undefined,
+          guidance: guidance.trim() ? Number(guidance) : undefined,
+          model,
         }),
       });
 
@@ -96,6 +109,21 @@ export function ImageGenerator() {
             />
           </div>
 
+          <div className="space-y-1.5">
+            <label className="block text-sm text-muted-foreground">{L.model}</label>
+            <select
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              {MODELS.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <label className="block text-sm text-muted-foreground">{L.seed}</label>
@@ -120,6 +148,31 @@ export function ImageGenerator() {
                   </option>
                 ))}
               </select>
+            </div>
+            <div className="space-y-1.5">
+              <label className="block text-sm text-muted-foreground">{L.steps}</label>
+              <input
+                type="number"
+                min={1}
+                max={50}
+                value={steps}
+                onChange={(e) => setSteps(e.target.value)}
+                placeholder="20"
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label className="block text-sm text-muted-foreground">{L.guidance}</label>
+              <input
+                type="number"
+                min={1}
+                max={30}
+                step={0.5}
+                value={guidance}
+                onChange={(e) => setGuidance(e.target.value)}
+                placeholder="7"
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              />
             </div>
           </div>
 
