@@ -16,27 +16,48 @@ function clean(text: string): string {
   return text.replace(/```json/gi, '').replace(/```/g, '').replace(/^[^{]*/, '').replace(/[^}]*$/, '');
 }
 
-function parseScript(raw: string): { title: string; scenes: { narration: string; imagePrompt: string }[] } {
+function parseJsonRobust(raw: string): Record<string, unknown> {
   const cleaned = clean(raw.trim());
-  let data: {
-    title?: unknown;
-    scenes?: unknown;
-  } = {};
-  try {
-    data = JSON.parse(cleaned);
-  } catch {
-    const match = cleaned.match(/\{[\s\S]*\}/);
-    if (match) {
-      try {
-        data = JSON.parse(match[0]);
-      } catch {
-        throw new Error('The AI returned an unreadable script. Please try again.');
-      }
-    } else {
-      throw new Error('The AI returned an unreadable script. Please try again.');
+  const start = cleaned.indexOf('{');
+  const end = cleaned.lastIndexOf('}');
+  if (start === -1 || end <= start) throw new Error('The AI returned an unreadable script. Please try again.');
+  const body = cleaned.slice(start, end + 1);
+
+  const attempt = (candidate: string): Record<string, unknown> | null => {
+    try {
+      const parsed = JSON.parse(candidate) as Record<string, unknown>;
+      return parsed && typeof parsed === 'object' ? parsed : null;
+    } catch {
+      return null;
     }
+  };
+
+  const complete = attempt(body);
+  if (complete) return complete;
+
+  // The output may have been truncated mid-JSON. Walk back over each
+  // closed object and try re-closing the structure with extra brackets.
+  let idx = body.lastIndexOf('}');
+  let guard = 0;
+  while (idx > 0 && guard < 40) {
+    const prefix = body.slice(0, idx + 1);
+    const closers = ['}', ']}', ']}]', ']}]}', ']}]}]'];
+    for (const closer of closers) {
+      const fixed = attempt(prefix + closer);
+      if (fixed) return fixed;
+    }
+    idx = body.lastIndexOf('}', idx - 1);
+    guard++;
   }
 
+  const trimmed = attempt(body.replace(/,\s*$/, ''));
+  if (trimmed) return trimmed;
+
+  throw new Error('The AI returned an unreadable script. Please try again.');
+}
+
+function parseScript(raw: string): { title: string; scenes: { narration: string; imagePrompt: string }[] } {
+  const data = parseJsonRobust(raw);
   const rawScenes = Array.isArray(data.scenes) ? data.scenes : [];
   const scenes = rawScenes
     .slice(0, 6)
@@ -46,6 +67,7 @@ function parseScript(raw: string): { title: string; scenes: { narration: string;
       const narration = typeof scene.narration === 'string' ? scene.narration.trim() : '';
       const imagePrompt = typeof scene.imagePrompt === 'string' ? scene.imagePrompt.trim() : '';
       if (!narration || !imagePrompt) return null;
+
       return { narration: narration.slice(0, 400), imagePrompt: imagePrompt.slice(0, 400) };
     })
     .filter((s): s is { narration: string; imagePrompt: string } => s !== null);
@@ -73,7 +95,7 @@ export async function POST(request: NextRequest) {
 
 The user gives you a topic and a mood. Produce a plan for a video with exactly ${sceneCount} scenes.
 
-Return ONLY valid JSON with this exact shape (no markdown, no comments, no trailing commas):
+Return ONLY valid JSON with this exact shape (no markdown, no comments, no trailing commas, no text before or after the JSON object):
 {
   "title": "Short video title",
   "scenes": [
@@ -101,18 +123,23 @@ Rules:
   }
 
   try {
-    const upstream = await fetch(
+    const generationConfig = {
+      temperature: 0.9,
+      maxOutputTokens: 4096,
+      responseMimeType: 'application/json',
+    };
+
+    const body = JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig,
+    });
+
+    let upstream = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.95,
-            maxOutputTokens: sceneCount * 300,
-          },
-        }),
+        body,
         signal: AbortSignal.timeout(55_000),
       }
     );
@@ -129,7 +156,23 @@ Rules:
       return NextResponse.json({ error: message }, { status: 502 });
     }
 
-    const data = await upstream.json();
+    let data = await upstream.json();
+
+    // If the response was cut off (max tokens), retry once with a larger budget.
+    if (data?.candidates?.[0]?.finishReason === 'MAX_TOKENS') {
+      const retryConfig = { ...generationConfig, maxOutputTokens: 8192 };
+      upstream = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: retryConfig }),
+          signal: AbortSignal.timeout(55_000),
+        }
+      );
+      if (upstream.ok) data = await upstream.json();
+    }
+
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
     if (typeof text !== 'string' || !text.trim()) {
       return NextResponse.json({ error: 'The AI returned an empty script. Please try again.' }, { status: 502 });
