@@ -140,12 +140,16 @@ export default async function ToolPage({ params }: PageProps) {
           {/* Tool Container */}
           <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
             <ToolComponent slug={tool.slug} />
-            <PrivacyBadge
-              text={dict.toolPage.privacyBadge}
-              proofLabel={dict.toolPage.privacyProofLink}
-              proofHref={withLocale(current, '/privacy-proof')}
-            />
-            <TrustSignals labels={dict.trustSignals} />
+            {tool.isBrowserSide && (
+              <>
+                <PrivacyBadge
+                  text={dict.toolPage.privacyBadge}
+                  proofLabel={dict.toolPage.privacyProofLink}
+                  proofHref={withLocale(current, '/privacy-proof')}
+                />
+                <TrustSignals labels={dict.trustSignals} />
+              </>
+            )}
           </div>
 
           {/* About this tool */}

@@ -1,6 +1,37 @@
 import type { Dictionary } from '../types';
 import { locales } from '../config';
 
+const downloaderUi: Record<string, string> = {
+  urlLabel: 'URL del video',
+  urlPlaceholder: 'Pega la URL del video aquí…',
+  getInfo: 'Obtener información',
+  gettingInfo: 'Consultando información…',
+  kind: 'Tipo',
+  video: 'Video',
+  audio: 'Solo audio',
+  quality: 'Calidad',
+  format: 'Formato',
+  example: 'Ejemplo:',
+  detected: 'Detectado:',
+  duration: 'Duración',
+  by: 'por',
+  views: 'vistas',
+  download: 'Descargar',
+  starting: 'Iniciando…',
+  queued: 'En cola…',
+  downloading: 'Descargando…',
+  converting: 'Convirtiendo…',
+  finalizing: 'Finalizando…',
+  ready: '¡Tu archivo está listo!',
+  saveFile: 'Guardar archivo',
+  another: 'Descargar otro video',
+  unsupported: 'Este enlace no es una URL de {platform} reconocida.',
+  notConfigured: 'El servicio de descarga aún no está configurado. Inténtalo de nuevo más tarde.',
+  fetchFailed: 'No se pudo obtener la información del video. Revisa la URL e inténtalo de nuevo.',
+  downloadFailed: 'La descarga falló. Inténtalo de nuevo.',
+  note: 'Descarga solo contenido que tengas derecho a descargar y respeta los términos de cada plataforma.',
+};
+
 const dict: Dictionary = {
   meta: {
     defaultTitle: 'Toollora — herramientas gratuitas en línea para el día a día',
@@ -703,6 +734,11 @@ const dict: Dictionary = {
         ssidPlaceholder: 'RedCasa',
         passwordPlaceholder: 'Contraseña de la red',
       },
+      youtubeVideoDownloader: downloaderUi,
+      instagramVideoDownloader: downloaderUi,
+      tiktokVideoDownloader: downloaderUi,
+      twitterVideoDownloader: downloaderUi,
+      facebookVideoDownloader: downloaderUi,
     },
   },
   toolsContent: {
@@ -1367,6 +1403,140 @@ const dict: Dictionary = {
         },
       ],
     },
+    'youtube-video-downloader': {
+      name: 'Descargador de videos de YouTube',
+      description: 'Descarga videos y audio de YouTube en la calidad que necesites.',
+      longDescription: 'Pega un enlace de YouTube y guarda el video o el audio en la calidad y formato que prefieras. Funciona directamente desde tu navegador.',
+      keywords: ['descargador youtube', 'descargar video youtube', 'descarga video youtube', 'youtube a mp3'],
+      seoTitle: 'Descargador de videos de YouTube — guarda videos y audio gratis',
+      seoDescription: 'Descarga videos de YouTube gratis. Pega un enlace, elige la calidad y el formato, y guarda el video en tu dispositivo.',
+      content:
+        'Conserva una copia de cualquier video de YouTube público que tengas derecho a descargar. Pega el enlace del video, previsualiza su título y miniatura, elige la calidad de video que quieras (hasta la mejor disponible) o extrae la pista de audio como MP3 o M4A, y luego descarga el archivo final. Todo lo gestiona un motor de descarga dedicado, así obtienes un archivo limpio listo para reproducir sin conexión.',
+      howToSteps: [
+        'Copia el enlace del video de YouTube que quieras guardar.',
+        'Pega el enlace y haz clic en "Obtener información".',
+        'Elige video o audio y selecciona calidad y formato.',
+        'Haz clic en descargar y guarda el archivo final.',
+      ],
+      faq: [
+        {
+          question: '¿Qué enlaces de YouTube son compatibles?',
+          answer: 'Se admiten enlaces normales (youtube.com/watch?v=…), Shorts y enlaces cortos youtu.be.',
+        },
+        {
+          question: '¿Puedo descargar solo el audio?',
+          answer: 'Sí. Cambia el tipo a "Solo audio" y elige MP3, M4A u otro formato de audio.',
+        },
+        {
+          question: '¿Está permitido descargar videos de YouTube?',
+          answer: 'Descarga contenido que tengas derecho a descargar, conforme a los Términos de Servicio de YouTube y las leyes de copyright de tu país.',
+        },
+      ],
+    },
+    'instagram-video-downloader': {
+      name: 'Descargador de videos de Instagram',
+      description: 'Descarga reels, videos y fotos de Instagram a tu dispositivo.',
+      longDescription: 'Guarda reels y videos de Instagram pegando un enlace. Obtén el video en un archivo MP4 limpio, listo para compartir o conservar sin conexión.',
+      keywords: ['descargador instagram', 'descargar video instagram', 'descargador reel instagram', 'guardar video instagram'],
+      seoTitle: 'Descargador de videos de Instagram — guarda reels y videos gratis',
+      seoDescription: 'Descarga reels y videos de Instagram gratis. Pega el enlace y guarda el video en MP4 de alta calidad.',
+      content:
+        'Guarda reels, videos y publicaciones de Instagram que tengas derecho a conservar. Pega el enlace de Instagram, confirma que aparece el video con su miniatura y descárgalo como un archivo de video limpio. Funciona con enlaces de publicaciones normales, reels y enlaces de video cortos.',
+      howToSteps: [
+        'Copia el enlace de la publicación o reel de Instagram.',
+        'Pega el enlace y haz clic en "Obtener información".',
+        'Elige la calidad y el formato.',
+        'Haz clic en descargar y guarda el video.',
+      ],
+      faq: [
+        {
+          question: '¿Puedo descargar reels de Instagram?',
+          answer: 'Sí. Los enlaces de reels son compatibles y se descargan como archivos MP4.',
+        },
+        {
+          question: '¿Puedo descargar fotos de perfil?',
+          answer: 'No — el descargador funciona con publicaciones y reels, no con fotos de perfil ni cuentas privadas.',
+        },
+      ],
+    },
+    'tiktok-video-downloader': {
+      name: 'Descargador de videos de TikTok',
+      description: 'Descarga videos de TikTok sin marca de agua, en HD.',
+      longDescription: 'Pega cualquier enlace de video de TikTok público y descárgalo en alta calidad. Funciona con enlaces tiktok.com y enlaces cortos vm.tiktok.com.',
+      keywords: ['descargador tiktok', 'descargar video tiktok', 'descarga tiktok sin marca de agua', 'guardar video tiktok'],
+      seoTitle: 'Descargador de videos de TikTok — guarda videos gratis',
+      seoDescription: 'Descarga videos de TikTok gratis. Pega un enlace y guarda el video en alta calidad.',
+      content:
+        'Conserva una copia de videos de TikTok públicos para verlos sin conexión. Pega un enlace de video tiktok.com completo o un enlace corto vm.tiktok.com, mira la vista previa, elige la calidad y el formato que prefieras y descarga el archivo final. Simple, rápido y gratis.',
+      howToSteps: [
+        'Copia el enlace del video de TikTok.',
+        'Pega el enlace y haz clic en "Obtener información".',
+        'Elige la calidad y el formato.',
+        'Haz clic en descargar y guarda el video.',
+      ],
+      faq: [
+        {
+          question: '¿Funciona con enlaces cortos?',
+          answer: 'Sí — se admiten enlaces cortos vm.tiktok.com y vt.tiktok.com.',
+        },
+        {
+          question: '¿Por qué a veces falla una descarga?',
+          answer: 'TikTok bloquea ocasionalmente el acceso automatizado. Espera un momento e inténtalo de nuevo, o verifica que el video sea público.',
+        },
+      ],
+    },
+    'twitter-video-downloader': {
+      name: 'Descargador de videos de X (Twitter)',
+      description: 'Descarga videos de publicaciones e hilos de X (Twitter).',
+      longDescription: 'Pega un enlace de estado de X (Twitter) y descarga el video adjunto en la calidad que prefieras.',
+      keywords: ['descargador twitter', 'descargador x', 'descargar video twitter', 'descarga video x'],
+      seoTitle: 'Descargador de videos de X (Twitter) — guarda videos gratis',
+      seoDescription: 'Descarga videos de X (Twitter) gratis. Pega el enlace del estado y guarda el video adjunto.',
+      content:
+        'Guarda los videos adjuntos a publicaciones de X (Twitter). Pega un enlace de estado (twitter.com/…/status/… o x.com/…/status/…), confirma la vista previa del medio y descarga el video en la calidad que elijas. Útil para conservar clips de hilos, anuncios y noticias sin conexión.',
+      howToSteps: [
+        'Copia el enlace de la publicación de X (Twitter) que contiene el video.',
+        'Pega el enlace y haz clic en "Obtener información".',
+        'Elige la calidad y el formato.',
+        'Haz clic en descargar y guarda el video.',
+      ],
+      faq: [
+        {
+          question: '¿Funcionan los enlaces cortos t.co?',
+          answer: 'Recomendamos pegar el enlace completo del estado (twitter.com/…/status/… o x.com/…/status/…).',
+        },
+        {
+          question: '¿Puedo descargar un hilo completo?',
+          answer: 'No — el descargador guarda el video adjunto a un solo enlace de estado.',
+        },
+      ],
+    },
+    'facebook-video-downloader': {
+      name: 'Descargador de videos de Facebook',
+      description: 'Descarga videos y reels de Facebook a tu dispositivo.',
+      longDescription: 'Pega un enlace de video o reel de Facebook público y descárgalo en la calidad y formato que prefieras.',
+      keywords: ['descargador facebook', 'descargar video facebook', 'descarga video facebook', 'descarga reel facebook'],
+      seoTitle: 'Descargador de videos de Facebook — guarda videos y reels gratis',
+      seoDescription: 'Descarga videos y reels de Facebook gratis. Pega el enlace y guarda el video.',
+      content:
+        'Guarda videos y reels de Facebook públicos que quieras conservar. Pega un enlace de video de Facebook o una URL de video, previsualiza el medio y descárgalo de forma limpia. Funciona con enlaces de watch y la mayoría de páginas de video públicas.',
+      howToSteps: [
+        'Copia el enlace del video o reel de Facebook.',
+        'Pega el enlace y haz clic en "Obtener información".',
+        'Elige la calidad y el formato.',
+        'Haz clic en descargar y guarda el video.',
+      ],
+      faq: [
+        {
+          question: '¿Funcionan los videos privados?',
+          answer: 'No — solo se pueden descargar videos públicos.',
+        },
+        {
+          question: '¿Qué enlaces de Facebook son compatibles?',
+          answer: 'Funcionan enlaces públicos de watch, reels y la mayoría de páginas de video, incluidos los enlaces cortos fb.watch.',
+        },
+      ],
+    },
   },
   categoriesContent: {
     image: {
@@ -1446,6 +1616,23 @@ const dict: Dictionary = {
       longDescription:
         'Se están preparando herramientas impulsadas por IA. Construimos herramientas inteligentes que respetan el enfoque de «privacidad primero» de Toollora: útiles, rápidas y fáciles de usar. Esta categoría llegará pronto, vuelve para ver las novedades.',
       keywords: ['herramientas ia', 'herramientas inteligencia artificial'],
+    },
+    social: {
+      name: 'Descargadores de videos',
+      description: 'Descarga videos y audio de YouTube, Instagram, TikTok, X y Facebook.',
+      seoTitle: 'Descargadores de videos — YouTube, Instagram, TikTok, X y Facebook',
+      seoDescription:
+        'Descarga videos y audio de YouTube, Instagram, TikTok, X (Twitter) y Facebook. Herramientas gratuitas para descargar videos.',
+      longDescription:
+        'Guarda tus videos favoritos de las plataformas sociales más populares. Nuestros descargadores obtienen videos y audio públicos de YouTube, Instagram y TikTok, así como publicaciones y medios de X (Twitter) y Facebook, y te permiten conservar una copia en la calidad y formato que prefieras. Solo pega un enlace, elige tus ajustes y descarga.',
+      keywords: [
+        'descargador de videos',
+        'descargador youtube',
+        'descargador instagram',
+        'descargador tiktok',
+        'descargador twitter',
+        'descargador facebook',
+      ],
     },
   },
   supportedLocales: [...locales],

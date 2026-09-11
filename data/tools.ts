@@ -24,6 +24,11 @@ import {
   Fingerprint,
   Palette,
   Sparkles,
+  Clapperboard,
+  Camera,
+  Music2,
+  MessagesSquare,
+  ThumbsUp,
 } from 'lucide-react';
 
 export interface ToolFAQ {
@@ -990,6 +995,189 @@ export const tools: Tool[] = [
     ],
     isPopular: false,
     isBrowserSide: true,
+  },
+  // ─── SOCIAL MEDIA DOWNLOADERS ────────────────────────────────────────────
+  {
+    id: 'youtube-video-downloader',
+    name: 'YouTube Video Downloader',
+    slug: 'youtube-video-downloader',
+    description: 'Download YouTube videos and audio in the quality you need.',
+    longDescription:
+      'Paste a YouTube link and save the video or audio in your preferred quality and format. Supports single videos and works right from your browser.',
+    category: 'social',
+    icon: Clapperboard,
+    keywords: ['youtube downloader', 'download youtube video', 'youtube video download', 'youtube to mp3'],
+    relatedTools: ['instagram-video-downloader', 'tiktok-video-downloader', 'twitter-video-downloader', 'facebook-video-downloader'],
+    seoTitle: 'YouTube Video Downloader — Save Videos & Audio Free',
+    seoDescription:
+      'Download YouTube videos and audio free. Paste a link, choose your quality and format, and save the video to your device.',
+    content:
+      'Keep a copy of any public YouTube video you have permission to download. Paste the video link, preview its title and thumbnail, pick the video quality you want (up to the best available) or extract the audio track as MP3 or M4A, then download the finished file. Everything is handled by a dedicated download engine, so you get a clean file ready to play offline.',
+    howToSteps: [
+      'Copy the link of the YouTube video you want to save.',
+      'Paste the link and click "Get Video Info".',
+      'Choose video or audio, then pick your quality and format.',
+      'Click download and save the finished file.',
+    ],
+    faq: [
+      {
+        question: 'Which YouTube links are supported?',
+        answer:
+          'Regular watch links (youtube.com/watch?v=…), Shorts and youtu.be short links are supported.',
+      },
+      {
+        question: 'Can I download audio only?',
+        answer: 'Yes. Switch the kind to "Audio" and choose MP3, M4A or another audio format.',
+      },
+      {
+        question: 'Is downloading YouTube videos allowed?',
+        answer:
+          'Download content you have the right to download, in line with YouTube\u2019s Terms of Service and the applicable copyright law in your country.',
+      },
+    ],
+    isPopular: true,
+    isBrowserSide: false,
+  },
+  {
+    id: 'instagram-video-downloader',
+    name: 'Instagram Video Downloader',
+    slug: 'instagram-video-downloader',
+    description: 'Download Instagram reels, videos and photos to your device.',
+    longDescription:
+      'Save Instagram reels and videos by pasting the link. Get the video in a clean MP4 file, ready to share or keep offline.',
+    category: 'social',
+    icon: Camera,
+    keywords: ['instagram downloader', 'download instagram video', 'instagram reel downloader', 'save instagram video'],
+    relatedTools: ['youtube-video-downloader', 'tiktok-video-downloader', 'twitter-video-downloader', 'facebook-video-downloader'],
+    seoTitle: 'Instagram Video Downloader — Save Reels & Videos Free',
+    seoDescription:
+      'Download Instagram reels and videos free. Paste the link and save the video as MP4 in high quality.',
+    content:
+      'Save Instagram reels, videos and posts you are allowed to keep. Paste the Instagram link, confirm the video appears with its thumbnail, and download it as a clean video file. Works with standard post links, reels and short video links.',
+    howToSteps: [
+      'Copy the link from the Instagram post or reel.',
+      'Paste the link and click "Get Video Info".',
+      'Choose your quality and format.',
+      'Click download and save the video.',
+    ],
+    faq: [
+      {
+        question: 'Can I download Instagram reels?',
+        answer: 'Yes. Reel links are supported and download as MP4 video files.',
+      },
+      {
+        question: 'Can I download profile pictures?',
+        answer: 'No — the downloader works with posts and reels, not profile pictures or private accounts.',
+      },
+    ],
+    isPopular: false,
+    isBrowserSide: false,
+  },
+  {
+    id: 'tiktok-video-downloader',
+    name: 'TikTok Video Downloader',
+    slug: 'tiktok-video-downloader',
+    description: 'Download TikTok videos without watermarks, in HD quality.',
+    longDescription:
+      'Paste any public TikTok video link and download it in high quality. Works with tiktok.com links and shortened vm.tiktok.com links.',
+    category: 'social',
+    icon: Music2,
+    keywords: ['tiktok downloader', 'download tiktok video', 'tiktok video download no watermark', 'save tiktok video'],
+    relatedTools: ['youtube-video-downloader', 'instagram-video-downloader', 'twitter-video-downloader', 'facebook-video-downloader'],
+    seoTitle: 'TikTok Video Downloader — Save TikTok Videos Free',
+    seoDescription:
+      'Download TikTok videos free. Paste a link and save the video in HD quality to your device.',
+    content:
+      'Keep a copy of public TikTok videos you want to watch offline. Paste a full tiktok.com video link or a shortened vm.tiktok.com link, see the video preview, select the quality and format you prefer, and download the finished file. Simple, fast and free.',
+    howToSteps: [
+      'Copy the link of the TikTok video.',
+      'Paste the link and click "Get Video Info".',
+      'Pick your quality and format.',
+      'Click download and save the video.',
+    ],
+    faq: [
+      {
+        question: 'Does it work with shortened links?',
+        answer: 'Yes — vm.tiktok.com and vt.tiktok.com short links are supported.',
+      },
+      {
+        question: 'Why does a download fail sometimes?',
+        answer:
+          'TikTok occasionally blocks automated access. Wait a moment and try again, or check that the video is public.',
+      },
+    ],
+    isPopular: false,
+    isBrowserSide: false,
+  },
+  {
+    id: 'twitter-video-downloader',
+    name: 'X (Twitter) Video Downloader',
+    slug: 'twitter-video-downloader',
+    description: 'Download videos from X (Twitter) posts and threads.',
+    longDescription:
+      'Paste an X (Twitter) status link and download the attached video in your preferred quality to your device.',
+    category: 'social',
+    icon: MessagesSquare,
+    keywords: ['twitter downloader', 'x downloader', 'download twitter video', 'x video download'],
+    relatedTools: ['youtube-video-downloader', 'instagram-video-downloader', 'tiktok-video-downloader', 'facebook-video-downloader'],
+    seoTitle: 'X (Twitter) Video Downloader — Save Videos Free',
+    seoDescription:
+      'Download X (Twitter) videos free. Paste the status link and save the attached video to your device.',
+    content:
+      'Save videos attached to X (Twitter) posts. Paste a status link (twitter.com/…/status/… or x.com/…/status/…), confirm the media preview and download the video in the quality you choose. Useful for keeping clips from threads, announcements and news posts offline.',
+    howToSteps: [
+      'Copy the link of the X (Twitter) post with the video.',
+      'Paste the link and click "Get Video Info".',
+      'Choose your quality and format.',
+      'Click download and save the video.',
+    ],
+    faq: [
+      {
+        question: 'Do short t.co links work?',
+        answer: 'We recommend pasting the full status link (twitter.com/…/status/… or x.com/…/status/…).',
+      },
+      {
+        question: 'Can I download a whole thread?',
+        answer: 'No — the downloader saves the video attached to a single status link.',
+      },
+    ],
+    isPopular: false,
+    isBrowserSide: false,
+  },
+  {
+    id: 'facebook-video-downloader',
+    name: 'Facebook Video Downloader',
+    slug: 'facebook-video-downloader',
+    description: 'Download Facebook videos and reels to your device.',
+    longDescription:
+      'Paste a public Facebook video or reel link and download it in your preferred quality and format.',
+    category: 'social',
+    icon: ThumbsUp,
+    keywords: ['facebook downloader', 'download facebook video', 'facebook video download', 'facebook reel download'],
+    relatedTools: ['youtube-video-downloader', 'instagram-video-downloader', 'tiktok-video-downloader', 'twitter-video-downloader'],
+    seoTitle: 'Facebook Video Downloader — Save Videos & Reels Free',
+    seoDescription:
+      'Download Facebook videos and reels free. Paste the link and save the video to your device.',
+    content:
+      'Save public Facebook videos and reels you want to keep. Paste a Facebook watch link or video URL, preview the media and download it cleanly. Works with watch links and many public video pages.',
+    howToSteps: [
+      'Copy the link of the Facebook video or reel.',
+      'Paste the link and click "Get Video Info".',
+      'Pick your quality and format.',
+      'Click download and save the video.',
+    ],
+    faq: [
+      {
+        question: 'Do private videos work?',
+        answer: 'No — only public videos can be downloaded.',
+      },
+      {
+        question: 'Which Facebook links are supported?',
+        answer: 'Public watch, reel and most video page links work, including fb.watch short links.',
+      },
+    ],
+    isPopular: false,
+    isBrowserSide: false,
   },
 ];
 

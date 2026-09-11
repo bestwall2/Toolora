@@ -1,6 +1,37 @@
 import type { Dictionary } from '../types';
 import { locales } from '../config';
 
+const downloaderUi: Record<string, string> = {
+  urlLabel: 'URL de la vidéo',
+  urlPlaceholder: 'Collez l’URL de la vidéo ici…',
+  getInfo: 'Obtenir les infos',
+  gettingInfo: 'Chargement des infos…',
+  kind: 'Type',
+  video: 'Vidéo',
+  audio: 'Audio',
+  quality: 'Qualité',
+  format: 'Format',
+  example: 'Exemple :',
+  detected: 'Détecté :',
+  duration: 'Durée',
+  by: 'par',
+  views: 'vues',
+  download: 'Télécharger',
+  starting: 'Démarrage…',
+  queued: 'En file d’attente…',
+  downloading: 'Téléchargement…',
+  converting: 'Conversion…',
+  finalizing: 'Finalisation…',
+  ready: 'Votre fichier est prêt !',
+  saveFile: 'Enregistrer le fichier',
+  another: 'Télécharger une autre vidéo',
+  unsupported: 'Ce lien n’est pas une URL {platform} reconnue.',
+  notConfigured: 'Le service de téléchargement n’est pas encore configuré. Réessayez plus tard.',
+  fetchFailed: 'Impossible de récupérer les infos de la vidéo. Vérifiez l’URL et réessayez.',
+  downloadFailed: 'Le téléchargement a échoué. Réessayez.',
+  note: 'Ne téléchargez que du contenu que vous avez le droit de télécharger, et respectez les conditions de chaque plateforme.',
+};
+
 const dict: Dictionary = {
   meta: {
     defaultTitle: 'Toollora — outils gratuits en ligne pour le quotidien',
@@ -703,6 +734,11 @@ const dict: Dictionary = {
         ssidPlaceholder: 'RéseauMaison',
         passwordPlaceholder: 'Mot de passe du réseau',
       },
+      youtubeVideoDownloader: downloaderUi,
+      instagramVideoDownloader: downloaderUi,
+      tiktokVideoDownloader: downloaderUi,
+      twitterVideoDownloader: downloaderUi,
+      facebookVideoDownloader: downloaderUi,
     },
   },
   toolsContent: {
@@ -1367,6 +1403,140 @@ const dict: Dictionary = {
         },
       ],
     },
+    'youtube-video-downloader': {
+      name: 'Téléchargeur de vidéos YouTube',
+      description: 'Téléchargez des vidéos et de l’audio YouTube dans la qualité souhaitée.',
+      longDescription: 'Collez un lien YouTube et enregistrez la vidéo ou l’audio dans la qualité et le format de votre choix. Fonctionne directement depuis votre navigateur.',
+      keywords: ['téléchargeur youtube', 'télécharger vidéo youtube', 'téléchargement vidéo youtube', 'youtube en mp3'],
+      seoTitle: 'Téléchargeur de vidéos YouTube — enregistrer vidéos et audio gratuitement',
+      seoDescription: 'Téléchargez gratuitement des vidéos YouTube. Collez un lien, choisissez la qualité et le format, puis enregistrez la vidéo.',
+      content:
+        'Gardez une copie de toute vidéo YouTube publique que vous avez le droit de télécharger. Collez le lien de la vidéo, prévisualisez son titre et sa vignette, choisissez la qualité vidéo souhaitée (jusqu’à la meilleure disponible) ou extrayez la piste audio en MP3 ou M4A, puis téléchargez le fichier final. Un moteur de téléchargement dédié fait tout le travail pour vous offrir un fichier propre, prêt à lire hors ligne.',
+      howToSteps: [
+        'Copiez le lien de la vidéo YouTube à enregistrer.',
+        'Collez le lien et cliquez sur « Obtenir les infos ».',
+        'Choisissez vidéo ou audio, puis la qualité et le format.',
+        'Cliquez sur télécharger et enregistrez le fichier.',
+      ],
+      faq: [
+        {
+          question: 'Quels liens YouTube sont pris en charge ?',
+          answer: 'Les liens de lecture classiques (youtube.com/watch?v=…), Shorts et liens courts youtu.be sont pris en charge.',
+        },
+        {
+          question: 'Puis-je télécharger uniquement l’audio ?',
+          answer: 'Oui. Passez le type sur « Audio » et choisissez MP3, M4A ou un autre format audio.',
+        },
+        {
+          question: 'Le téléchargement de vidéos YouTube est-il autorisé ?',
+          answer: 'Téléchargez uniquement du contenu que vous avez le droit de télécharger, conformément aux conditions d’utilisation de YouTube et aux lois sur le droit d’auteur de votre pays.',
+        },
+      ],
+    },
+    'instagram-video-downloader': {
+      name: 'Téléchargeur de vidéos Instagram',
+      description: 'Téléchargez des reels, vidéos et photos Instagram sur votre appareil.',
+      longDescription: 'Enregistrez des reels et vidéos Instagram en collant un lien. Obtenez la vidéo dans un fichier MP4 propre, prêt à partager ou à conserver hors ligne.',
+      keywords: ['téléchargeur instagram', 'télécharger vidéo instagram', 'téléchargeur reel instagram', 'enregistrer vidéo instagram'],
+      seoTitle: 'Téléchargeur de vidéos Instagram — enregistrer reels et vidéos gratuitement',
+      seoDescription: 'Téléchargez gratuitement des reels et vidéos Instagram. Collez le lien et enregistrez la vidéo en MP4 haute qualité.',
+      content:
+        'Enregistrez des reels, vidéos et publications Instagram que vous avez le droit de conserver. Collez le lien Instagram, vérifiez que la vidéo apparaît avec sa vignette, puis téléchargez-la comme fichier vidéo propre. Fonctionne avec les liens de publications classiques, les reels et les liens de vidéos courts.',
+      howToSteps: [
+        'Copiez le lien de la publication ou du reel Instagram.',
+        'Collez le lien et cliquez sur « Obtenir les infos ».',
+        'Choisissez la qualité et le format.',
+        'Cliquez sur télécharger et enregistrez la vidéo.',
+      ],
+      faq: [
+        {
+          question: 'Puis-je télécharger des reels Instagram ?',
+          answer: 'Oui. Les liens de reels sont pris en charge et se téléchargent en fichiers MP4.',
+        },
+        {
+          question: 'Puis-je télécharger les photos de profil ?',
+          answer: 'Non — le téléchargeur fonctionne avec les publications et reels, pas les photos de profil ni les comptes privés.',
+        },
+      ],
+    },
+    'tiktok-video-downloader': {
+      name: 'Téléchargeur de vidéos TikTok',
+      description: 'Téléchargez des vidéos TikTok sans filigrane, en HD.',
+      longDescription: 'Collez tout lien de vidéo TikTok publique et téléchargez-la en haute qualité. Fonctionne avec les liens tiktok.com et les liens courts vm.tiktok.com.',
+      keywords: ['téléchargeur tiktok', 'télécharger vidéo tiktok', 'téléchargement tiktok sans filigrane', 'enregistrer vidéo tiktok'],
+      seoTitle: 'Téléchargeur de vidéos TikTok — enregistrer des vidéos gratuitement',
+      seoDescription: 'Téléchargez gratuitement des vidéos TikTok. Collez un lien et enregistrez la vidéo en haute qualité.',
+      content:
+        'Gardez une copie de vidéos TikTok publiques à regarder hors ligne. Collez un lien vidéo tiktok.com complet ou un lien court vm.tiktok.com, visualisez l’aperçu, choisissez la qualité et le format, puis téléchargez le fichier final. Simple, rapide et gratuit.',
+      howToSteps: [
+        'Copiez le lien de la vidéo TikTok.',
+        'Collez le lien et cliquez sur « Obtenir les infos ».',
+        'Choisissez la qualité et le format.',
+        'Cliquez sur télécharger et enregistrez la vidéo.',
+      ],
+      faq: [
+        {
+          question: 'Cela fonctionne-t-il avec les liens courts ?',
+          answer: 'Oui — les liens courts vm.tiktok.com et vt.tiktok.com sont pris en charge.',
+        },
+        {
+          question: 'Pourquoi un téléchargement échoue parfois ?',
+          answer: 'TikTok bloque occasionnellement l’accès automatisé. Attendez un instant et réessayez, ou vérifiez que la vidéo est publique.',
+        },
+      ],
+    },
+    'twitter-video-downloader': {
+      name: 'Téléchargeur de vidéos X (Twitter)',
+      description: 'Téléchargez des vidéos de publications et fils X (Twitter).',
+      longDescription: 'Collez un lien de statut X (Twitter) et téléchargez la vidéo jointe dans la qualité de votre choix.',
+      keywords: ['téléchargeur twitter', 'téléchargeur x', 'télécharger vidéo twitter', 'téléchargement vidéo x'],
+      seoTitle: 'Téléchargeur de vidéos X (Twitter) — enregistrer des vidéos gratuitement',
+      seoDescription: 'Téléchargez gratuitement des vidéos X (Twitter). Collez le lien du statut et enregistrez la vidéo jointe.',
+      content:
+        'Enregistrez les vidéos jointes aux publications X (Twitter). Collez un lien de statut (twitter.com/…/status/… ou x.com/…/status/…), confirmez l’aperçu du média et téléchargez la vidéo dans la qualité de votre choix. Pratique pour conserver des extraits de fils, d’annonces et d’actualités hors ligne.',
+      howToSteps: [
+        'Copiez le lien de la publication X (Twitter) contenant la vidéo.',
+        'Collez le lien et cliquez sur « Obtenir les infos ».',
+        'Choisissez la qualité et le format.',
+        'Cliquez sur télécharger et enregistrez la vidéo.',
+      ],
+      faq: [
+        {
+          question: 'Les liens courts t.co fonctionnent-ils ?',
+          answer: 'Nous recommandons de coller le lien de statut complet (twitter.com/…/status/… ou x.com/…/status/…).',
+        },
+        {
+          question: 'Puis-je télécharger un fil entier ?',
+          answer: 'Non — le téléchargeur enregistre la vidéo jointe à un seul lien de statut.',
+        },
+      ],
+    },
+    'facebook-video-downloader': {
+      name: 'Téléchargeur de vidéos Facebook',
+      description: 'Téléchargez des vidéos et reels Facebook sur votre appareil.',
+      longDescription: 'Collez un lien de vidéo ou reel Facebook public et téléchargez-le dans la qualité et le format de votre choix.',
+      keywords: ['téléchargeur facebook', 'télécharger vidéo facebook', 'téléchargement vidéo facebook', 'téléchargement reel facebook'],
+      seoTitle: 'Téléchargeur de vidéos Facebook — enregistrer vidéos et reels gratuitement',
+      seoDescription: 'Téléchargez gratuitement des vidéos et reels Facebook. Collez le lien et enregistrez la vidéo.',
+      content:
+        'Enregistrez des vidéos et reels Facebook publics que vous souhaitez conserver. Collez un lien de lecture Facebook ou une URL de vidéo, prévisualisez le média puis téléchargez-le proprement. Fonctionne avec les liens de lecture et la plupart des pages de vidéos publiques.',
+      howToSteps: [
+        'Copiez le lien de la vidéo ou du reel Facebook.',
+        'Collez le lien et cliquez sur « Obtenir les infos ».',
+        'Choisissez la qualité et le format.',
+        'Cliquez sur télécharger et enregistrez la vidéo.',
+      ],
+      faq: [
+        {
+          question: 'Les vidéos privées fonctionnent-elles ?',
+          answer: 'Non — seules les vidéos publiques peuvent être téléchargées.',
+        },
+        {
+          question: 'Quels liens Facebook sont pris en charge ?',
+          answer: 'Les liens publics de lecture, reels et la plupart des pages vidéo fonctionnent, y compris les liens courts fb.watch.',
+        },
+      ],
+    },
   },
   categoriesContent: {
     image: {
@@ -1446,6 +1616,23 @@ const dict: Dictionary = {
       longDescription:
         'Des outils propulsés par l’IA sont en préparation. Nous construisons des outils intelligents qui respectent l’approche « confidentialité d’abord » de Toollora — utiles, rapides et faciles à utiliser. Cette catégorie arrive bientôt, revenez voir les nouveautés.',
       keywords: ['outils ia', 'outils intelligence artificielle'],
+    },
+    social: {
+      name: 'Téléchargeurs de vidéos',
+      description: 'Téléchargez des vidéos et de l’audio depuis YouTube, Instagram, TikTok, X et Facebook.',
+      seoTitle: 'Téléchargeurs de vidéos — YouTube, Instagram, TikTok, X et Facebook',
+      seoDescription:
+        'Téléchargez des vidéos et de l’audio depuis YouTube, Instagram, TikTok, X (Twitter) et Facebook. Outils de téléchargement vidéo gratuits.',
+      longDescription:
+        'Enregistrez vos vidéos préférées des plateformes sociales les plus populaires. Nos téléchargeurs récupèrent les vidéos et l’audio publics de YouTube, Instagram et TikTok ainsi que les publications et médias de X (Twitter) et Facebook, et vous permettent d’en conserver une copie dans la qualité et le format de votre choix. Collez simplement un lien, choisissez vos réglages et téléchargez.',
+      keywords: [
+        'téléchargeur de vidéo',
+        'téléchargeur youtube',
+        'téléchargeur instagram',
+        'téléchargeur tiktok',
+        'téléchargeur twitter',
+        'téléchargeur facebook',
+      ],
     },
   },
   supportedLocales: [...locales],

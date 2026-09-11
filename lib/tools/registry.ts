@@ -94,4 +94,25 @@ export const toolComponents: Record<string, React.ComponentType> = {
   'qr-code-generator': dynamic(() => import('@/components/tools/qr/QrCodeGenerator').then((m) => m.QrCodeGenerator), {
     ssr: false,
   }),
+
+  // Social media downloaders
+  'youtube-video-downloader': dynamic(() => import('@/components/tools/media/VideoDownloader').then((m) => m.YoutubeVideoDownloader), {
+    ssr: false,
+  }),
+  'instagram-video-downloader': dynamic(
+    () => import('@/components/tools/media/VideoDownloader').then((m) => m.InstagramVideoDownloader),
+    { ssr: false }
+  ),
+  'tiktok-video-downloader': dynamic(
+    () => import('@/components/tools/media/VideoDownloader').then((m) => m.TiktokVideoDownloader),
+    { ssr: false }
+  ),
+  'twitter-video-downloader': dynamic(
+    () => import('@/components/tools/media/VideoDownloader').then((m) => m.TwitterVideoDownloader),
+    { ssr: false }
+  ),
+  'facebook-video-downloader': dynamic(
+    () => import('@/components/tools/media/VideoDownloader').then((m) => m.FacebookVideoDownloader),
+    { ssr: false }
+  ),
 };

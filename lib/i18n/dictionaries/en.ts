@@ -1,6 +1,37 @@
 import type { Dictionary } from '../types';
 import { locales } from '../config';
 
+const downloaderUi: Record<string, string> = {
+  urlLabel: 'Video URL',
+  urlPlaceholder: 'Paste the video URL here…',
+  getInfo: 'Get Video Info',
+  gettingInfo: 'Fetching video info…',
+  kind: 'Type',
+  video: 'Video',
+  audio: 'Audio',
+  quality: 'Quality',
+  format: 'Format',
+  example: 'Example:',
+  detected: 'Detected:',
+  duration: 'Duration',
+  by: 'by',
+  views: 'views',
+  download: 'Download',
+  starting: 'Starting…',
+  queued: 'Queued — waiting for a free worker…',
+  downloading: 'Downloading…',
+  converting: 'Converting…',
+  finalizing: 'Finalizing…',
+  ready: 'Your download is ready!',
+  saveFile: 'Save File',
+  another: 'Download another video',
+  unsupported: 'This link is not a recognized {platform} URL.',
+  notConfigured: 'The downloader service is not configured yet. Please try again later.',
+  fetchFailed: 'Could not fetch the video info. Check the URL and try again.',
+  downloadFailed: 'The download failed. Please try again.',
+  note: "Only download content you have the right to download, and respect each platform's terms of service.",
+};
+
 const dict: Dictionary = {
   meta: {
     defaultTitle: 'Toollora â€” Free Online Tools for Everyday Tasks',
@@ -706,6 +737,11 @@ const dict: Dictionary = {
         ssidPlaceholder: 'Home Wi-Fi',
         passwordPlaceholder: 'Network password',
       },
+      youtubeVideoDownloader: downloaderUi,
+      instagramVideoDownloader: downloaderUi,
+      tiktokVideoDownloader: downloaderUi,
+      twitterVideoDownloader: downloaderUi,
+      facebookVideoDownloader: downloaderUi,
     },
   },
   toolsContent: {},

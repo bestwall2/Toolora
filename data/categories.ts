@@ -7,6 +7,7 @@ import {
   RefreshCcw,
   Sparkles,
   QrCode,
+  Download,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -144,6 +145,28 @@ export const categories: Category[] = [
     icon: Sparkles,
     color: 'text-pink-600 dark:text-pink-400',
     bgColor: 'bg-pink-50 dark:bg-pink-950/40',
+  },
+  {
+    id: 'social',
+    name: 'Video Downloaders',
+    slug: 'social',
+    description: 'Download videos and audio from YouTube, Instagram, TikTok, X and Facebook.',
+    seoTitle: 'Video Downloaders — YouTube, Instagram, TikTok, X & Facebook',
+    seoDescription:
+      'Download videos and audio from YouTube, Instagram, TikTok, X (Twitter) and Facebook. Free online video downloader tools.',
+    longDescription:
+      'Save your favorite videos from the most popular social platforms. Our downloaders fetch public videos and audio from YouTube, Instagram and TikTok as well as posts and media from X (Twitter) and Facebook, and let you keep a copy in the quality and format you prefer. Just paste a link, pick your settings and download.',
+    keywords: [
+      'video downloader',
+      'youtube downloader',
+      'instagram downloader',
+      'tiktok downloader',
+      'twitter downloader',
+      'facebook downloader',
+    ],
+    icon: Download,
+    color: 'text-rose-600 dark:text-rose-400',
+    bgColor: 'bg-rose-50 dark:bg-rose-950/40',
   },
 ];
 
