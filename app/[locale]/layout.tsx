@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { LocaleProvider } from '@/components/i18n/LocaleProvider';
 import { PwaProvider } from '@/components/pwa/PwaProvider';
+import AdBanner from '@/components/ui/AdBanner';
 import { locales, isRtlLocale, isLocale, defaultLocale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n';
 import { SITE_NAME, SITE_URL } from '@/lib/seo';
@@ -114,6 +115,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <PwaProvider strings={dict.pwa} />
             <JsonLd data={websiteSchema} />
             <Navbar />
+            <AdBanner />
             <main className="flex-1">{children}</main>
             <Footer locale={current} />
           </LocaleProvider>
