@@ -115,9 +115,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <PwaProvider strings={dict.pwa} />
             <JsonLd data={websiteSchema} />
             <Navbar />
-            <AdBanner />
             <main className="flex-1">{children}</main>
             <Footer locale={current} />
+            <AdBanner />
           </LocaleProvider>
         </ThemeProvider>
       </body>

@@ -8,11 +8,17 @@ export default function AdBanner() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const script = document.createElement('script');
-    script.src = 'https://bogavoidmemorize.com/04a4788f4f077c94cf91249fb0f3a1f3/invoke.js';
-    script.async = true;
+    (window as any).atOptions = {
+      key: '001398ff75ab9efe1088d31633156f04',
+      format: 'iframe',
+      height: 60,
+      width: 468,
+      params: {},
+    };
 
-    (script as any).dataCfasync = 'false';
+    const script = document.createElement('script');
+    script.src = 'https://bogavoidmemorize.com/001398ff75ab9efe1088d31633156f04/invoke.js';
+    script.async = true;
 
     containerRef.current.appendChild(script);
 
@@ -24,7 +30,8 @@ export default function AdBanner() {
   return (
     <div
       ref={containerRef}
-      id="container-04a4788f4f077c94cf91249fb0f3a1f3"
+      className="flex justify-center py-4"
+      id="container-001398ff75ab9efe1088d31633156f04"
     />
   );
 }
