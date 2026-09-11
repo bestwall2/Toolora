@@ -923,6 +923,49 @@ export const tools: Tool[] = [
     isPopular: true,
   },
   {
+    id: 'story-video-generator',
+    name: 'AI Story Video Generator',
+    slug: 'story-video-generator',
+    description: 'Turn any topic into a narrated video with AI images, captions and music.',
+    longDescription:
+      'Type a topic and our AI writes a full story script with image prompts, generates the images, adds a narrator that reads the story, captions, gentle animation and background music, then mixes everything into a ready-to-download video. Perfect for shorts, explainers and social posts.',
+    category: 'ai',
+    icon: Clapperboard,
+    keywords: ['ai video generator', 'video from images', 'text to video', 'ai story video', 'narrated video', 'ai video maker'],
+    relatedTools: ['image-generator', 'image-enhancer', 'image-to-text'],
+    seoTitle: 'AI Story Video Generator — Free Narrated Video Maker',
+    seoDescription:
+      'Turn a topic into a narrated AI video for free. Script, images, captions, narration and background music in one click. No account needed.',
+    content:
+      'The AI Story Video Generator turns a single topic into a complete short video. Gemini writes a story script scene by scene, an image model paints every scene, a narrator reads the story aloud, and the tool adds captions, gentle zoom-and-pan animation and ambient background music. The result is assembled right in your browser and downloads as a video file you can share on social media.',
+    howToSteps: [
+      'Type a topic and choose mood, language and the number of scenes.',
+      'Click "Generate script" and edit any scene text or image prompt you like.',
+      'Click "Create video" — the AI generates the images and narration, then records the final video.',
+      'Preview it and download the finished video.',
+    ],
+    faq: [
+      {
+        question: 'How long does it take to create a video?',
+        answer:
+          'Generating the images usually takes the longest (a few seconds per scene with the fast model). Recording the video takes about as long as the finished video, so a 30-second video takes roughly half a minute to render.',
+      },
+      {
+        question: 'Is the narrator really AI?',
+        answer:
+          'Yes. The video has a built-in text-to-speech narrator that reads each scene out loud in the language you selected. You can also turn narration off in the advanced settings.',
+      },
+      {
+        question: 'What video format does it produce?',
+        answer:
+          'The tool records the animated scenes plus narration and music into a standard WebM video with sound, ready to share or convert.',
+      },
+    ],
+    isBrowserSide: false,
+    badge: 'New',
+    isPopular: true,
+  },
+  {
     id: 'sha-hash-generator',
     name: 'SHA-256 Hash Generator',
     slug: 'sha-hash-generator',

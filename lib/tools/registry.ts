@@ -31,6 +31,12 @@ export const toolComponents: Record<string, React.ComponentType> = {
     ssr: false,
   }),
 
+  // AI
+  'story-video-generator': dynamic(
+    () => import('@/components/tools/video/StoryVideoGenerator').then((m) => m.StoryVideoGenerator),
+    { ssr: false }
+  ),
+
   // PDF
   'pdf-merger': dynamic(() => import('@/components/tools/pdf/PdfMerger').then((m) => m.PdfMerger), {
     ssr: false,
