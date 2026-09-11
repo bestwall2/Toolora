@@ -449,6 +449,7 @@ imageCropper: {
         guidance: 'درجة التوجيه',
         steps: 'الخطوات',
         model: 'النموذج',
+        advanced: 'خيارات متقدمة',
         generate: 'توليد',
         generating: 'جارٍ التوليد…',
         download: 'تحميل',

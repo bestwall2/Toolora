@@ -453,6 +453,7 @@ const dict: Dictionary = {
         guidance: 'Guidance scale',
         steps: 'Steps',
         model: 'Model',
+        advanced: 'Advanced options',
         generate: 'Generate',
         generating: 'Generatingâ€¦',
         download: 'Download',

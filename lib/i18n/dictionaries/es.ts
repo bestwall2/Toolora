@@ -449,6 +449,7 @@ const dict: Dictionary = {
         guidance: 'Escala de guía',
         steps: 'Pasos',
         model: 'Modelo',
+        advanced: 'Opciones avanzadas',
         generate: 'Generar',
         generating: 'Generando…',
         download: 'Descargar',
