@@ -13,8 +13,11 @@ function languagesFor(path: string): Record<string, string> {
   return languages;
 }
 
+// Stable build-time timestamp to avoid sitemap churn (Google recommends a stable lastModified).
+const SITEMAP_LAST_MODIFIED = new Date('2026-09-01T00:00:00.000Z');
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const lastModified = SITEMAP_LAST_MODIFIED;
 
   const staticPaths = ['/', '/tools', '/about', '/contact', '/privacy', '/privacy-proof', '/terms'];
   const categoryPaths = categories.map((cat) => `/tools/${cat.slug}`);
