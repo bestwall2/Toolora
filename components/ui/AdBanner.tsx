@@ -30,7 +30,7 @@ export default function AdBanner() {
   return (
     <div
       ref={containerRef}
-      className="flex justify-center py-4"
+      className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-card/95 backdrop-blur border-t border-border py-2"
       id="container-001398ff75ab9efe1088d31633156f04"
     />
   );
