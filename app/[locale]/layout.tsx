@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import { Inter, Cairo } from 'next/font/google';
 import { locale } from 'next/root-params';
 import '@/app/globals.css';
@@ -107,6 +108,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={current} dir={dir} suppressHydrationWarning>
       <head />
+      <Script
+        src="https://bogavoidmemorize.com/4d/76/da/4d76da27d68e126a5c16f5a303aa89ed.js"
+        strategy="beforeInteractive"
+      />
       <body
         className={`${inter.variable} ${cairo.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
